@@ -1,16 +1,19 @@
 import com.sun.jna.ptr.IntByReference;
 import louis.Liblouis;
 import java.io.UnsupportedEncodingException;
-import java.util.Properties;
-import java.io.InputStream;
-import java.io.IOException;
+import java.util.ResourceBundle;
+import java.util.MissingResourceException;
 
 public class TestBrl {
-  public static void main(String[] args) throws UnsupportedEncodingException, IOException {
-    InputStream configStream = ClassLoader.getSystemResourceAsStream("jlouis.properties");
-    Properties config = new Properties();
-    config.load(configStream);
-    String encoding = config.getProperty("jlouis.encoding", "utf-16le");
+  public static void main(String[] args) throws UnsupportedEncodingException {
+    String encoding = null;
+    try {
+      ResourceBundle config = ResourceBundle.getBundle("jlouis");
+      encoding = config.getString("jlouis.encoding");
+    } catch (MissingResourceException e) { }
+    if (encoding == null) {
+      encoding = System.getProperty("jlouis.encoding", "utf-16le");
+    }
     Liblouis l = Liblouis.INSTANCE;
     byte[] inBuf = args[1].getBytes(encoding);
     int inlen = args[1].length();
