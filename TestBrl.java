@@ -1,5 +1,5 @@
 import com.sun.jna.ptr.IntByReference;
-import louis.Liblouis;
+import org.liblouis.library.Liblouis;
 import java.io.UnsupportedEncodingException;
 import java.util.ResourceBundle;
 import java.util.MissingResourceException;
