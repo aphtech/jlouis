@@ -23,6 +23,10 @@ public interface Liblouis extends Library {
     int lou_translate(String trantab, byte[] inbuf, IntByReference inlen, byte[] outbuf, IntByReference outlen, byte[] typeform, byte[] spacing, int[] outpos, int[] inpos, IntByReference cursorpos, int mode);
     int lou_backTranslateString(String trantab, byte[] inbuf, IntByReference inlen, byte[] outbuf, IntByReference outlen, byte[] typeform, byte[] spacing, int mode);
     int lou_backTranslate(String trantab, byte[] inbuf, IntByReference inlen, byte[] outbuf, IntByReference outlen, byte[] typeform, byte[] spacing, int[] outpos, int[] inpos, IntByReference cursorpos, int mode);
+    int lou_hyphenate(String trantab, byte[] inbuf, int inlen, byte[] hyphens, int mode);
+    void lou_logFileName(String fileName);
+    void lou_logPrint(String format);
+    void lou_getTable(String tablelist);
     String lou_version();
     void lou_free();
 }
