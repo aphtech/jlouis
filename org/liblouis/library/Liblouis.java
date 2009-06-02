@@ -22,6 +22,7 @@ import com.sun.jna.ptr.ByteByReference;
  * account for the number of bytes per character.</li>
  * <li>Liblouis returns information by altering content of variables passed to
  * it as pointers, this isn't the most natural java calling style.</li>
+ * </ul>
  * 
  * @author Michael Whapples
  * @version 1.0
@@ -60,14 +61,109 @@ public interface Liblouis extends Library {
         public static final int comp8Dots = 8;
         public static final int pass1Only = 16;
     }
+    /**
+     * The lou_translateString function.
+     * 
+     * This method is for liblouis's lou_translateString, refer to the liblouis
+     * documentation for the meaning of the parameters.
+     *
+     * Particular things to note about this method which differ from the
+     * expected.
+     * <ul>
+     * <li>This method takes a byte array for inbuf, this byte array should
+     * be the bytes making up the unicode to be passed into lou_translateString
+     * using the correct encoding for liblouis (remember that liblouis can be
+     * compiled for 16-bit and 32-bit unicode.</li>
+     * <li>inlen is the length of the original string not the byte array
+     * being passed into this call.</li>
+     * <li>The two above items also apply to outbuf and outlen. If you make a
+     * mistake on setting outbuf and outlen sizes correctly this can lead to
+     * errors which may crash the JVM. Due to this you are strongly advised
+     * to avoid using these library classes directly as the main API ( @see org.liblouis ) protects you from setting this
+     * incorrectly.</li>
+     * </ul>
+     */
     int lou_translateString(String trantab, byte[] inbuf, IntByReference inlen, byte[] outbuf, IntByReference outlen, byte[] typeform, byte[] spacing, int mode);
+    /**
+     * The lou_translate function.
+     *
+     * The same information about the useage of the @see lou_translateString
+     * method applies to this method. This method takes the additional 
+     * parameters stated in the liblouis documentation.
+     */
     int lou_translate(String trantab, byte[] inbuf, IntByReference inlen, byte[] outbuf, IntByReference outlen, byte[] typeform, byte[] spacing, int[] outpos, int[] inpos, IntByReference cursorpos, int mode);
+    /**
+     * The lou_backTranslateString function.
+     * 
+     * This method uses the lou_backTranslateString function of liblouis to
+     * perform back translation.
+     *
+     * The useage of this method is as described for lou_translateString.
+     */
     int lou_backTranslateString(String trantab, byte[] inbuf, IntByReference inlen, byte[] outbuf, IntByReference outlen, byte[] typeform, byte[] spacing, int mode);
+    /**
+     * The lou_backTranslate function.
+     *
+     * This method uses the lou_backTranslate function to perform back 
+     * translation. The information about @see lou_translateString applies to 
+     * this method with the addition of the parameters specified in the 
+     * liblouis documentation for the lou_backTranslate function.
+     */
     int lou_backTranslate(String trantab, byte[] inbuf, IntByReference inlen, byte[] outbuf, IntByReference outlen, byte[] typeform, byte[] spacing, int[] outpos, int[] inpos, IntByReference cursorpos, int mode);
+    /**
+     * The lou_hyphenate function.
+     *
+     * This method is for the lou_hyphenate function of liblouis. parameters
+     * are as given in the liblouis documentation.
+     *
+     * Things which should be noted:
+     * <ul>
+     * <li>inbuf is a byte array containing the bytes of the unicode which
+     * should be passed to the lou_hyphenate function. Be aware that liblouis
+     * can be compiled for either 16-bit unicode or 32-bit unicode so ensure the
+     * correct encoding is used.</li>
+     * <li>inlen is the length of the string being input not the length of the 
+     * byte array.</li>
+     * <li>hyphens is a byte array, it should be of length of inlen not inbuf.</li>
+     * </ul>
+     */
     int lou_hyphenate(String trantab, byte[] inbuf, int inlen, byte[] hyphens, int mode);
+    /**
+     * The lou_logFileName function.
+     *
+     * This method will make liblouis put logging information in a log file
+     * of the filename given as the parameter.
+     */
     void lou_logFileName(String fileName);
-    void lou_logPrint(String format);
+    /**
+     * The lou_logPrint function.
+     *
+     * This method is as in the liblouis documentation.
+     */
+    void lou_logPrint(String format, Object... args);
+    /**
+     * The lou_getTable function.
+     * 
+     * There is no reason for java applications to call this method, it is
+     * being included purely for completeness.
+     * 
+     * This method will compile the translation tables given to it, but as
+     * any function which requires compiled tables calls this function it
+     * is not needed to be called externally.
+     */
     void lou_getTable(String tablelist);
+    /**
+     * The lou_version function.
+     *
+     * This method returns a string giving the version of liblouis.
+     */
     String lou_version();
+    /**
+     * The lou_free function.
+     * 
+     * This function should be called at the end of use of liblouis to free memory.
+     * According to the liblouis documentation you should not call this method 
+     * after each call to lou_translateString, etc.
+     */
     void lou_free();
 }
