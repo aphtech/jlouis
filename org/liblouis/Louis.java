@@ -28,6 +28,10 @@ public class Louis {
         return louisLib.lou_version();
     }
     public String translateString(String trantab, String inbuf, byte[] typeforms, int mode) throws TranslationException {
+        byte[] spacing = null;
+        return translateString(trantab, inbuf, typeforms, spacing, mode);
+    }
+    public String translateString(String trantab, String inbuf, byte[] typeforms, byte[] spacing, int mode) throws TranslationException {
         int inlen = inbuf.length();
         byte[] inbufArray;
         String outbuf;
@@ -38,7 +42,6 @@ public class Louis {
         }
         int outlen = outRatio * inlen;
         byte[] outbufArray = new byte[outRatio * inbufArray.length];
-        byte[] spacing = null;
         if (louisLib.lou_translateString(trantab, inbufArray, new IntByReference(inlen),
               outbufArray, new IntByReference(outlen), typeforms, spacing, mode) == 0) {
             throw new TranslationException("Unable to complete translation");
@@ -51,6 +54,10 @@ public class Louis {
         return outbuf;
     }
     public String backTranslateString(String trantab, String inbuf, byte[] typeforms, int mode) throws TranslationException {
+        byte[] spacing = null;
+        return backTranslateString(trantab, inbuf, typeforms, spacing, mode);
+    }
+    public String backTranslateString(String trantab, String inbuf, byte[] typeforms, byte[] spacing, int mode) throws TranslationException {
         byte[] inbufArray;
         try {
             inbufArray = inbuf.getBytes(encoding);
@@ -58,7 +65,6 @@ public class Louis {
             throw new TranslationException("Config encoding not supported by JVM");
         }
         byte[] outbufArray = new byte[outRatio * inbufArray.length];
-        byte[] spacing = null;
         int inlen = inbuf.length();
         String outbuf;
         int outlen = outRatio * inlen;
