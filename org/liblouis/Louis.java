@@ -47,6 +47,28 @@ public class Louis {
         }
         return outbuf;
     }
+    public String backTranslateString(String trantab, String inbuf, byte[] typeforms, int mode) throws TranslationException {
+        byte[] inbufArray;
+        try {
+            inbufArray = inbuf.getBytes(encoding);
+        } catch (java.io.UnsupportedEncodingException e) {
+            throw new TranslationException("Config encoding not supported by JVM");
+        }
+        byte[] outbufArray = new byte[outRatio * inbufArray.length];
+        byte[] spacing = null;
+        int inlen = inbuf.length();
+        String outbuf;
+        int outlen = outRatio * inlen;
+        if (louisLib.lou_backTranslateString(trantab, inbufArray, new IntByReference(inlen), outbufArray, new IntByReference(outlen), typeforms, spacing, mode) == 0) {
+            throw new TranslationException("Unable to complete translation");
+        }
+        try {
+            outbuf = new String(outbufArray, encoding);
+        } catch (java.io.UnsupportedEncodingException e) {
+            throw new TranslationException("Config encoding not supported by JVM");
+        }
+        return outbuf;
+    }
     public void close() {
         louisLib.lou_free();
     }
