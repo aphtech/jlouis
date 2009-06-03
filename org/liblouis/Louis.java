@@ -24,6 +24,9 @@ public class Louis {
         InputStream defaultConfig = this.getClass().getResourceAsStream("/jlouis.properties");
         propConfig.load(defaultConfig);
     }
+    public String getVersion() {
+        return louisLib.lou_version();
+    }
     public String translateString(String trantab, String inbuf, byte[] typeforms, int mode) throws TranslationException {
         int inlen = inbuf.length();
         byte[] inbufArray;
