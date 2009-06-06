@@ -78,6 +78,20 @@ public class Louis {
         }
         return outbuf;
     }
+    public byte[] hyphenate(String trantab, String inbuf, int mode) throws TranslationException {
+        byte[] inbufArray;
+        try {
+            inbufArray = inbuf.getBytes(encoding);
+        } catch (java.io.UnsupportedEncodingException e) {
+            throw new TranslationException("Config encoding not supported by JVM");
+        }
+        int inlen = inbuf.length();
+        byte[] hyphens = new byte[inlen];
+        if (louisLib.lou_hyphenate(trantab, inbufArray, inlen, hyphens, mode) == 0) {
+            throw new TranslationException("Failed to complete hyphenation");
+        }
+        return hyphens;
+    }
     public void close() {
         louisLib.lou_free();
     }
