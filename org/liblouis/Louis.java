@@ -40,14 +40,17 @@ public class Louis {
         } catch (java.io.UnsupportedEncodingException e) {
             throw new TranslationException("Config encoding not supported by JVM");
         }
+        int encodingSize = inbufArray.length/inlen;
         int outlen = outRatio * inlen;
         byte[] outbufArray = new byte[outRatio * inbufArray.length];
+        IntByReference poutlen = new IntByReference(outlen);
         if (louisLib.lou_translateString(trantab, inbufArray, new IntByReference(inlen),
-              outbufArray, new IntByReference(outlen), typeforms, spacing, mode) == 0) {
+              outbufArray, poutlen, typeforms, spacing, mode) == 0) {
             throw new TranslationException("Unable to complete translation");
         }
+        int numOfBytes = poutlen.getValue() * encodingSize;
         try {
-            outbuf = new String(outbufArray, encoding);
+            outbuf = new String(outbufArray, 0, numOfBytes, encoding);
         } catch (java.io.UnsupportedEncodingException e) {
             throw new TranslationException("Config encoding not supported by JVM");
         }
@@ -64,15 +67,18 @@ public class Louis {
         } catch (java.io.UnsupportedEncodingException e) {
             throw new TranslationException("Config encoding not supported by JVM");
         }
-        byte[] outbufArray = new byte[outRatio * inbufArray.length];
         int inlen = inbuf.length();
+        int encodingSize = inbufArray.length/inlen;
+        byte[] outbufArray = new byte[outRatio * inbufArray.length];
         String outbuf;
         int outlen = outRatio * inlen;
-        if (louisLib.lou_backTranslateString(trantab, inbufArray, new IntByReference(inlen), outbufArray, new IntByReference(outlen), typeforms, spacing, mode) == 0) {
+        IntByReference poutlen = new IntByReference(outlen);
+        if (louisLib.lou_backTranslateString(trantab, inbufArray, new IntByReference(inlen), outbufArray, poutlen, typeforms, spacing, mode) == 0) {
             throw new TranslationException("Unable to complete translation");
         }
+        int numOfBytes = poutlen.getValue() * encodingSize;
         try {
-            outbuf = new String(outbufArray, encoding);
+            outbuf = new String(outbufArray, 0, numOfBytes, encoding);
         } catch (java.io.UnsupportedEncodingException e) {
             throw new TranslationException("Config encoding not supported by JVM");
         }
@@ -91,6 +97,9 @@ public class Louis {
             throw new TranslationException("Failed to complete hyphenation");
         }
         return hyphens;
+    }
+    public void setLogFileName(String fileName) {
+        louisLib.lou_logFile(fileName);
     }
     public void close() {
         louisLib.lou_free();

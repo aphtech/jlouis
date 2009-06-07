@@ -129,12 +129,12 @@ public interface Liblouis extends Library {
      */
     int lou_hyphenate(String trantab, byte[] inbuf, int inlen, byte[] hyphens, int mode);
     /**
-     * The lou_logFileName function.
+     * The lou_logFile function.
      *
      * This method will make liblouis put logging information in a log file
      * of the filename given as the parameter.
      */
-    void lou_logFileName(String fileName);
+    void lou_logFile(String fileName);
     /**
      * The lou_logPrint function.
      *
