@@ -70,38 +70,23 @@ public class Louis {
         return backTranslateString(trantab, inbuf, typeforms, spacing, mode);
     }
     public String backTranslateString(String trantab, String inbuf, byte[] typeforms, byte[] spacing, int mode) throws TranslationException {
-        byte[] inbufArray;
-        try {
-            inbufArray = inbuf.getBytes(encoding);
-        } catch (java.io.UnsupportedEncodingException e) {
-            throw new TranslationException("Config encoding not supported by JVM");
-        }
+        byte[] inbufArray = createArrayFromString(inbuf);
         int inlen = inbuf.length();
         int encodingSize = inbufArray.length/inlen;
         byte[] outbufArray = new byte[outRatio * inbufArray.length];
-        String outbuf;
         int outlen = outRatio * inlen;
         IntByReference poutlen = new IntByReference(outlen);
         if (louisLib.lou_backTranslateString(trantab, inbufArray, new IntByReference(inlen), outbufArray, poutlen, typeforms, spacing, mode) == 0) {
             throw new TranslationException("Unable to complete translation");
         }
         int numOfBytes = poutlen.getValue() * encodingSize;
-        try {
-            outbuf = new String(outbufArray, 0, numOfBytes, encoding);
-        } catch (java.io.UnsupportedEncodingException e) {
-            throw new TranslationException("Config encoding not supported by JVM");
-        }
+        String outbuf = createStringFromArray(outbufArray, numOfBytes);
         return outbuf;
     }
     public byte[] hyphenate(String trantab, String inbuf, int mode) throws TranslationException {
-        byte[] inbufArray;
-        try {
-            inbufArray = inbuf.getBytes(encoding);
-        } catch (java.io.UnsupportedEncodingException e) {
-            throw new TranslationException("Config encoding not supported by JVM");
-        }
+        byte[] inbufArray = createArrayFromString(inbuf);
         int inlen = inbuf.length();
-        byte[] hyphens = new byte[inlen * 2];
+        byte[] hyphens = new byte[inlen * outRatio];
         if (louisLib.lou_hyphenate(trantab, inbufArray, inlen, hyphens, mode) == 0) {
             for (int i=0; i < hyphens.length; i++) {
                 hyphens[i] = ' ';
