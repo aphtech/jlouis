@@ -5,6 +5,7 @@ import com.sun.jna.ptr.IntByReference;
 import java.util.Properties;
 import java.io.InputStream;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class Louis {
     private Liblouis louisLib;
@@ -92,11 +93,13 @@ public class Louis {
             throw new TranslationException("Config encoding not supported by JVM");
         }
         int inlen = inbuf.length();
-        byte[] hyphens = new byte[inlen];
+        byte[] hyphens = new byte[inlen * 2];
         if (louisLib.lou_hyphenate(trantab, inbufArray, inlen, hyphens, mode) == 0) {
-            throw new TranslationException("Failed to complete hyphenation");
+            for (int i=0; i < hyphens.length; i++) {
+                hyphens[i] = ' ';
+            }
         }
-        return hyphens;
+        return Arrays.copyOf(hyphens, inlen);
     }
     public void setLogFileName(String fileName) {
         louisLib.lou_logFile(fileName);
