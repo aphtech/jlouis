@@ -25,6 +25,24 @@ public class Louis {
         InputStream defaultConfig = this.getClass().getResourceAsStream("/jlouis.properties");
         propConfig.load(defaultConfig);
     }
+    protected byte[] createArrayFromString(String inbuf) throws TranslationException {
+        byte[] inbufArray;
+        try {
+            inbufArray = inbuf.getBytes(encoding);
+        } catch (java.io.UnsupportedEncodingException e) {
+            throw new TranslationException("Encoding not supported by JVM");
+        }
+        return inbufArray;
+    }
+    protected String createStringFromArray(byte[] outbufArray, int inlen) throws TranslationException {
+        String outbuf;
+        try {
+            outbuf = new String(outbufArray, 0, inlen, encoding);
+        } catch (java.io.UnsupportedEncodingException e) {
+            throw new TranslationException("Encoding not supported by JVM");
+        }
+        return outbuf;
+    }
     public String getVersion() {
         return louisLib.lou_version();
     }
@@ -34,13 +52,7 @@ public class Louis {
     }
     public String translateString(String trantab, String inbuf, byte[] typeforms, byte[] spacing, int mode) throws TranslationException {
         int inlen = inbuf.length();
-        byte[] inbufArray;
-        String outbuf;
-        try {
-            inbufArray = inbuf.getBytes(encoding);
-        } catch (java.io.UnsupportedEncodingException e) {
-            throw new TranslationException("Config encoding not supported by JVM");
-        }
+        byte[] inbufArray = createArrayFromString(inbuf);
         int encodingSize = inbufArray.length/inlen;
         int outlen = outRatio * inlen;
         byte[] outbufArray = new byte[outRatio * inbufArray.length];
@@ -50,11 +62,7 @@ public class Louis {
             throw new TranslationException("Unable to complete translation");
         }
         int numOfBytes = poutlen.getValue() * encodingSize;
-        try {
-            outbuf = new String(outbufArray, 0, numOfBytes, encoding);
-        } catch (java.io.UnsupportedEncodingException e) {
-            throw new TranslationException("Config encoding not supported by JVM");
-        }
+        String outbuf = createStringFromArray(outbufArray, numOfBytes);
         return outbuf;
     }
     public String backTranslateString(String trantab, String inbuf, byte[] typeforms, int mode) throws TranslationException {
