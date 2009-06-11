@@ -5,7 +5,7 @@ public class TranslationResult {
     private int[] inputPos;
     private int[] outputPos;
     private int cursorPos;
-    TranslationResult(String translation, int[] inputPos, int[] outputPos, int cursorPos) {
+    TranslationResult(String translation, int[] outputPos, int[] inputPos, int cursorPos) {
         this.translation = translation;
         this.inputPos = inputPos;
         this.outputPos = outputPos;

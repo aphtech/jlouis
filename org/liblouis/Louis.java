@@ -1,6 +1,7 @@
 package org.liblouis;
 import org.liblouis.library.Liblouis;
 import org.liblouis.TranslationException;
+import org.liblouis.TranslationResult;
 import com.sun.jna.ptr.IntByReference;
 import java.util.Properties;
 import java.io.InputStream;
@@ -64,6 +65,32 @@ public class Louis {
         int numOfBytes = poutlen.getValue() * encodingSize;
         String outbuf = createStringFromArray(outbufArray, numOfBytes);
         return outbuf;
+    }
+    public TranslationResult translate(String trantab, String inbuf, int cursorPos, int mode) throws TranslationException {
+        byte[] typeForms = null;
+        byte[] spacing = null;
+        return translate(trantab, inbuf, typeForms, spacing, cursorPos, mode);
+    }
+    public TranslationResult translate(String trantab, String inbuf, byte[] typeForms, int cursorPos, int mode) throws TranslationException {
+        byte[] spacing = null;
+        return translate(trantab, inbuf, typeForms, spacing, cursorPos, mode);
+    }
+    public TranslationResult translate(String trantab, String inbuf, byte[] typeForms, byte[] spacing, int cursorPos, int mode) throws TranslationException {
+        byte[] inbufArray = createArrayFromString(inbuf);
+        int inlen = inbuf.length();
+        int encodingSize = inbufArray.length/inlen;
+        int outlen = inlen * outRatio;
+        byte[] outbufArray = new byte[outlen*encodingSize];
+        IntByReference poutlen = new IntByReference(outlen);
+        IntByReference pcursorPos = new IntByReference(cursorPos);
+        int[] outPos = new int[inlen];
+        int[] inPos = new int[outlen];
+        if (louisLib.lou_translate(trantab, inbufArray, new IntByReference(inlen), outbufArray, poutlen, typeForms, spacing, outPos, inPos, pcursorPos, mode) == 0) {
+            throw new TranslationException("Unable to complete translation");
+        }
+        int numOfBytes = encodingSize * poutlen.getValue();
+        String outbuf = createStringFromArray(outbufArray, numOfBytes);
+        return new TranslationResult(outbuf, outPos, inPos, pcursorPos.getValue());
     }
     public String backTranslateString(String trantab, String inbuf, byte[] typeforms, int mode) throws TranslationException {
         byte[] spacing = null;
