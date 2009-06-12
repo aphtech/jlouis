@@ -150,6 +150,9 @@ public class Louis {
     public void setLogFileName(String fileName) {
         louisLib.lou_logFile(fileName);
     }
+    public void logPrint(String format, Object... args) {
+        louisLib.lou_logPrint(format, args);
+    }
     public void close() {
         louisLib.lou_free();
     }

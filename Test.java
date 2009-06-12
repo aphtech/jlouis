@@ -4,9 +4,11 @@ import org.liblouis.TranslationException;
 public class Test {
   public static void main(String[] args) throws TranslationException {
     Louis translator = new Louis();
-    translator.setLogFileName("/home/mike/louis.error.txt");
+    translator.setLogFileName("louis.error.txt");
+    translator.logPrint("Getting liblouis version");
     System.out.println(translator.getVersion());
     byte[] typeforms = null;
+    translator.logPrint("Performing forward translation for string of length %d using mode %d", args[1].length(), 0);
     String brailleStr = translator.translateString(args[0], args[1], typeforms, 0);
     System.out.println(brailleStr);
     byte[] hyphens = translator.hyphenate(args[0], brailleStr, 1);
