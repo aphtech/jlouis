@@ -110,6 +110,32 @@ public class Louis {
         String outbuf = createStringFromArray(outbufArray, numOfBytes);
         return outbuf;
     }
+    public TranslationResult backTranslate(String trantab, String inbuf, int cursorPos, int mode) throws TranslationException {
+        byte[] typeForms = null;
+        byte[] spacing = null;
+        return backTranslate(trantab, inbuf, typeForms, spacing, cursorPos, mode);
+    }
+    public TranslationResult backTranslate(String trantab, String inbuf, byte[] typeForms, int cursorPos, int mode) throws TranslationException {
+        byte[] spacing = null;
+        return backTranslate(trantab, inbuf, typeForms, spacing, cursorPos, mode);
+    }
+    public TranslationResult backTranslate(String trantab, String inbuf, byte[] typeForms, byte[] spacing, int cursorPos, int mode) throws TranslationException {
+        byte[] inbufArray = createArrayFromString(inbuf);
+        int inlen = inbuf.length();
+        int encodingSize = inbufArray.length/inlen;
+        int outlen = inlen * outRatio;
+        byte[] outbufArray = new byte[outlen*encodingSize];
+        IntByReference poutlen = new IntByReference(outlen);
+        IntByReference pcursorPos = new IntByReference(cursorPos);
+        int[] outPos = new int[inlen];
+        int[] inPos = new int[outlen];
+        if (louisLib.lou_backTranslate(trantab, inbufArray, new IntByReference(inlen), outbufArray, poutlen, typeForms, spacing, outPos, inPos, pcursorPos, mode) == 0) {
+            throw new TranslationException("Unable to complete translation");
+        }
+        int numOfBytes = encodingSize * poutlen.getValue();
+        String outbuf = createStringFromArray(outbufArray, numOfBytes);
+        return new TranslationResult(outbuf, outPos, inPos, pcursorPos.getValue());
+    }
     public byte[] hyphenate(String trantab, String inbuf, int mode) throws TranslationException {
         byte[] inbufArray = createArrayFromString(inbuf);
         int inlen = inbuf.length();
