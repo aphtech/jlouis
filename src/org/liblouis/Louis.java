@@ -24,7 +24,9 @@ public class Louis {
     }
     protected void loadConfig() throws IOException {
         InputStream defaultConfig = this.getClass().getResourceAsStream("/jlouis.properties");
-        propConfig.load(defaultConfig);
+        if (defaultConfig != null) {
+            propConfig.load(defaultConfig);
+        }
     }
     protected byte[] createArrayFromString(String inbuf) throws TranslationException {
         byte[] inbufArray;
