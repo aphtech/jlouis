@@ -51,17 +51,18 @@ public class Louis {
     }
     public String translateString(String trantab, String inbuf, byte[] typeforms, int mode) throws TranslationException {
         byte[] spacing = null;
-        return translateString(trantab, inbuf, typeforms, spacing, mode);
-    }
-    public String translateString(String trantab, String inbuf, byte[] typeforms, byte[] spacing, int mode) throws TranslationException {
         int inlen = inbuf.length();
         byte[] inbufArray = createArrayFromString(inbuf);
         int encodingSize = inbufArray.length/inlen;
         int outlen = outRatio * inlen;
+        byte[] typeformsCopy = null;
+        if (typeforms != null) {
+            typeformsCopy = Arrays.copyOf(typeforms, outlen);
+        }
         byte[] outbufArray = new byte[outRatio * inbufArray.length];
         IntByReference poutlen = new IntByReference(outlen);
         if (louisLib.lou_translateString(trantab, inbufArray, new IntByReference(inlen),
-              outbufArray, poutlen, typeforms, spacing, mode) == 0) {
+              outbufArray, poutlen, typeformsCopy, spacing, mode) == 0) {
             throw new TranslationException("Unable to complete translation");
         }
         int numOfBytes = poutlen.getValue() * encodingSize;
@@ -70,24 +71,24 @@ public class Louis {
     }
     public TranslationResult translate(String trantab, String inbuf, int cursorPos, int mode) throws TranslationException {
         byte[] typeForms = null;
-        byte[] spacing = null;
-        return translate(trantab, inbuf, typeForms, spacing, cursorPos, mode);
+        return translate(trantab, inbuf, typeForms, cursorPos, mode);
     }
     public TranslationResult translate(String trantab, String inbuf, byte[] typeForms, int cursorPos, int mode) throws TranslationException {
         byte[] spacing = null;
-        return translate(trantab, inbuf, typeForms, spacing, cursorPos, mode);
-    }
-    public TranslationResult translate(String trantab, String inbuf, byte[] typeForms, byte[] spacing, int cursorPos, int mode) throws TranslationException {
         byte[] inbufArray = createArrayFromString(inbuf);
         int inlen = inbuf.length();
         int encodingSize = inbufArray.length/inlen;
         int outlen = inlen * outRatio;
+        byte[] typeformsCopy = null;
+        if (typeForms != null) {
+            typeformsCopy = Arrays.copyOf(typeForms, outlen);
+        }
         byte[] outbufArray = new byte[outlen*encodingSize];
         IntByReference poutlen = new IntByReference(outlen);
         IntByReference pcursorPos = new IntByReference(cursorPos);
         int[] outPos = new int[inlen];
         int[] inPos = new int[outlen];
-        if (louisLib.lou_translate(trantab, inbufArray, new IntByReference(inlen), outbufArray, poutlen, typeForms, spacing, outPos, inPos, pcursorPos, mode) == 0) {
+        if (louisLib.lou_translate(trantab, inbufArray, new IntByReference(inlen), outbufArray, poutlen, typeformsCopy, spacing, outPos, inPos, pcursorPos, mode) == 0) {
             throw new TranslationException("Unable to complete translation");
         }
         int numOfBytes = encodingSize * poutlen.getValue();
@@ -96,16 +97,17 @@ public class Louis {
     }
     public String backTranslateString(String trantab, String inbuf, byte[] typeforms, int mode) throws TranslationException {
         byte[] spacing = null;
-        return backTranslateString(trantab, inbuf, typeforms, spacing, mode);
-    }
-    public String backTranslateString(String trantab, String inbuf, byte[] typeforms, byte[] spacing, int mode) throws TranslationException {
         byte[] inbufArray = createArrayFromString(inbuf);
         int inlen = inbuf.length();
         int encodingSize = inbufArray.length/inlen;
         byte[] outbufArray = new byte[outRatio * inbufArray.length];
         int outlen = outRatio * inlen;
+        byte[] typeformsCopy = null;
+        if (typeforms != null) {
+            typeformsCopy = Arrays.copyOf(typeforms, outlen);
+        }
         IntByReference poutlen = new IntByReference(outlen);
-        if (louisLib.lou_backTranslateString(trantab, inbufArray, new IntByReference(inlen), outbufArray, poutlen, typeforms, spacing, mode) == 0) {
+        if (louisLib.lou_backTranslateString(trantab, inbufArray, new IntByReference(inlen), outbufArray, poutlen, typeformsCopy, spacing, mode) == 0) {
             throw new TranslationException("Unable to complete translation");
         }
         int numOfBytes = poutlen.getValue() * encodingSize;
@@ -114,24 +116,24 @@ public class Louis {
     }
     public TranslationResult backTranslate(String trantab, String inbuf, int cursorPos, int mode) throws TranslationException {
         byte[] typeForms = null;
-        byte[] spacing = null;
-        return backTranslate(trantab, inbuf, typeForms, spacing, cursorPos, mode);
+        return backTranslate(trantab, inbuf, typeForms, cursorPos, mode);
     }
     public TranslationResult backTranslate(String trantab, String inbuf, byte[] typeForms, int cursorPos, int mode) throws TranslationException {
         byte[] spacing = null;
-        return backTranslate(trantab, inbuf, typeForms, spacing, cursorPos, mode);
-    }
-    public TranslationResult backTranslate(String trantab, String inbuf, byte[] typeForms, byte[] spacing, int cursorPos, int mode) throws TranslationException {
         byte[] inbufArray = createArrayFromString(inbuf);
         int inlen = inbuf.length();
         int encodingSize = inbufArray.length/inlen;
         int outlen = inlen * outRatio;
+        byte[] typeformsCopy = null;
+        if (typeForms != null) {
+            typeformsCopy = Arrays.copyOf(typeForms, outlen);
+        }
         byte[] outbufArray = new byte[outlen*encodingSize];
         IntByReference poutlen = new IntByReference(outlen);
         IntByReference pcursorPos = new IntByReference(cursorPos);
         int[] outPos = new int[inlen];
         int[] inPos = new int[outlen];
-        if (louisLib.lou_backTranslate(trantab, inbufArray, new IntByReference(inlen), outbufArray, poutlen, typeForms, spacing, outPos, inPos, pcursorPos, mode) == 0) {
+        if (louisLib.lou_backTranslate(trantab, inbufArray, new IntByReference(inlen), outbufArray, poutlen, typeformsCopy, spacing, outPos, inPos, pcursorPos, mode) == 0) {
             throw new TranslationException("Unable to complete translation");
         }
         int numOfBytes = encodingSize * poutlen.getValue();
