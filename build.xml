@@ -4,6 +4,8 @@
   <property name="classes.dir" value="${build.dir}/classes"/>
   <property name="jar.dir" value="${build.dir}/jar"/>
   <property name="main-class" value="Test"/>
+  <property name="test.dir" value="tests"/>
+  <property name="test.classes.dir" value="${classes.dir}/tests"/>
   <target name="clean">
     <delete dir="${build.dir}"/>
   </target>
@@ -21,6 +23,29 @@
         <attribute name="Main-Class" value="${main-class}"/>
       </manifest>
     </jar>
+  </target>
+  <target name="compile-tests" depends="compile">
+    <mkdir dir="${test.classes.dir}"/>
+    <javac srcdir="${test.dir}" destdir="${test.classes.dir}">
+      <classpath>
+        <pathelement path="${classes.dir}"/>
+      </classpath>
+    </javac>
+    <copy todir="${test.classes.dir}">
+      <fileset dir="${test.dir}" excludes="**/*.java"/>
+    </copy>
+  </target>
+  <target name="junit" depends="clean,compile-tests">
+    <junit printsummary="yes" showoutput="yes" filtertrace="false" fork="yes" clonevm="true">
+    <classpath>
+      <pathelement path="${classes.dir}"/>
+      <pathelement path="${test.classes.dir}"/>
+    </classpath>
+    <batchtest>
+      <formatter type="plain"/>
+      <fileset dir="${test.dir}"/>
+    </batchtest>
+    </junit>
   </target>
   <target name="main" depends="clean,jar"/>
 </project>
