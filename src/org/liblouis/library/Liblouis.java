@@ -6,12 +6,12 @@ import com.sun.jna.ptr.ByteByReference;
 /**
  * This interface provides the code to use liblouis through JNA.
  * 
- * While this interface is public developers intending to use liblouis should not use thiss interface directly
- * instead they should use classes in the main package ( @see org.liblouis ).
+ * <p>While this interface is public developers intending to use liblouis should not use thiss interface directly
+ * instead they should use classes in the main package {@link org.liblouis}.
  * This package purely maps liblouis to java and so calls of these functions may not be very natural to java programmers
- * as the calls are defined as by the C library of liblouis.
+ * as the calls are defined as by the C library of liblouis.</p>
  *
- * Particular reasons why this interface should not be used directly include:
+ * <p>Particular reasons why this interface should not be used directly include:
  * <ul>
  * <li>Certain calls require unicode strings, but as liblouis can be compiled 
  * for 16-bit or 32-bit unicode, it is impossible to use a specific type in this mapping for those parameters. To overcome
@@ -23,8 +23,10 @@ import com.sun.jna.ptr.ByteByReference;
  * <li>Liblouis returns information by altering content of variables passed to
  * it as pointers, this isn't the most natural java calling style.</li>
  * </ul>
+ * </p>
  * 
  * @author Michael Whapples
+ * @see "The liblouis documentation"
  * @version 1.0
  */
 public interface Liblouis extends Library {
