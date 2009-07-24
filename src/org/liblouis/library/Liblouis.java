@@ -22,6 +22,8 @@ import com.sun.jna.ptr.ByteByReference;
  * account for the number of bytes per character.</li>
  * <li>Liblouis returns information by altering content of variables passed to
  * it as pointers, this isn't the most natural java calling style.</li>
+ * <li>It is possible to crash the JVM by doing an invalid call to this class,
+ * so simply don't use this directly.</li>
  * </ul>
  * </p>
  * 
@@ -33,15 +35,17 @@ public interface Liblouis extends Library {
     /**
      * This variable contains the instance pointing to the library of liblouis.
      *
-     * Please refer to the interface docs to understand why a java application 
-     * should not use this instance directly ( @see org.liblouis.library.Liblouis ).
+     * <p>Please refer to the interface docs to understand why a java application 
+     * should not use this instance directly {@link org.liblouis.library.Liblouis}.
+ * </p>
      */
     Liblouis INSTANCE = (Liblouis) Native.loadLibrary("louis", Liblouis.class);
     /**
      * Constants for liblouis typeforms.
      *
-     * Liblouis takes bytes to represent type forms, use these to find out 
-     * the constant values. You may also find the liblouis documentation useful.
+     * <p>Liblouis takes bytes to represent type forms, use these to find out 
+     * the constant values. You may also find the liblouis documentation useful.</p>
+     * @see "The liblouis documentation"
      */
     public static interface typeforms {
         public static final byte plain_text = 0;
@@ -53,8 +57,8 @@ public interface Liblouis extends Library {
     /**
      * Constants for liblouis translation mode.
      *
-     * Use these constants to inform liblouis of the translation mode to be 
-     * used. Refer to the liblouis documentation to find out the definitions.
+     * <p>Use these constants to inform liblouis of the translation mode to be 
+     * used. Refer to the liblouis documentation to find out the definitions.</p>
      */
     public static interface translationModes {
         public static final int noContractions = 1;
@@ -66,10 +70,10 @@ public interface Liblouis extends Library {
     /**
      * The lou_translateString function.
      * 
-     * This method is for liblouis's lou_translateString, refer to the liblouis
-     * documentation for the meaning of the parameters.
+     * <p>This method is for liblouis's lou_translateString, refer to the liblouis
+     * documentation for the meaning of the parameters.</p>
      *
-     * Particular things to note about this method which differ from the
+     * <p>Particular things to note about this method which differ from the
      * expected.
      * <ul>
      * <li>This method takes a byte array for inbuf, this byte array should
@@ -81,9 +85,30 @@ public interface Liblouis extends Library {
      * <li>The two above items also apply to outbuf and outlen. If you make a
      * mistake on setting outbuf and outlen sizes correctly this can lead to
      * errors which may crash the JVM. Due to this you are strongly advised
-     * to avoid using these library classes directly as the main API ( @see org.liblouis ) protects you from setting this
+     * to avoid using these library classes directly as the main API {@link org.liblouis} protects you from setting this
      * incorrectly.</li>
-     * </ul>
+     * </ul></p>
+     *
+     * @param trantab A string of the tables to use, with the table names
+     *        separated by commas.
+     * @param inbuf A byte array of the unicode to be translated.
+     *        When constructing inbuf, don't forget to account for the possibility that liblouis can be compiled for
+     *        either 16-bit or 32-bit unicode.
+     * @param inlen The length of the string to be passed in. NOTE: The string 
+     * length is not the same as the byte array used for inbuf due to unicode 
+     * encoding size.
+     * @param outbuf A byte array for the translation to be inserted into. 
+     * Please ensure that you make the array of a large enough size to hold 
+     * the translation.
+     * @param outlen The length of the string expected to be returned. 
+     * NOTE: Remember that the string size is different to the byte array
+     * size due to the unicode encoding.
+     * @param typeform A byte array to mark which characters have
+     * certain attributes such as bold. 
+     * {@link org.liblouis.library.Louis.typeforms}.
+     * @param spacing A byte array used to represent spacing.
+     * @param mode This indicates how the translation should be done. Use
+     * values from {@link org.liblouis.library.Louis.translationModes}.
      */
     int lou_translateString(String trantab, byte[] inbuf, IntByReference inlen, byte[] outbuf, IntByReference outlen, byte[] typeform, byte[] spacing, int mode);
     /**
