@@ -1,0 +1,6 @@
+<ivy-module version="2.0">
+  <info organisation="org.liblouis" module="jlouis"/>
+  <dependencies>
+    <dependency org="net.java.dev.jna" name="jna" rev="3.2.2" />
+  </dependencies>
+</ivy-module>
