@@ -1,4 +1,8 @@
 <project xmlns:ivy="antlib:org.apache.ivy.ant" name="jlouis" basedir="." default="main">
+  <property name="lib.dir" value="lib"/>
+  <path id="classpath">
+    <fileset dir="${lib.dir}" includes="**/*.jar"/>
+  </path>
   <property name="src.dir" value="src"/>
   <property name="build.dir" value="build"/>
   <property name="classes.dir" value="${build.dir}/classes"/>
@@ -14,7 +18,7 @@
   </target>
   <target name="compile">
     <mkdir dir="${classes.dir}"/>
-    <javac srcdir="${src.dir}" destdir="${classes.dir}"/>
+    <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath"/>
     <copy todir="${classes.dir}">
       <fileset dir="${src.dir}" excludes="**/*.java"/>
     </copy>
@@ -31,6 +35,7 @@
     <mkdir dir="${test.classes.dir}"/>
     <javac srcdir="${test.dir}" destdir="${test.classes.dir}">
       <classpath>
+        <path refid="classpath"/>
         <pathelement path="${classes.dir}"/>
       </classpath>
     </javac>
@@ -41,6 +46,7 @@
   <target name="junit" depends="clean,compile-tests">
     <junit printsummary="yes" showoutput="yes" filtertrace="false" fork="yes" clonevm="true">
     <classpath>
+      <path refid="classpath"/>
       <pathelement path="${classes.dir}"/>
       <pathelement path="${test.classes.dir}"/>
     </classpath>
