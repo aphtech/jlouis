@@ -13,10 +13,13 @@
   <target name="clean">
     <delete dir="${build.dir}"/>
   </target>
-  <target name="resolve" description="--&gt; Retrieve dependencies with ivy">
-    <ivy:retrieve />
+  <target name="resolve-build" description="--&gt; Retrieve dependencies with ivy">
+    <ivy:retrieve conf="build" />
   </target>
-  <target name="compile">
+  <target name="resolve-test" description="Get the dependencies for junit tests">
+    <ivy:retrieve conf="test"/>
+  </target>
+  <target name="compile" depends="resolve-build">
     <mkdir dir="${classes.dir}"/>
     <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath"/>
     <copy todir="${classes.dir}">
@@ -31,7 +34,7 @@
       </manifest>
     </jar>
   </target>
-  <target name="compile-tests" depends="compile">
+  <target name="compile-tests" depends="compile,resolve-test">
     <mkdir dir="${test.classes.dir}"/>
     <javac srcdir="${test.dir}" destdir="${test.classes.dir}">
       <classpath>
