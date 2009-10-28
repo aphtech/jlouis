@@ -4,10 +4,14 @@
     <conf name="build" description="Get all that is needed to build the module" visibility="private"/>
     <conf name="test" extends="build" description="test the library configuration" visibility="private"/>
     <conf name="jarjar" extends="build" description="make a single jar file"/>
+    <conf name="jarjar-runtime" description="all needed to be included in the single jar" visibility="private"/>
     <conf name="jar" extends="build" description="make a jar depending on system jar files"/>
   </configurations>
   <dependencies>
-    <dependency org="net.java.dev.jna" name="jna" rev="3.2.2" conf="build->default"/>
+    <dependency org="net.java.dev.jna" name="jna" rev="3.2.2" conf="build->default; jarjar-runtime->default"/>
     <dependency org="junit" name="junit" rev="4.6" conf="test->default"/>
+    <dependency org="jarjar" name="jarjar" rev="1.0" conf="jarjar->*">
+      <artifact name="jarjar" type="jar" url="http://googlecode.com/files/jarjar-1.0.jar"/>
+    </dependency>
   </dependencies>
 </ivy-module>

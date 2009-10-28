@@ -14,10 +14,10 @@
     <delete dir="${build.dir}"/>
   </target>
   <target name="resolve-build" description="--&gt; Retrieve dependencies with ivy">
-    <ivy:retrieve conf="build" />
+    <ivy:retrieve conf="build" sync="true"/>
   </target>
   <target name="resolve-test" description="Get the dependencies for junit tests">
-    <ivy:retrieve conf="test"/>
+    <ivy:retrieve conf="test" sync="true"/>
   </target>
   <target name="compile" depends="resolve-build">
     <mkdir dir="${classes.dir}"/>
@@ -33,6 +33,10 @@
         <attribute name="Main-Class" value="${main-class}"/>
       </manifest>
     </jar>
+  </target>
+  <target name="jarjar" description="Make a stand alone jar file" depends="compile">
+    <ivy:retrieve conf="jarjar"/>
+    <ivy:retrieve conf="jarjar-runtime" pattern="${lib.dir}/[conf]/[artifact].[ext]"/>
   </target>
   <target name="compile-tests" depends="compile,resolve-test">
     <mkdir dir="${test.classes.dir}"/>
