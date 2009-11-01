@@ -11,7 +11,7 @@
     <dependency org="net.java.dev.jna" name="jna" rev="3.2.2" conf="build->default; jarjar-runtime->default"/>
     <dependency org="junit" name="junit" rev="4.6" conf="test->default"/>
     <dependency org="jarjar" name="jarjar" rev="1.0" conf="jarjar->*">
-      <artifact name="jarjar" type="jar" url="http://googlecode.com/files/jarjar-1.0.jar"/>
+      <artifact name="jarjar" type="jar" url="http://jarjar.googlecode.com/files/jarjar-1.0.jar"/>
     </dependency>
   </dependencies>
 </ivy-module>

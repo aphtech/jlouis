@@ -35,8 +35,18 @@
     </jar>
   </target>
   <target name="jarjar" description="Make a stand alone jar file" depends="compile">
-    <ivy:retrieve conf="jarjar"/>
+    <ivy:retrieve conf="jarjar" pattern="${lib.dir}/[artifact].[ext]"/>
     <ivy:retrieve conf="jarjar-runtime" pattern="${lib.dir}/[conf]/[artifact].[ext]"/>
+    <taskdef name="jarjar" classname="com.tonicsystems.jarjar.JarJarTask" 
+      classpath="${lib.dir}/jarjar.jar"/>
+    <mkdir dir="${jar.dir}"/>
+    <jarjar destfile="${jar.dir}/${ant.project.name}_standalone.jar"
+        basedir="${classes.dir}">
+      <manifest>
+        <attribute name="Main-Class" value="${main-class}"/>
+      </manifest>
+      <zipgroupfileset dir="${lib.dir}/jarjar-runtime" includes="*.jar"/>
+    </jarjar>
   </target>
   <target name="compile-tests" depends="compile,resolve-test">
     <mkdir dir="${test.classes.dir}"/>
