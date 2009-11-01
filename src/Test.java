@@ -3,6 +3,10 @@ import org.liblouis.TranslationException;
 
 public class Test {
   public static void main(String[] args) throws TranslationException {
+    if (args.length != 2) {
+      System.out.println("Invalid useage: arguments should be translation table and text to translate");
+      System.exit(1);
+    }
     Louis translator = new Louis();
     translator.setLogFileName("louis.error.txt");
     translator.logPrint("Getting liblouis version");
