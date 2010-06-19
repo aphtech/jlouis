@@ -1,4 +1,4 @@
-package org.liblouis;
+package org.mwhapples.jlouis;
 
 public class TranslationResult {
     private String translation;

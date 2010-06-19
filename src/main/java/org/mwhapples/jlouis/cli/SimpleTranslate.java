@@ -1,6 +1,6 @@
-package org.liblouis.cli;
-import org.liblouis.Louis;
-import org.liblouis.TranslationException;
+package org.mwhapples.jlouis.cli;
+import org.mwhapples.jlouis.Louis;
+import org.mwhapples.jlouis.TranslationException;
 
 public class SimpleTranslate {
   public static void main(String[] args) throws TranslationException {

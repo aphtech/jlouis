@@ -1,7 +1,8 @@
-package org.liblouis;
-import org.liblouis.library.Liblouis;
-import org.liblouis.TranslationException;
-import org.liblouis.TranslationResult;
+package org.mwhapples.jlouis;
+import org.mwhapples.jlouis.TranslationException;
+import org.mwhapples.jlouis.TranslationResult;
+import org.mwhapples.jlouis.library.Liblouis;
+
 import com.sun.jna.ptr.IntByReference;
 import java.util.Properties;
 import java.io.InputStream;

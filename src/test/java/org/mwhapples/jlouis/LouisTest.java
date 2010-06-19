@@ -1,9 +1,10 @@
-package org.liblouis;
+package org.mwhapples.jlouis;
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
 import static org.junit.Assert.*;
-import org.liblouis.Louis;
+
+import org.mwhapples.jlouis.Louis;
 
 public class LouisTest {
     Louis translator;

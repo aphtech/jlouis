@@ -1,4 +1,4 @@
-package org.liblouis;
+package org.mwhapples.jlouis;
 
 public class TranslationException extends Exception {
     public TranslationException(String msg) {

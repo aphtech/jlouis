@@ -1,4 +1,4 @@
-package org.liblouis.library;
+package org.mwhapples.jlouis.library;
 import com.sun.jna.Native;
 import com.sun.jna.Library;
 import com.sun.jna.ptr.IntByReference;
@@ -7,7 +7,7 @@ import com.sun.jna.ptr.ByteByReference;
  * This interface provides the code to use liblouis through JNA.
  * 
  * <p>While this interface is public developers intending to use liblouis should not use thiss interface directly
- * instead they should use classes in the main package {@link org.liblouis}.
+ * instead they should use classes in the main package {@link org.mwhapples.jlouis}.
  * This package purely maps liblouis to java and so calls of these functions may not be very natural to java programmers
  * as the calls are defined as by the C library of liblouis.</p>
  *
@@ -36,8 +36,8 @@ public interface Liblouis extends Library {
      * This variable contains the instance pointing to the library of liblouis.
      *
      * <p>Please refer to the interface docs to understand why a java application 
-     * should not use this instance directly {@link org.liblouis.library.Liblouis}.
- * </p>
+     * should not use this instance directly {@link org.mwhapples.jlouis.library.Liblouis}.
+     * </p>
      */
     Liblouis INSTANCE = (Liblouis) Native.loadLibrary("louis", Liblouis.class);
     /**
@@ -85,7 +85,7 @@ public interface Liblouis extends Library {
      * <li>The two above items also apply to outbuf and outlen. If you make a
      * mistake on setting outbuf and outlen sizes correctly this can lead to
      * errors which may crash the JVM. Due to this you are strongly advised
-     * to avoid using these library classes directly as the main API {@link org.liblouis} protects you from setting this
+     * to avoid using these library classes directly as the main API {@link org.mwhapples.jlouis} protects you from setting this
      * incorrectly.</li>
      * </ul></p>
      *
@@ -105,10 +105,10 @@ public interface Liblouis extends Library {
      * size due to the unicode encoding.
      * @param typeform A byte array to mark which characters have
      * certain attributes such as bold. 
-     * {@link org.liblouis.library.Louis.typeforms}.
+     * {@link org.mwhapples.jlouis.library.Louis.typeforms}.
      * @param spacing A byte array used to represent spacing.
      * @param mode This indicates how the translation should be done. Use
-     * values from {@link org.liblouis.library.Louis.translationModes}.
+     * values from {@link org.mwhapples.jlouis.library.Louis.translationModes}.
      */
     int lou_translateString(String trantab, byte[] inbuf, IntByReference inlen, byte[] outbuf, IntByReference outlen, byte[] typeform, byte[] spacing, int mode);
     /**
