@@ -1,4 +1,9 @@
 package org.mwhapples.jlouis.cli;
+/*
+ * Copyright (c) 2010 Michael Whapples
+ * 
+ * This code is released under the QPL which can be seen in the file LICENSE distributed with this source code.
+ */
 import org.mwhapples.jlouis.Louis;
 import org.mwhapples.jlouis.TranslationException;
 

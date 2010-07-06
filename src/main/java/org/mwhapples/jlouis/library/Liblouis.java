@@ -1,4 +1,9 @@
 package org.mwhapples.jlouis.library;
+/*
+ * Copyright (c) 2010 Michael Whapples
+ * 
+ * This code is released under the QPL which can be seen in the file LICENSE distributed with this source code.
+ */
 import com.sun.jna.Native;
 import com.sun.jna.Library;
 import com.sun.jna.ptr.IntByReference;
