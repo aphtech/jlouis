@@ -17,21 +17,14 @@ import java.util.Arrays;
 public class Louis {
     private Liblouis louisLib;
     private String encoding;
-    private Properties propConfig;
-    private int outRatio = 2;
+    private int outRatio;
     public Louis() {
         louisLib = Liblouis.INSTANCE;
-        propConfig = new Properties();
-        try {
-            loadConfig();
-        } catch (IOException e) {
-        }
-        encoding = propConfig.getProperty("jlouis.encoding", "utf-16le");
-    }
-    protected void loadConfig() throws IOException {
-        InputStream defaultConfig = this.getClass().getResourceAsStream("/jlouis.properties");
-        if (defaultConfig != null) {
-            propConfig.load(defaultConfig);
+        outRatio = louisLib.lou_charSize();
+        if (outRatio == 2) {
+            encoding = "utf-16le";
+        } else if (outRatio == 4) {
+            encoding = "utf-32le";
         }
     }
     protected byte[] createArrayFromString(String inbuf) throws TranslationException {
@@ -54,6 +47,9 @@ public class Louis {
     }
     public String getVersion() {
         return louisLib.lou_version();
+    }
+    public int getEncodingSize() {
+        return louisLib.lou_charSize();
     }
     public String translateString(String trantab, String inbuf, byte[] typeforms, int mode) throws TranslationException {
         byte[] spacing = null;

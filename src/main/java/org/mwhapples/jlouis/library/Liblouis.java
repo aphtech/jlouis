@@ -191,6 +191,11 @@ public interface Liblouis extends Library {
      */
     String lou_version();
     /**
+     * This method will get the size of the encoding used for widechar in liblouis.
+     * @return The size of widechar.
+     */
+    int lou_charSize();
+    /**
      * The lou_free function.
      * 
      * This function should be called at the end of use of liblouis to free memory.

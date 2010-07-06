@@ -18,6 +18,7 @@ public class SimpleTranslate {
     translator.logPrint("Getting liblouis version");
     System.out.println(translator.getVersion());
     byte[] typeforms = null;
+    translator.logPrint("Using buffer size %d", translator.getEncodingSize());
     translator.logPrint("Performing forward translation for string of length %d using mode %d", args[1].length(), 0);
     String brailleStr = translator.translateString(args[0], args[1], typeforms, 0);
     System.out.println(brailleStr);
