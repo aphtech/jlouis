@@ -9,6 +9,8 @@ import org.mwhapples.jlouis.TranslationResult;
 
 import com.sun.jna.ptr.IntByReference;
 import com.sun.jna.Native;
+import com.sun.jna.NativeLibrary;
+import com.sun.jna.Platform;
 
 import java.util.Properties;
 import java.io.InputStream;
@@ -51,6 +53,22 @@ public class Louis {
     }
     private String encoding;
     private int outRatio;
+    private static Properties libConfig;
+    static {
+        try {
+            libConfig = loadConfig("jlouis.properties");
+        } catch (IOException e) {
+            
+        }
+    }
+    private static Properties loadConfig(String resourceName) throws IOException {
+        InputStream configStream = ClassLoader.getSystemResourceAsStream(resourceName);
+        Properties configProperties = new Properties();
+        if (configStream != null) {
+            configProperties.load(configStream);
+        }
+        return configProperties;
+    }
     public Louis() {
         outRatio = this.lou_charSize();
         if (outRatio == 2) {
@@ -196,7 +214,38 @@ public class Louis {
     }
     // Initialise this as a native library for JNA
     static {
-        Native.register("louis");
+        int platform = Platform.getOSType();
+        String libName;
+        switch (platform) {
+        case Platform.FREEBSD:
+            libName = libConfig.getProperty("jlouis.library.name.freebsd", "louis");
+            break;
+        case Platform.LINUX:
+            libName = libConfig.getProperty("jlouis.library.name.linux", "louis");
+            break;
+        case Platform.MAC:
+            libName = libConfig.getProperty("jlouis.library.name.mac", "louis");
+            break;
+        case Platform.OPENBSD:
+            libName = libConfig.getProperty("jlouis.library.name.openbsd", "louis");
+            break;
+        case Platform.SOLARIS:
+            libName = libConfig.getProperty("jlouis.library.name.solaris", "louis");
+            break;
+        case Platform.WINDOWS:
+            libName = libConfig.getProperty("jlouis.library.name.windows", "louis");
+            break;
+        case Platform.WINDOWSCE:
+            libName = libConfig.getProperty("jlouis.library.name.windowsce", "louis");
+        default:
+            libName = "louis";
+            break;
+        }
+        String libPath = System.getProperty("jlouis.library.path");
+        if (libPath != null) {
+            NativeLibrary.addSearchPath(libName, libPath);
+        }
+        Native.register(libName);
     }
     /**
      * The lou_backTranslate function.
