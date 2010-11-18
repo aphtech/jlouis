@@ -5,20 +5,21 @@ package org.mwhapples.jlouis;
  * 
  * This code is released under the QPL which can be seen in the file LICENSE distributed with this source code.
  */
-import org.mwhapples.jlouis.TranslationException;
-import org.mwhapples.jlouis.TranslationResult;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.nio.ByteBuffer;
+import java.util.Arrays;
+import java.util.Properties;
 
-import com.sun.jna.ptr.IntByReference;
 import com.sun.jna.FromNativeContext;
+import com.sun.jna.Memory;
 import com.sun.jna.Native;
 import com.sun.jna.NativeLibrary;
 import com.sun.jna.NativeMapped;
 import com.sun.jna.Platform;
-import java.util.Properties;
-import java.io.InputStream;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.Arrays;
+import com.sun.jna.Pointer;
+import com.sun.jna.ptr.IntByReference;
 
 public class Louis {
     /**
@@ -121,22 +122,19 @@ public class Louis {
             byte[] typeforms, int mode) throws TranslationException {
         byte[] spacing = null;
         int inlen = inbuf.length();
-        byte[] inbufArray = createArrayFromString(inbuf);
-        int encodingSize = inbufArray.length / inlen;
+        Louis.WideChar wInbuf = new Louis.WideChar(inbuf);
         int outlen = outRatio * inlen;
         byte[] typeformsCopy = null;
         if (typeforms != null) {
             typeformsCopy = Arrays.copyOf(typeforms, outlen);
         }
-        byte[] outbufArray = new byte[outRatio * inbufArray.length];
+        Louis.WideChar wOutbuf = new Louis.WideChar(outlen);
         IntByReference poutlen = new IntByReference(outlen);
-        if (Louis.lou_translateString(trantab, inbufArray, new IntByReference(
-                inlen), outbufArray, poutlen, typeformsCopy, spacing, mode) == 0) {
+        if (Louis.lou_translateString(trantab, wInbuf, new IntByReference(
+                inlen), wOutbuf, poutlen, typeformsCopy, spacing, mode) == 0) {
             throw new TranslationException("Unable to complete translation");
         }
-        int numOfBytes = poutlen.getValue() * encodingSize;
-        String outbuf = createStringFromArray(outbufArray, numOfBytes);
-        return outbuf;
+        return wOutbuf.getText(poutlen.getValue());
     }
 
     public TranslationResult translate(String trantab, String inbuf,
@@ -149,26 +147,24 @@ public class Louis {
             byte[] typeForms, int cursorPos, int mode)
             throws TranslationException {
         byte[] spacing = null;
-        byte[] inbufArray = createArrayFromString(inbuf);
-        int inlen = inbuf.length();
-        int encodingSize = inbufArray.length / inlen;
+        Louis.WideChar wInbuf = new Louis.WideChar(inbuf);
+        int inlen = wInbuf.length();
         int outlen = inlen * outRatio;
         byte[] typeformsCopy = null;
         if (typeForms != null) {
             typeformsCopy = Arrays.copyOf(typeForms, outlen);
         }
-        byte[] outbufArray = new byte[outlen * encodingSize];
+        Louis.WideChar wOutbuf = new Louis.WideChar(outlen);
         IntByReference poutlen = new IntByReference(outlen);
         IntByReference pcursorPos = new IntByReference(cursorPos);
         int[] outPos = new int[inlen];
         int[] inPos = new int[outlen];
-        if (Louis.lou_translate(trantab, inbufArray, new IntByReference(inlen),
-                outbufArray, poutlen, typeformsCopy, spacing, outPos, inPos,
+        if (Louis.lou_translate(trantab, wInbuf, new IntByReference(inlen),
+                wOutbuf, poutlen, typeformsCopy, spacing, outPos, inPos,
                 pcursorPos, mode) == 0) {
             throw new TranslationException("Unable to complete translation");
         }
-        int numOfBytes = encodingSize * poutlen.getValue();
-        String outbuf = createStringFromArray(outbufArray, numOfBytes);
+        String outbuf = wOutbuf.getText(poutlen.getValue());
         return new TranslationResult(outbuf, outPos, inPos,
                 pcursorPos.getValue());
     }
@@ -299,44 +295,41 @@ public class Louis {
 
     public static class WideChar implements NativeMapped {
         private static String encoding;
-        private static int outRatio;
-        private byte[] wideCharText;
+        private static int encodingSize;
+        private Memory buffer;
         private int length;
         static {
-            if (outRatio == 2) {
+            encodingSize = Louis.lou_charSize();
+            if (encodingSize == 2) {
                 Louis.WideChar.encoding = "utf-16le";
-            } else if (outRatio == 4) {
+            } else if (encodingSize == 4) {
                 Louis.WideChar.encoding = "utf-32le";
             }
         }
         public WideChar(int length) {
             this.length = length;
-            this.wideCharText = new byte[length * outRatio];
+            buffer = new Memory(encodingSize * length);
         }
         public WideChar(String text) {
             this.setText(text);
-            this.length = text.length();
         }
-        protected WideChar() {
-            wideCharText = null;
-            length = 0;
+        public WideChar() {
+            this.buffer = new Memory(encodingSize);
+            this.length = 1;
         }
-        protected void setBytes(byte[] bytes) {
-            this.wideCharText = bytes;
-            this.length = bytes.length;
-        }
-
         private void setText(String text) {
             try {
-                this.wideCharText = text.getBytes(Louis.WideChar.encoding);
                 this.length = text.length();
+                buffer = new Memory(this.length * encodingSize);
+                this.buffer.write(0, text.getBytes(encoding), 0, encodingSize * text.length());
             } catch (UnsupportedEncodingException e) {
 
             }
         }
         String getText(int length) {
+            bufferLength = length * encodingSize;
             try {
-                return new String(this.wideCharText, 0, length, Louis.WideChar.encoding);
+                return new String(buffer.getByteArray(0, bufferLength), 0, bufferLength, encoding);
             } catch (UnsupportedEncodingException e) {
                 return null;
             }
@@ -345,19 +338,18 @@ public class Louis {
             return this.length;
         }
         public Class<?> nativeType() {
-            try {
-                return Class.forName("[B");
-            } catch (ClassNotFoundException e) {
-                return null;
-            }
+            return Pointer.class;
         }
         public Object toNative() {
-            return wideCharText;
+            return this.buffer;
         }
         public Object fromNative(Object nativeValue, FromNativeContext context) {
             byte[] nativeBytes = (byte[])nativeValue;
             WideChar javaValue = new WideChar();
-            javaValue.setBytes(nativeBytes);
+            try {
+                javaValue.setText(new String(nativeBytes, encoding));
+            } catch (UnsupportedEncodingException e) {
+            }
             return javaValue;
         }
     }
@@ -458,8 +450,8 @@ public class Louis {
      * method applies to this method. This method takes the additional
      * parameters stated in the liblouis documentation.
      */
-    private static native int lou_translate(String trantab, byte[] inbuf,
-            IntByReference inlen, byte[] outbuf, IntByReference outlen,
+    private static native int lou_translate(String trantab, Louis.WideChar inbuf,
+            IntByReference inlen, Louis.WideChar outbuf, IntByReference outlen,
             byte[] typeform, byte[] spacing, int[] outpos, int[] inpos,
             IntByReference cursorpos, int mode);
 
@@ -520,8 +512,8 @@ public class Louis {
      *            from
      *            {@link org.mwhapples.jlouis.library.Louis.translationModes}.
      */
-    private static native int lou_translateString(String trantab, byte[] inbuf,
-            IntByReference inlen, byte[] outbuf, IntByReference outlen,
+    private static native int lou_translateString(String trantab, Louis.WideChar inbuf,
+            IntByReference inlen, Louis.WideChar outbuf, IntByReference outlen,
             byte[] typeform, byte[] spacing, int mode);
 
     /**
