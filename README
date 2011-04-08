@@ -8,6 +8,11 @@ Introduction
 JLouis is a set of bindings for the liblouis Braille translator. Liblouis
 can be found at http://liblouis.googlecode.com.
 
+JLouis makes use of JNA, so fits with the general idea of write once, run 
+everywhere as it does not contain any C code. The advantage for those who use 
+JLouis is that one jar file of JLouis will work on whatever platform you 
+choose to use it on, regardless of what system was used to compile it.
+
 Licensing
 =========
 JLouis is written by Michael Whapples and is released under the Apache 2.0
