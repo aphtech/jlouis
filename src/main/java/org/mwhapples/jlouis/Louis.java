@@ -8,7 +8,6 @@ package org.mwhapples.jlouis;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.Properties;
 
@@ -57,8 +56,8 @@ public class Louis {
         public static final int compbrlLeftCursor = 32;
     }
 
-    private String encoding;
     private int outRatio;
+    private static int encodingSize;
     private static Properties libConfig;
     static {
         try {
@@ -80,36 +79,8 @@ public class Louis {
     }
 
     public Louis() {
-        outRatio = Louis.lou_charSize();
-        if (outRatio == 2) {
-            encoding = "utf-16le";
-        } else if (outRatio == 4) {
-            encoding = "utf-32le";
-        }
+        outRatio = 2;
     }
-
-    protected byte[] createArrayFromString(String inbuf)
-            throws TranslationException {
-        byte[] inbufArray;
-        try {
-            inbufArray = inbuf.getBytes(encoding);
-        } catch (java.io.UnsupportedEncodingException e) {
-            throw new TranslationException("Encoding not supported by JVM");
-        }
-        return inbufArray;
-    }
-
-    protected String createStringFromArray(byte[] outbufArray, int inlen)
-            throws TranslationException {
-        String outbuf;
-        try {
-            outbuf = new String(outbufArray, 0, inlen, encoding);
-        } catch (java.io.UnsupportedEncodingException e) {
-            throw new TranslationException("Encoding not supported by JVM");
-        }
-        return outbuf;
-    }
-
     public String getVersion() {
         return Louis.lou_version();
     }
@@ -172,24 +143,21 @@ public class Louis {
     public String backTranslateString(String trantab, String inbuf,
             byte[] typeforms, int mode) throws TranslationException {
         byte[] spacing = null;
-        byte[] inbufArray = createArrayFromString(inbuf);
-        int inlen = inbuf.length();
-        int encodingSize = inbufArray.length / inlen;
-        byte[] outbufArray = new byte[outRatio * inbufArray.length];
+        Louis.WideChar wInbuf = new Louis.WideChar(inbuf);
+        int inlen = wInbuf.length();
         int outlen = outRatio * inlen;
+        Louis.WideChar wOutbuf = new Louis.WideChar(outlen);
         byte[] typeformsCopy = null;
         if (typeforms != null) {
             typeformsCopy = Arrays.copyOf(typeforms, outlen);
         }
         IntByReference poutlen = new IntByReference(outlen);
-        if (Louis.lou_backTranslateString(trantab, inbufArray,
-                new IntByReference(inlen), outbufArray, poutlen, typeformsCopy,
+        if (Louis.lou_backTranslateString(trantab, wInbuf,
+                new IntByReference(inlen), wOutbuf, poutlen, typeformsCopy,
                 spacing, mode) == 0) {
             throw new TranslationException("Unable to complete translation");
         }
-        int numOfBytes = poutlen.getValue() * encodingSize;
-        String outbuf = createStringFromArray(outbufArray, numOfBytes);
-        return outbuf;
+        return wOutbuf.getText(poutlen.getValue());
     }
 
     public TranslationResult backTranslate(String trantab, String inbuf,
@@ -202,36 +170,34 @@ public class Louis {
             byte[] typeForms, int cursorPos, int mode)
             throws TranslationException {
         byte[] spacing = null;
-        byte[] inbufArray = createArrayFromString(inbuf);
-        int inlen = inbuf.length();
-        int encodingSize = inbufArray.length / inlen;
+        Louis.WideChar wInbuf = new Louis.WideChar(inbuf);
+        int inlen = wInbuf.length();
         int outlen = inlen * outRatio;
         byte[] typeformsCopy = null;
         if (typeForms != null) {
             typeformsCopy = Arrays.copyOf(typeForms, outlen);
         }
-        byte[] outbufArray = new byte[outlen * encodingSize];
+        Louis.WideChar wOutbuf = new Louis.WideChar(outlen);
         IntByReference poutlen = new IntByReference(outlen);
         IntByReference pcursorPos = new IntByReference(cursorPos);
         int[] outPos = new int[inlen];
         int[] inPos = new int[outlen];
-        if (Louis.lou_backTranslate(trantab, inbufArray, new IntByReference(
-                inlen), outbufArray, poutlen, typeformsCopy, spacing, outPos,
+        if (Louis.lou_backTranslate(trantab, wInbuf, new IntByReference(
+                inlen), wOutbuf, poutlen, typeformsCopy, spacing, outPos,
                 inPos, pcursorPos, mode) == 0) {
             throw new TranslationException("Unable to complete translation");
         }
-        int numOfBytes = encodingSize * poutlen.getValue();
-        String outbuf = createStringFromArray(outbufArray, numOfBytes);
+        String outbuf = wOutbuf.getText(poutlen.getValue());
         return new TranslationResult(outbuf, outPos, inPos,
                 pcursorPos.getValue());
     }
 
     public byte[] hyphenate(String trantab, String inbuf, int mode)
             throws TranslationException {
-        byte[] inbufArray = createArrayFromString(inbuf);
-        int inlen = inbuf.length();
+        Louis.WideChar wInbuf = new Louis.WideChar(inbuf);
+        int inlen = wInbuf.length();
         byte[] hyphens = new byte[inlen * outRatio];
-        if (Louis.lou_hyphenate(trantab, inbufArray, inlen, hyphens, mode) == 0) {
+        if (Louis.lou_hyphenate(trantab, wInbuf, inlen, hyphens, mode) == 0) {
             for (int i = 0; i < hyphens.length; i++) {
                 hyphens[i] = ' ';
             }
@@ -291,50 +257,52 @@ public class Louis {
             NativeLibrary.addSearchPath(libName, libPath);
         }
         Native.register(libName);
+        Louis.encodingSize = Louis.lou_charSize();
     }
 
     public static class WideChar implements NativeMapped {
         private static String encoding;
-        private static int encodingSize;
         private Memory buffer;
         private int length;
-        static {
-            encodingSize = Louis.lou_charSize();
-            if (encodingSize == 2) {
+        private void setEncoding() {
+            if (Louis.WideChar.encoding != null) return;
+            if (Louis.encodingSize == 2) {
                 Louis.WideChar.encoding = "utf-16le";
-            } else if (encodingSize == 4) {
+            } else if (Louis.encodingSize == 4) {
                 Louis.WideChar.encoding = "utf-32le";
             }
         }
         public WideChar(int length) {
+            this.setEncoding();
+            if (Louis.encodingSize == 0) return;
             this.length = length;
-            buffer = new Memory(encodingSize * length);
+            buffer = new Memory(Louis.encodingSize * length);
         }
         public WideChar(String text) {
+            this.setEncoding();
             this.setText(text);
         }
         public WideChar() {
-            this.buffer = new Memory(encodingSize);
-            this.length = 1;
+            this(1);
         }
         private void setText(String text) {
             try {
                 this.length = text.length();
-                buffer = new Memory(this.length * encodingSize);
-                this.buffer.write(0, text.getBytes(encoding), 0, encodingSize * text.length());
+                buffer = new Memory(this.length * Louis.encodingSize);
+                this.buffer.write(0, text.getBytes(encoding), 0, Louis.encodingSize * text.length());
             } catch (UnsupportedEncodingException e) {
 
             }
         }
-        String getText(int length) {
-            bufferLength = length * encodingSize;
+        public String getText(int length) {
+            int bufferLength = length * Louis.encodingSize;
             try {
                 return new String(buffer.getByteArray(0, bufferLength), 0, bufferLength, encoding);
             } catch (UnsupportedEncodingException e) {
                 return null;
             }
         }
-        int length() {
+        public int length() {
             return this.length;
         }
         public Class<?> nativeType() {
@@ -362,8 +330,8 @@ public class Louis {
      * this method with the addition of the parameters specified in the liblouis
      * documentation for the lou_backTranslate function.
      */
-    private static native int lou_backTranslate(String trantab, byte[] inbuf,
-            IntByReference inlen, byte[] outbuf, IntByReference outlen,
+    private static native int lou_backTranslate(String trantab, Louis.WideChar inbuf,
+            IntByReference inlen, Louis.WideChar outbuf, IntByReference outlen,
             byte[] typeform, byte[] spacing, int[] outpos, int[] inpos,
             IntByReference cursorpos, int mode);
 
@@ -376,7 +344,7 @@ public class Louis {
      * The useage of this method is as described for lou_translateString.
      */
     private static native int lou_backTranslateString(String trantab,
-            byte[] inbuf, IntByReference inlen, byte[] outbuf,
+            Louis.WideChar inbuf, IntByReference inlen, Louis.WideChar outbuf,
             IntByReference outlen, byte[] typeform, byte[] spacing, int mode);
 
     /**
@@ -425,7 +393,7 @@ public class Louis {
      * <li>hyphens is a byte array, it should be of length of inlen not inbuf.</li>
      * </ul>
      */
-    private static native int lou_hyphenate(String trantab, byte[] inbuf,
+    private static native int lou_hyphenate(String trantab, Louis.WideChar inbuf,
             int inlen, byte[] hyphens, int mode);
 
     /**
