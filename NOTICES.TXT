@@ -1,0 +1,3 @@
+This work is derived from jlouis written by Michael Whapples. The original
+jlouis can be obtained from http://bitbucket.org/mwhapples/jlouis/
+
