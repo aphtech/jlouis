@@ -23,7 +23,7 @@ import org.mwhapples.jlouis.TranslationException;
 public class SimpleTranslate {
   public static void main(String[] args) throws TranslationException {
     if (args.length != 2) {
-      System.out.println("Invalid useage: arguments should be translation table and text to translate");
+      System.out.println("Invalid usage: arguments should be translation table and text to translate");
       System.exit(1);
     }
     Louis translator = new Louis();
