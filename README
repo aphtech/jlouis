@@ -25,19 +25,17 @@ by the original JLouis distribution which can be found at http://bitbucket.org/m
 
 Installation
 ============
-JLouis is built using the apache maven tool. If building JLouis from source,
-visit http://maven.apache.org to obtain and install maven.
+JLouis is built using Gradle build tool. If building JLouis from source,
+visit http://gradle.org to obtain and install gradle.
 
-When you have maven installed, then follow the instructions below to build 
+When you have gradle installed, then follow the instructions below to build 
 JLouis.
 
 1. Download JLouis from http://bitbucket.org/mwhapples/jlouis
 2. If you downloaded JLouis in an archive file, unpack it.
-3. In the jlouis directory, run the command mvn package
+3. In the jlouis directory, run the command: gradle build
 
-Once you have done this you should find two jar files in the target 
-subdirectory. One of these jar files contains jlouis with all its dependencies 
-and the other only contains jlouis.
+Once you have done this you should find the jlouis jar file in the build directory.
 
 Problems when using/compiling
 =============================
@@ -47,4 +45,7 @@ be possible that JLouis still cannot find your liblouis installation. In this
 case, you can specify where the library file (eg. dll on windows, so file 
 on linux, etc) is to be found by using the java system property 
 jlouis.library.path. In this system property just specify the path, do not 
-specify the library file itself.
+specify the library file itself. So if your liblouis.dll on windows could be found in c:\liblouis the build command would be something like:
+gradle -Djlouis.library.path=c:\jlouis build
+
+Also be aware that the tests will require access to the liblouis tables of your liblouis installation. You may need to set the LOUIS_TABLEPATH environment variable to allow liblouis to find these.
