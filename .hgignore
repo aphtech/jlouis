@@ -1,3 +1,11 @@
 
 syntax: glob
 build
+syntax: glob
+.classpath
+syntax: glob
+.project
+syntax: glob
+.gradle
+syntax: glob
+.settings
