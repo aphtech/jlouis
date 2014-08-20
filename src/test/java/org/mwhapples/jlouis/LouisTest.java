@@ -11,6 +11,8 @@ public class LouisTest {
     @Before
     public void setupTranslator() {
         translator = new Louis();
+        translator.setDataPath(System.getProperty("jlouis.data.path", "."));
+        translator.setLogLevel(LogLevels.DEBUG);
     }
     @After
     public void cleanUpTranslator() {

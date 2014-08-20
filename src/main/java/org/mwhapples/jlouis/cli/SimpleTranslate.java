@@ -19,22 +19,23 @@ package org.mwhapples.jlouis.cli;
  */
 import org.mwhapples.jlouis.Louis;
 import org.mwhapples.jlouis.TranslationException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SimpleTranslate {
-  public static void main(String[] args) throws TranslationException {
+	private static Logger logger = LoggerFactory.getLogger(SimpleTranslate.class);
+	public static void main(String[] args) throws TranslationException {
     if (args.length != 2) {
       System.out.println("Invalid usage: arguments should be translation table and text to translate");
       System.exit(1);
     }
     Louis translator = new Louis();
-    translator.setLogFileName("louis.error.txt");
-    translator.logPrint("Getting liblouis version");
-    System.out.println(translator.getVersion());
+    logger.info("Getting liblouis version");
     byte[] typeforms = null;
-    translator.logPrint("Using buffer size %d", translator.getEncodingSize());
-    translator.logPrint("Performing forward translation for string of length %d using mode %d", args[1].length(), 0);
+    logger.info("Using buffer size %d", translator.getEncodingSize());
+    logger.info("Performing forward translation for string of length %d using mode %d", args[1].length(), 0);
     String brailleStr = translator.translateString(args[0], args[1], typeforms, 0);
-    System.out.println(brailleStr);
+    logger.info(brailleStr);
     byte[] hyphens = translator.hyphenate(args[0], brailleStr, 1);
     char[] hyphenChars = new char[hyphens.length];
     for (int i=0; i< hyphens.length; i++) {
@@ -44,9 +45,9 @@ public class SimpleTranslate {
         hyphenChars[i] = ' ';
       }
     }
-    System.out.println(new String(hyphenChars));
+    logger.info(new String(hyphenChars));
     String backTranslationStr = translator.backTranslateString(args[0], brailleStr, typeforms, 0);
-    System.out.println(backTranslationStr);
+    logger.info(backTranslationStr);
     hyphens = translator.hyphenate(args[0], backTranslationStr, 0);
     hyphenChars = new char[hyphens.length];
     for (int i=0; i < hyphens.length; i++) {
@@ -56,7 +57,7 @@ public class SimpleTranslate {
         hyphenChars[i] = ' ';
       }
     }
-    System.out.println(new String(hyphenChars));
+    logger.info(new String(hyphenChars));
     translator.close();
   }
 }

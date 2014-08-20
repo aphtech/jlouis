@@ -24,6 +24,9 @@ import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.Properties;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.sun.jna.FromNativeContext;
 import com.sun.jna.Memory;
 import com.sun.jna.Native;
@@ -76,8 +79,10 @@ public class Louis {
 	}
 
 	private int outRatio;
+	private static LogCallback callback;
 	private static int encodingSize;
 	private static Properties libConfig;
+	private static Logger logger = LoggerFactory.getLogger(Louis.class);
 	static {
 		try {
 			libConfig = loadConfig("jlouis.properties");
@@ -102,8 +107,8 @@ public class Louis {
 	 */
 	public Louis() {
 		outRatio = 2;
+		System.out.println("Creating LibLouis");
 	}
-
 	
 	/**
 	 * <p>Get the LibLouis version.</p>
@@ -250,16 +255,49 @@ public class Louis {
 		return Arrays.copyOf(hyphens, inlen);
 	}
 
-	public void setLogFileName(String fileName) {
-		Louis.lou_logFile(fileName);
-	}
-
-	public void logPrint(String format, Object... args) {
-		Louis.lou_logPrint(String.format(format, args));
-	}
-
 	public void close() {
 		Louis.lou_free();
+	}
+	
+	/**
+	 * Set the log level for the LibLouis callback. This only sets the level for when the logging callback will be called by LibLouis, it does not set any other logging levels.
+	 * 
+	 * @param level The level at which the logging callback will be called by LibLouis.
+	 */
+	public void setLogLevel(int level) {
+		lou_setLogLevel(level);
+	}
+	/**
+	 * Set the data path used by LibLouis. Tables should be inside a directory liblouis/tables inside the path given by this function call.
+	 * 
+	 * @param path The data path for LibLouis.
+	 */
+	public void setDataPath(String path) {
+		lou_setDataPath(path);
+	}
+	
+	/**
+	 * Get the data path of LibLouis.
+	 * 
+	 * @return The data path currently used by LibLouis.
+	 */
+	public String getDataPath() {
+		return lou_getDataPath();
+	}
+	
+	/**
+	 * Register a callback for logging. If you give a null value for the callback object then the default logging callback will be used.
+	 * 
+	 * @param cb The callback.
+	 */
+	public static void registerLogCallback(LogCallback cb) {
+		// Remember that we should hold a reference to the callback object to ensure it remains valid for LibLouis.
+		if (cb == null) {
+			callback = new DefaultLogCallback();
+		} else {
+			callback = cb;
+		}
+		lou_registerLogCallback(callback);
 	}
 
 	// Initialise this as a native library for JNA
@@ -292,7 +330,7 @@ public class Louis {
 			break;
 		case Platform.WINDOWSCE:
 			libName = libConfig.getProperty("jlouis.library.name.windowsce",
-					"louis");
+					"liblouis");
 		default:
 			libName = "louis";
 			break;
@@ -300,10 +338,13 @@ public class Louis {
 		String libPath = System.getProperty("jlouis.library.path",
 				libConfig.getProperty("jlouis.library.path"));
 		if (libPath != null) {
+			logger.error("Adding path '" + libPath + "' to search path");
 			NativeLibrary.addSearchPath(libName, libPath);
 		}
 		Native.register(libName);
 		Louis.encodingSize = Louis.lou_charSize();
+		callback = new DefaultLogCallback();
+		lou_registerLogCallback(callback);
 	}
 
 	public static class WideChar implements NativeMapped {
@@ -456,20 +497,6 @@ public class Louis {
 	private static native int lou_hyphenate(String trantab,
 			Louis.WideChar inbuf, int inlen, byte[] hyphens, int mode);
 
-	/**
-	 * The lou_logFile function.
-	 * 
-	 * This method will make liblouis put logging information in a log file of
-	 * the filename given as the parameter.
-	 */
-	private static native void lou_logFile(String fileName);
-
-	/**
-	 * The lou_logPrint function.
-	 * 
-	 * This method is as in the liblouis documentation.
-	 */
-	private static native void lou_logPrint(String format);
 
 	/**
 	 * The lou_translate function.
@@ -550,4 +577,32 @@ public class Louis {
 	 * This method returns a string giving the version of liblouis.
 	 */
 	private static native String lou_version();
+	
+	/**
+	 * Set the data path for LibLouis. Tables should be in a liblouis/tables directory inside this path.
+	 * 
+	 * @param path The data path to use.
+	 */
+	private static native void lou_setDataPath(String path);
+	
+	/**
+	 * Get the current data path of LibLouis.
+	 * 
+	 * @return The current data path used by LibLouis.
+	 */
+	private static native String lou_getDataPath();
+	
+	/**
+	 * Set a callback for LibLouis logging.
+	 * 
+	 * @param cb The callback object.
+	 */
+	private static native void lou_registerLogCallback(LogCallback cb);
+	
+	/**
+	 * Set the log level for liblouis. This only sets the level at which the logging callback will be called, any further processing done by the callback is independent of this.
+	 * 
+	 * @param level The level for the logging callback to be set to.
+	 */
+	private static native void lou_setLogLevel(int level);
 }
