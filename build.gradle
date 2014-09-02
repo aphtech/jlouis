@@ -1,11 +1,14 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'maven'
+apply plugin: 'signing'
 
-version = '0.0.2'
-group = 'org.mwhapples'
+group = 'org.bitbucket.mwhapples'
+archivesBaseName = 'jlouis'
+version = '0.0.3-SNAPSHOT'
 
-sourceCompatibility = '1.5'
-targetCompatibility = '1.5'
+sourceCompatibility = '1.6'
+targetCompatibility = '1.6'
 
 repositories { mavenCentral() }
 dependencies {
@@ -20,11 +23,61 @@ test {
 	systemProperty "jlouis.data.path", System.getProperty("jlouis.data.path")
 }
 
+task javadocJar(type: Jar) {
+	classifier = 'javadoc'
+	from javadoc
+}
+
+task sourcesJar(type: Jar) {
+	classifier = 'sources'
+	from sourceSets.main.allSource
+}
+
+artifacts {
+	archives javadocJar, sourcesJar
+}
+
+signing {
+	sign configurations.archives
+}
+
 uploadArchives {
 	repositories {
-		ivy {
-			artifactPattern "$projectDir/repo/[organisation]/[module]-[revision].[ext]"
-			ivyPattern "$projectDir/repo/ivy-files/[module]-[revision].xml"
+		mavenDeployer {
+			beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+			
+			repository(url: 'https://oss.sonatype.org/service/local/staging/deploy/maven2/') {
+				authentication(userName: ossrhUsername, password: ossrhPassword)
+			}
+			
+			snapshotRepository(url: 'https://oss.sonatype.org/content/repositories/snapshots/') {
+				authentication(userName: ossrhUsername, password: ossrhPassword)
+			}
+			
+			pom.project {
+				name 'jlouis'
+				packaging 'jar'
+				description 'Java bindings for LibLouis Braille translator'
+				url 'http://bitbucket.org/mwhapples/jlouis'
+				scm {
+					connection 'scm:hg:http://bitbucket.org/mwhapples/jlouis'
+					developerConnection 'scm:hg:https://bitbucket.org/mwhapples/jlouis'
+					url 'http://bitbucket.org/mwhapples/jlouis'
+				}
+				licenses {
+					license {
+						name 'The Apache License, Version 2.0'
+						url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+					}
+				}
+				developers {
+					developer {
+						id 'mwhapples'
+						name 'Michael Whapples'
+						email 'mwhapples@aim.com'
+					}
+				}
+			}
 		}
 	}
 }

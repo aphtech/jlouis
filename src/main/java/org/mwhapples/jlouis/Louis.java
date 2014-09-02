@@ -51,7 +51,7 @@ public class Louis {
 	 * constant values. You may also find the liblouis documentation useful.
 	 * </p>
 	 * 
-	 * @see "The liblouis documentation"
+	 * 
 	 */
 	public static interface typeforms {
 		public static final byte plain_text = 0;
@@ -326,7 +326,7 @@ public class Louis {
 			break;
 		case Platform.WINDOWS:
 			libName = libConfig.getProperty("jlouis.library.name.windows",
-					"louis");
+					"liblouis");
 			break;
 		case Platform.WINDOWSCE:
 			libName = libConfig.getProperty("jlouis.library.name.windowsce",
