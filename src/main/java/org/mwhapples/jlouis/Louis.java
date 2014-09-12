@@ -129,6 +129,17 @@ public class Louis {
 		return Louis.lou_charSize();
 	}
 
+	/**
+	 * Simple translation of a string into Braille.
+	 * 
+	 * <p>This method translates the string in inbuf to Braille using the lou_translateString function in LibLouis.</p>
+	 * 
+	 * @param tablesList The list of translation tables for LibLouis.
+	 * @param inbuf The string to translate
+	 * @param mode The mode for LibLouis translation.
+	 * @return A string containing the Braille translation.
+	 * @throws TranslationException When LibLouis cannot perform the translation.
+	 */
 	public String translateString(String tablesList, String inbuf, int mode) throws TranslationException {
 		return translateString(tablesList, inbuf, null, mode);
 	}
