@@ -53,12 +53,12 @@ public class Louis {
 	 * 
 	 * 
 	 */
-	public static interface typeforms {
-		public static final byte plain_text = 0;
-		public static final byte italic = 1;
-		public static final byte underline = 2;
-		public static final byte bold = 4;
-		public static final byte computer_braille = 8;
+	public static interface TypeForms {
+		public static final byte PLAIN_TEXT = 0;
+		public static final byte ITALIC = 1;
+		public static final byte UNDERLINE = 2;
+		public static final byte BOLD = 4;
+		public static final byte COMPUTER_BRAILLE = 8;
 	}
 
 	/**
@@ -69,13 +69,15 @@ public class Louis {
 	 * used. Refer to the liblouis documentation to find out the definitions.
 	 * </p>
 	 */
-	public static interface translationModes {
-		public static final int noContractions = 1;
-		public static final int compbrlAtCursor = 2;
-		public static final int dotsIO = 4;
-		public static final int comp8Dots = 8;
-		public static final int pass1Only = 16;
-		public static final int compbrlLeftCursor = 32;
+	public static interface TranslationModes {
+		public static final int NO_CONTRACTIONS = 1;
+		public static final int COMPBRL_AT_CURSOR = 2;
+		public static final int DOTS_IO = 4;
+		public static final int COMP8DOTS = 8;
+		public static final int PASS1_ONLY = 16;
+		public static final int COMPBRL_LEFT_CURSOR = 32;
+		public static final int OTHER_TRANS = 64;
+		public static final int UC_BRL = 128;
 	}
 
 	private int outRatio;
@@ -127,6 +129,9 @@ public class Louis {
 		return Louis.lou_charSize();
 	}
 
+	public String translateString(String tablesList, String inbuf, int mode) throws TranslationException {
+		return translateString(tablesList, inbuf, null, mode);
+	}
 	/**
 	 * Simple translation of a string into Braille.
 	 * 
@@ -565,7 +570,7 @@ public class Louis {
 	 * @param mode
 	 *            This indicates how the translation should be done. Use values
 	 *            from
-	 *            {@link org.mwhapples.jlouis.library.Louis.translationModes}.
+	 *            {@link org.mwhapples.jlouis.TranslationModes.Louis.translationModes}.
 	 */
 	private static native int lou_translateString(String trantab,
 			Louis.WideChar inbuf, IntByReference inlen, Louis.WideChar outbuf,
