@@ -109,7 +109,6 @@ public class Louis {
 	 */
 	public Louis() {
 		outRatio = 2;
-		System.out.println("Creating LibLouis");
 	}
 	
 	/**
@@ -361,6 +360,10 @@ public class Louis {
 		Louis.encodingSize = Louis.lou_charSize();
 		callback = new DefaultLogCallback();
 		lou_registerLogCallback(callback);
+		if (System.getProperty("jlouis.data.path") != null) {
+			lou_setDataPath(System.getProperty("jlouis.data.path"));
+		}
+		
 	}
 
 	public static class WideChar implements NativeMapped {
