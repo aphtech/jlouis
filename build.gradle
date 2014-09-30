@@ -1,3 +1,13 @@
+buildscript {
+	repositories {
+		jcenter()
+	}
+	dependencies {
+		classpath 'org.gradle.api.plugins:gradle-nexus-plugin:0.7.1'
+	}
+}
+
+apply plugin: 'nexus'
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'maven'
@@ -18,65 +28,42 @@ dependencies {
 	testCompile group: 'junit', name: 'junit', version: '4.+'
 }
 
+task tablesZip(type: Zip) {
+	from 'src/main/dist/'
+	include 'liblouis/tables/*'
+	classifier 'tables'
+}
+
 test {
 	systemProperty "jlouis.library.path", System.getProperty("jlouis.library.path")
-	systemProperty "jlouis.data.path", System.getProperty("jlouis.data.path")
-}
-
-task javadocJar(type: Jar) {
-	classifier = 'javadoc'
-	from javadoc
-}
-
-task sourcesJar(type: Jar) {
-	classifier = 'sources'
-	from sourceSets.main.allSource
+	systemProperty "jlouis.data.path", "src/main/dist/"
 }
 
 artifacts {
-	archives javadocJar, sourcesJar
+	archives tablesZip
 }
-
-signing {
-	sign configurations.archives
-}
-
-uploadArchives {
-	repositories {
-		mavenDeployer {
-			beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 			
-			repository(url: 'https://oss.sonatype.org/service/local/staging/deploy/maven2/') {
-				authentication(userName: ossrhUsername, password: ossrhPassword)
+modifyPom {
+	project {
+		name 'jlouis'
+		description 'Java bindings for LibLouis Braille translator'
+		url 'http://bitbucket.org/mwhapples/jlouis'
+		scm {
+			connection 'scm:hg:http://bitbucket.org/mwhapples/jlouis'
+			developerConnection 'scm:hg:https://bitbucket.org/mwhapples/jlouis'
+			url 'http://bitbucket.org/mwhapples/jlouis'
+		}
+		licenses {
+			license {
+				name 'The Apache License, Version 2.0'
+				url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
 			}
-			
-			snapshotRepository(url: 'https://oss.sonatype.org/content/repositories/snapshots/') {
-				authentication(userName: ossrhUsername, password: ossrhPassword)
-			}
-			
-			pom.project {
-				name 'jlouis'
-				packaging 'jar'
-				description 'Java bindings for LibLouis Braille translator'
-				url 'http://bitbucket.org/mwhapples/jlouis'
-				scm {
-					connection 'scm:hg:http://bitbucket.org/mwhapples/jlouis'
-					developerConnection 'scm:hg:https://bitbucket.org/mwhapples/jlouis'
-					url 'http://bitbucket.org/mwhapples/jlouis'
-				}
-				licenses {
-					license {
-						name 'The Apache License, Version 2.0'
-						url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-					}
-				}
-				developers {
-					developer {
-						id 'mwhapples'
-						name 'Michael Whapples'
-						email 'mwhapples@aim.com'
-					}
-				}
+		}
+		developers {
+			developer {
+				id 'mwhapples'
+				name 'Michael Whapples'
+				email 'mwhapples@aim.com'
 			}
 		}
 	}

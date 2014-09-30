@@ -13,7 +13,6 @@ public class LouisTest {
 	@Before
 	public void setupTranslator() {
 		translator = new Louis();
-		translator.setDataPath(System.getProperty("jlouis.data.path", "."));
 	}
 
 	@After
