@@ -19,7 +19,12 @@ package org.mwhapples.jlouis;
  */
 
 public class TranslationException extends Exception {
-    public TranslationException(String msg) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -1316274222832443390L;
+
+	public TranslationException(String msg) {
         super(msg);
     }
 }
