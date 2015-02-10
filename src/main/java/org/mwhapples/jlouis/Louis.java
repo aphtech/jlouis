@@ -156,6 +156,9 @@ public class Louis {
 	 */
 	public String translateString(String tablesList, String inbuf,
 			byte[] typeforms, int mode) throws TranslationException {
+		if ((inbuf == null) || (inbuf.isEmpty())) {
+			return "";
+		}
 		byte[] spacing = null;
 		int inlen = inbuf.length();
 		Louis.WideChar wInbuf = new Louis.WideChar(inbuf);
@@ -183,6 +186,9 @@ public class Louis {
 	public TranslationResult translate(String trantab, String inbuf,
 			byte[] typeForms, int cursorPos, int mode)
 			throws TranslationException {
+		if ((inbuf == null) || (inbuf.isEmpty())) {
+			return new TranslationResult("", new int[0], new int[0], 0);
+		}
 		byte[] spacing = null;
 		Louis.WideChar wInbuf = new Louis.WideChar(inbuf);
 		int inlen = wInbuf.length();
