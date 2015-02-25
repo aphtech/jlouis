@@ -24,7 +24,7 @@ public class LouisTest {
 	public void translateStringValidString() throws Exception {
 		String expected = ",hello _w";
 		String actual = null;
-		byte[] typeforms = null;
+		short[] typeforms = null;
 		actual = translator.translateString("en-us-g2.ctb", "Hello world",
 				typeforms, 0);
 		assertEquals(expected, actual);
@@ -33,7 +33,7 @@ public class LouisTest {
 	@Test
 	public void backTranslateStringValidString() throws Exception {
 		String expected = "Hello world";
-		byte[] typeforms = null;
+		short[] typeforms = null;
 		String actual = translator.backTranslateString("en-us-g2.ctb",
 				",hello world", typeforms, 0);
 		assertEquals(expected, actual);

@@ -54,11 +54,18 @@ public class Louis {
 	 * 
 	 */
 	public static interface TypeForms {
-		public static final byte PLAIN_TEXT = 0;
-		public static final byte ITALIC = 1;
-		public static final byte UNDERLINE = 2;
-		public static final byte BOLD = 4;
-		public static final byte COMPUTER_BRAILLE = 8;
+		public static final short PLAIN_TEXT = 0;
+		public static final short ITALIC = 1;
+		public static final short UNDERLINE = 2;
+		public static final short BOLD = 4;
+		public static final short COMPUTER_BRAILLE = 8;
+		public static final short PASSAGE_BREAK = 16;
+		public static final short WORD_RESET = 32;
+		public static final short TRANS_1 = 0X0100;
+		public static final short TRANS_2 = 0X0200;
+		public static final short TRANS_3 = 0X0400;
+		public static final short TRANS_4 = 0X0800;
+		public static final short TRANS_5 = 0X1000;
 	}
 
 	/**
@@ -155,7 +162,7 @@ public class Louis {
 	 * @throws TranslationException When LibLouis cannot perform the translation.
 	 */
 	public String translateString(String tablesList, String inbuf,
-			byte[] typeforms, int mode) throws TranslationException {
+			short[] typeforms, int mode) throws TranslationException {
 		if ((inbuf == null) || (inbuf.isEmpty())) {
 			return "";
 		}
@@ -163,7 +170,7 @@ public class Louis {
 		int inlen = inbuf.length();
 		Louis.WideChar wInbuf = new Louis.WideChar(inbuf);
 		int outlen = outRatio * inlen;
-		byte[] typeformsCopy = null;
+		short[] typeformsCopy = null;
 		if (typeforms != null) {
 			typeformsCopy = Arrays.copyOf(typeforms, outlen);
 		}
@@ -179,12 +186,12 @@ public class Louis {
 
 	public TranslationResult translate(String trantab, String inbuf,
 			int cursorPos, int mode) throws TranslationException {
-		byte[] typeForms = null;
+		short[] typeForms = null;
 		return translate(trantab, inbuf, typeForms, cursorPos, mode);
 	}
 
 	public TranslationResult translate(String trantab, String inbuf,
-			byte[] typeForms, int cursorPos, int mode)
+			short[] typeForms, int cursorPos, int mode)
 			throws TranslationException {
 		if ((inbuf == null) || (inbuf.isEmpty())) {
 			return new TranslationResult("", new int[0], new int[0], 0);
@@ -193,7 +200,7 @@ public class Louis {
 		Louis.WideChar wInbuf = new Louis.WideChar(inbuf);
 		int inlen = wInbuf.length();
 		int outlen = inlen * outRatio;
-		byte[] typeformsCopy = null;
+		short[] typeformsCopy = null;
 		if (typeForms != null) {
 			typeformsCopy = Arrays.copyOf(typeForms, outlen);
 		}
@@ -213,13 +220,13 @@ public class Louis {
 	}
 
 	public String backTranslateString(String trantab, String inbuf,
-			byte[] typeforms, int mode) throws TranslationException {
+			short[] typeforms, int mode) throws TranslationException {
 		byte[] spacing = null;
 		Louis.WideChar wInbuf = new Louis.WideChar(inbuf);
 		int inlen = wInbuf.length();
 		int outlen = outRatio * inlen;
 		Louis.WideChar wOutbuf = new Louis.WideChar(outlen);
-		byte[] typeformsCopy = null;
+		short[] typeformsCopy = null;
 		if (typeforms != null) {
 			typeformsCopy = Arrays.copyOf(typeforms, outlen);
 		}
@@ -233,18 +240,18 @@ public class Louis {
 
 	public TranslationResult backTranslate(String trantab, String inbuf,
 			int cursorPos, int mode) throws TranslationException {
-		byte[] typeForms = null;
+		short[] typeForms = null;
 		return backTranslate(trantab, inbuf, typeForms, cursorPos, mode);
 	}
 
 	public TranslationResult backTranslate(String trantab, String inbuf,
-			byte[] typeForms, int cursorPos, int mode)
+			short[] typeForms, int cursorPos, int mode)
 			throws TranslationException {
 		byte[] spacing = null;
 		Louis.WideChar wInbuf = new Louis.WideChar(inbuf);
 		int inlen = wInbuf.length();
 		int outlen = inlen * outRatio;
-		byte[] typeformsCopy = null;
+		short[] typeformsCopy = null;
 		if (typeForms != null) {
 			typeformsCopy = Arrays.copyOf(typeForms, outlen);
 		}
@@ -458,7 +465,7 @@ public class Louis {
 	 */
 	private static native int lou_backTranslate(String trantab,
 			Louis.WideChar inbuf, IntByReference inlen, Louis.WideChar outbuf,
-			IntByReference outlen, byte[] typeform, byte[] spacing,
+			IntByReference outlen, short[] typeform, byte[] spacing,
 			int[] outpos, int[] inpos, IntByReference cursorpos, int mode);
 
 	/**
@@ -471,7 +478,7 @@ public class Louis {
 	 */
 	private static native int lou_backTranslateString(String trantab,
 			Louis.WideChar inbuf, IntByReference inlen, Louis.WideChar outbuf,
-			IntByReference outlen, byte[] typeform, byte[] spacing, int mode);
+			IntByReference outlen, short[] typeform, byte[] spacing, int mode);
 
 	/**
 	 * This method will get the size of the encoding used for widechar in
@@ -532,7 +539,7 @@ public class Louis {
 	 */
 	private static native int lou_translate(String trantab,
 			Louis.WideChar inbuf, IntByReference inlen, Louis.WideChar outbuf,
-			IntByReference outlen, byte[] typeform, byte[] spacing,
+			IntByReference outlen, short[] typeform, byte[] spacing,
 			int[] outpos, int[] inpos, IntByReference cursorpos, int mode);
 
 	/**
@@ -594,7 +601,7 @@ public class Louis {
 	 */
 	private static native int lou_translateString(String trantab,
 			Louis.WideChar inbuf, IntByReference inlen, Louis.WideChar outbuf,
-			IntByReference outlen, byte[] typeform, byte[] spacing, int mode);
+			IntByReference outlen, short[] typeform, byte[] spacing, int mode);
 
 	/**
 	 * The lou_version function.
