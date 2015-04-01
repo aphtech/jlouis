@@ -327,6 +327,28 @@ public class Louis {
 		}
 		lou_registerLogCallback(callback);
 	}
+	
+	/**
+	 *
+	 */
+	public void dotsToChar(
+		String trantab,
+		Louis.WideChar inbuf, Louis.WideChar outbuf,
+		int length, int mode)
+	{
+		lou_dotsToChar(trantab, inbuf, outbuf, length, mode);
+	}
+	
+	/**
+	 *
+	 */
+	public void charToDots(
+		String trantab,
+		Louis.WideChar inbuf, Louis.WideChar outbuf,
+		int length, int mode)
+	{
+		lou_charToDots(trantab, inbuf, outbuf, length, mode);
+	}
 
 	// Initialise this as a native library for JNA
 	static {
@@ -637,4 +659,21 @@ public class Louis {
 	 * @param level The level for the logging callback to be set to.
 	 */
 	private static native void lou_setLogLevel(int level);
+
+	/**
+	 *
+	 */
+	private static native void lou_dotsToChar(
+		String trantab,
+		Louis.WideChar inbuf, Louis.WideChar outbuf,
+		int length, int mode);
+
+	/**
+	 *
+	 */
+	private static native void lou_charToDots(
+		String trantab,
+		Louis.WideChar inbuf, Louis.WideChar outbuf,
+		int length, int mode);
+
 }
