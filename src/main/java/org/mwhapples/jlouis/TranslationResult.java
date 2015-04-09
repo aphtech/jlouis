@@ -1,4 +1,6 @@
 package org.mwhapples.jlouis;
+
+import java.util.Arrays;
 /*
  * Copyright (c) 2010-2011 Michael whapples
  *
@@ -24,8 +26,11 @@ public class TranslationResult {
     private int[] outputPos;
     private int cursorPos;
     TranslationResult(String translation, int[] outputPos, int[] inputPos, int cursorPos) {
-        this.translation = translation;
-        this.inputPos = inputPos;
+        if (translation.length() > inputPos.length) {
+        	throw new IllegalArgumentException("The inputPos is too short, it should be at least as long as the translation string");
+        }
+    	this.translation = translation;
+        this.inputPos = Arrays.copyOf(inputPos, translation.length());
         this.outputPos = outputPos;
         this.cursorPos = cursorPos;
     }
