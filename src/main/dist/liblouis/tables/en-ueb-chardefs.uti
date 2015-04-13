@@ -36,11 +36,139 @@ space \x000c 0
 space \x000d 0 carriage return
 space \x001b 1b escape character for html back-translation
 space \x00A0 a NO-BREAK SPACE <noBreak> 0020 NON-BREAKING SPACE 
-include loweredDigits6Dots.uti
+#include loweredDigits6Dots.uti
 
 include latinLetterDef8Dots.uti
 
-noback sign . 46
+digit 0 245
+digit 1 1
+digit 2 12
+digit 3 14
+digit 4 145
+digit 5 15
+digit 6 124
+digit 7 1245
+digit 8 125
+digit 9 24
+
+display 0 356
+display 1 2
+display 2 23
+display 3 25
+display 4 256
+display 5 26
+display 6 235
+display 7 2356
+display 8 236
+display 9 35
+
+#   add numeric space indicator
+context _$d["\s"]$d @5
+
+#   remove numeric indicator from numeric space indicator
+pass2 @245-5-3456-245 @245-5-245       0 0
+pass2 @245-5-3456-1 @245-5-1           0 1
+pass2 @245-5-3456-12 @245-5-12         0 2
+pass2 @245-5-3456-14 @245-5-14         0 3
+pass2 @245-5-3456-145 @245-5-145       0 4
+pass2 @245-5-3456-15 @245-5-15         0 5
+pass2 @245-5-3456-145 @245-5-124       0 6
+pass2 @245-5-3456-1245 @245-5-1245     0 7
+pass2 @245-5-3456-125 @245-5-125       0 8
+pass2 @245-5-3456-24 @245-5-24         0 9
+pass2 @1-5-3456-245 @1-5-245           1 0
+pass2 @1-5-3456-1 @1-5-1               1 1
+pass2 @1-5-3456-12 @1-5-12             1 2
+pass2 @1-5-3456-14 @1-5-14             1 3
+pass2 @1-5-3456-145 @1-5-145           1 4
+pass2 @1-5-3456-15 @1-5-15             1 5
+pass2 @1-5-3456-145 @1-5-124           1 6
+pass2 @1-5-3456-1245 @1-5-1245         1 7
+pass2 @1-5-3456-125 @1-5-125           1 8
+pass2 @1-5-3456-24 @1-5-24             1 9
+pass2 @12-5-3456-245 @12-5-245         2 0
+pass2 @12-5-3456-1 @12-5-1             2 1
+pass2 @12-5-3456-12 @12-5-12           2 2
+pass2 @12-5-3456-14 @12-5-14           2 3
+pass2 @12-5-3456-145 @12-5-145         2 4
+pass2 @12-5-3456-15 @12-5-15           2 5
+pass2 @12-5-3456-145 @12-5-124         2 6
+pass2 @12-5-3456-1245 @12-5-1245       2 7
+pass2 @12-5-3456-125 @12-5-125         2 8
+pass2 @12-5-3456-24 @12-5-24           2 9
+pass2 @14-5-3456-245 @14-5-245         3 0
+pass2 @14-5-3456-1 @14-5-1             3 1
+pass2 @14-5-3456-12 @14-5-12           3 2
+pass2 @14-5-3456-14 @14-5-14           3 3
+pass2 @14-5-3456-145 @14-5-145         3 4
+pass2 @14-5-3456-15 @14-5-15           3 5
+pass2 @14-5-3456-145 @14-5-124         3 6
+pass2 @14-5-3456-1245 @14-5-1245       3 7
+pass2 @14-5-3456-125 @14-5-125         3 8
+pass2 @14-5-3456-24 @14-5-24           3 9
+pass2 @145-5-3456-245 @145-5-245       4 0
+pass2 @145-5-3456-1 @145-5-1           4 1
+pass2 @145-5-3456-12 @145-5-12         4 2
+pass2 @145-5-3456-14 @145-5-14         4 3
+pass2 @145-5-3456-145 @145-5-145       4 4
+pass2 @145-5-3456-15 @145-5-15         4 5
+pass2 @145-5-3456-145 @145-5-124       4 6
+pass2 @145-5-3456-1245 @145-5-1245     4 7
+pass2 @145-5-3456-125 @145-5-125       4 8
+pass2 @145-5-3456-24 @145-5-24         4 9
+pass2 @15-5-3456-245 @15-5-245         5 0
+pass2 @15-5-3456-1 @15-5-1             5 1
+pass2 @15-5-3456-12 @15-5-12           5 2
+pass2 @15-5-3456-14 @15-5-14           5 3
+pass2 @15-5-3456-145 @15-5-145         5 4
+pass2 @15-5-3456-15 @15-5-15           5 5
+pass2 @15-5-3456-145 @15-5-124         5 6
+pass2 @15-5-3456-1245 @15-5-1245       5 7
+pass2 @15-5-3456-125 @15-5-125         5 8
+pass2 @15-5-3456-24 @15-5-24           5 9
+pass2 @124-5-3456-245 @124-5-245       6 0
+pass2 @124-5-3456-1 @124-5-1           6 1
+pass2 @124-5-3456-12 @124-5-12         6 2
+pass2 @124-5-3456-14 @124-5-14         6 3
+pass2 @124-5-3456-145 @124-5-145       6 4
+pass2 @124-5-3456-15 @124-5-15         6 5
+pass2 @124-5-3456-145 @124-5-124       6 6
+pass2 @124-5-3456-1245 @124-5-1245     6 7
+pass2 @124-5-3456-125 @124-5-125       6 8
+pass2 @124-5-3456-24 @124-5-24         6 9
+pass2 @1245-5-3456-245 @1245-5-245     7 0
+pass2 @1245-5-3456-1 @1245-5-1         7 1
+pass2 @1245-5-3456-12 @1245-5-12       7 2
+pass2 @1245-5-3456-14 @1245-5-14       7 3
+pass2 @1245-5-3456-145 @1245-5-145     7 4
+pass2 @1245-5-3456-15 @1245-5-15       7 5
+pass2 @1245-5-3456-145 @1245-5-124     7 6
+pass2 @1245-5-3456-1245 @1245-5-1245   7 7
+pass2 @1245-5-3456-125 @1245-5-125     7 8
+pass2 @1245-5-3456-24 @1245-5-24       7 9
+pass2 @125-5-3456-245 @125-5-245       8 0
+pass2 @125-5-3456-1 @125-5-1           8 1
+pass2 @125-5-3456-12 @125-5-12         8 2
+pass2 @125-5-3456-14 @125-5-14         8 3
+pass2 @125-5-3456-145 @125-5-145       8 4
+pass2 @125-5-3456-15 @125-5-15         8 5
+pass2 @125-5-3456-145 @125-5-124       8 6
+pass2 @125-5-3456-1245 @125-5-1245     8 7
+pass2 @125-5-3456-125 @125-5-125       8 8
+pass2 @125-5-3456-24 @125-5-24         8 9
+pass2 @24-5-3456-245 @24-5-245         9 0
+pass2 @24-5-3456-1 @24-5-1             9 1
+pass2 @24-5-3456-12 @24-5-12           9 2
+pass2 @24-5-3456-14 @24-5-14           9 3
+pass2 @24-5-3456-145 @24-5-145         9 4
+pass2 @24-5-3456-15 @24-5-15           9 5
+pass2 @24-5-3456-145 @24-5-124         9 6
+pass2 @24-5-3456-1245 @24-5-1245       9 7
+pass2 @24-5-3456-125 @24-5-125         9 8
+pass2 @24-5-3456-24 @24-5-24           9 9
+
+display . 46
+noback sign . 256
 punctuation ( 12356
 punctuation } 12456
 punctuation ] 124567
@@ -55,41 +183,61 @@ punctuation - 36
 punctuation . 256
 punctuation " 5
 punctuation ; 56
-punctuation , 6
+display , 6
+punctuation , 2
 sign @ 4-1
 sign & 12346
-sign $ 1246
+#sign $ 1246
+display $ 1246
+sign $ 4-234
 sign | 1256
 sign \\ 12567
-sign % 146
+display % 146
+sign % 46-356
 sign * 16
-sign # 3456
+display # 3456
+sign # 456-1456
 punctuation ` 4
-sign _ 456
+display _ 456
+sign _ 46-36
 sign ^ 457
 math = 123456
 math < 126
-math / 34
+display / 34
+math / 456-34
 math > 345
 math + 346
 math ~ 45
 
 # Accented letters
 # TODO: please look these up in the formal ueb documentation and insert here.
+uplow Ūū 4-36-136
+uplow Çç 45-12346-14
+uplow Àà 45-16-1
+uplow Èè 45-16-15
+uplow Îî 45-146-24
+uplow Ûû 45-146-136
+uplow Ññ 45-12456-1345
+uplow Ää 45-25-1
+uplow Éé 45-34-15
+
+uppercase Æ 1-6-45-235-15
+lowercase æ 1-45-235-15
 
 # Miscellaneous
 math \x00B1 346-36 PLUS-MINUS SIGN PLUS-OR-MINUS SIGN 
 math \x00B7 4-16 MIDDLE DOT 
-math \x00BC 1456-2-34-256-3456 VULGAR FRACTION ONE QUARTER No 0031 2044 
-math \x00BD 1456-2-34-23-3456 VULGAR FRACTION ONE HALF No 0031 2044 0032 
+math \x00BC 3456-1-34-145 ¼ VULGAR FRACTION ONE QUARTER No 0031 2044
+math \x00BD 3456-1-34-12 ½ VULGAR FRACTION ONE HALF No 0031 2044 0032
 math \x00BE 1456-25-34-23-3456 VULGAR FRACTION THREE QUARTERS No 0033 
-math \x00D7 16 MULTIPLICATION SIGN 
-math \x00F7 4-34 DIVISION SIGN 
+math \x00D7 5-236 × MULTIPLICATION SIGN 
+math \x00F7 5-34 ÷ DIVISION SIGN 
 punctuation \x0092 3
 punctuation \x0097 36-36
 punctuation \x00A1 235 INVERTED EXCLAMATION MARK 
 punctuation \x00ad 36
 punctuation \x00BF 236 INVERTED QUESTION MARK 
+punctuation \x2010 36
 punctuation \x2011 36
 punctuation \x2013 6-36
 punctuation \x2014 5-6-36
@@ -103,10 +251,12 @@ sign \x2122 45-2345 trademark sign
 sign \x00A2 4-14 CENT SIGN 
 sign \x00A3 3456 POUND SIGN 
 sign \x00A4 1246 CURRENCY SIGN 
-sign \x00A7 4-234 SECTION SIGN 
+sign \x00A7 45-234 SECTION SIGN 
 sign \x00A9 45-14 COPYRIGHT SIGN 
 sign \x00AE 45-1235 REGISTERED SIGN REGISTERED TRADE MARK SIGN 
-sign \x00B0 56-145-1245 DEGREE SIGN 
+#sign \x00B0 56-145-1245 DEGREE SIGN 
+sign \x00B0 45-245 ° DEGREE SIGN 
+sign \x3003 5-2 〃 ditto mark
 sign \x00B4 b4 ACUTE ACCENT 0020 0301 SPACING ACUTE 
 sign \x00B5 46-134 MICRO SIGN 03BC 039C 039C
 # sign \x00A5 YEN SIGN 
@@ -126,4 +276,14 @@ punctuation \x0096 36
 # math \x00B9 SUPERSCRIPT ONE 0031 1 1 SUPERSCRIPT DIGIT ONE 
 # sign \x00BA MASCULINE ORDINAL INDICATOR 006F 
 # punctuation \x00BB RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK Pf Y 
+sign \x2640 45-1346 ♀
+sign \x2642 45-13456 ♂
+
+sign \x266D 3456-126 ♭
+sign \x266E 3456-16 ♮
+sign \x266F 3456-146 ♯
+
+math \x2329 4-126 〈
+math \x232A 4-345 〉
+
 
