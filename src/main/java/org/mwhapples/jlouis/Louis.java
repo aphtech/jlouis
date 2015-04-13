@@ -66,6 +66,8 @@ public class Louis {
 		public static final short TRANS_3 = 0X0400;
 		public static final short TRANS_4 = 0X0800;
 		public static final short TRANS_5 = 0X1000;
+		public static final short SCRIPT = 0x2000;
+		public static final short TRANS_NOTE = 0x4000;
 	}
 
 	/**
@@ -115,7 +117,7 @@ public class Louis {
 	 * Create a object for accessing LibLouis.
 	 */
 	public Louis() {
-		outRatio = 2;
+		outRatio = 4 + (Louis.encodingSize * 2);
 	}
 	
 	/**
