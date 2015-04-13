@@ -117,7 +117,7 @@ public class Louis {
 	 * Create a object for accessing LibLouis.
 	 */
 	public Louis() {
-		outRatio = 2;
+		outRatio = 4 + (Louis.encodingSize * 2);
 	}
 	
 	/**
