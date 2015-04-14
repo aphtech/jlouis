@@ -93,8 +93,11 @@ public class LouisTest {
 		TranslationResult result = translator.translate(tableList, inputStr, typeForms, cursor, mode);
 		
 		assertThat(result.getTranslation(), is(equalTo(expectedBrl)));
-		
-		assertThat(result.getOutputPos(), is(equalTo(expectedOutpos)));
-		assertThat(result.getInputPos(), is(equalTo(expectedInpos)));
+		if (expectedOutpos != null) {
+			assertThat(result.getOutputPos(), is(equalTo(expectedOutpos)));
+		}
+		if (expectedInpos != null) {
+			 assertThat(result.getInputPos(), is(equalTo(expectedInpos)));
+		}
 	}
 }

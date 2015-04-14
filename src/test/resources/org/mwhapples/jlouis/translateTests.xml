@@ -2,23 +2,28 @@
 <translateTests>
     <data>
         <tables>en-us-g2.ctb</tables>
-        <inputStr>Hello world</inputStr>
-        <brlStr>,hello _w</brlStr>
+        <text>Hello world</text>
+        <braille>,hello _w</braille>
         <outputPos>1 2 3 4 5 6 7 7 7 7 7</outputPos>
         <inputPos>0 0 1 2 3 4 5 6 6</inputPos>
     </data>
     <data>
         <tables>en-us-g2.ctb</tables>
-        <inputStr>ONLINE WRITER'S NOTEBOOK</inputStr>
-        <brlStr>,,onl9e ,,writer,'',s ,,notebook</brlStr>
+        <text>ONLINE WRITER'S NOTEBOOK</text>
+        <braille>,,onl9e ,,writer,'',s ,,notebook</braille>
         <outputPos>2 3 4 5 5 6 7 15 15 15 15 15 15 18 20 21 24 25 26 27 28 29 30 31</outputPos>
         <inputPos>0 0 0 1 2 3 5 6 7 7 7 7 7 7 7 7 13 13 13 14 14 15 16 16 16 17 18 19 20 21 22 23</inputPos>
         <enabled>false</enabled>
     </data>
     <data>
         <tables>en-us-g2.ctb</tables>
-        <inputStr>&#x2022; data</inputStr>
-        <brlStr>'\x2022' data</brlStr>
+        <text>ONLINE WRITER'S NOTEBOOK</text>
+        <braille>,,onl9e ,,writer,'',s ,,notebook</braille>
+    </data>
+    <data>
+        <tables>en-us-g2.ctb</tables>
+        <text>&#x2022; data</text>
+        <braille>'\x2022' data</braille>
         <outputPos>0 8 9 10 11 12</outputPos>
         <inputPos>0 0 0 0 0 0 0 0 1 2 3 4 5</inputPos>
     </data>

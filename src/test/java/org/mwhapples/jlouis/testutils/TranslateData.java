@@ -18,6 +18,7 @@
  */
 package org.mwhapples.jlouis.testutils;
 
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlList;
 
 /**
@@ -37,17 +38,19 @@ public class TranslateData {
 	private String inputStr;
 	private String brlStr;
 	private short[] typeForms = null;
-	private int cursor;
-	private int mode;
-	private int[] outputPos;
-	private int[] inputPos;
+	private int cursor = 0;
+	private int mode = 0;
+	private int[] outputPos = null;
+	private int[] inputPos = null;
 	private boolean enabled = true;
+	@XmlElement(name="text", required=true)
 	public String getInputStr() {
 		return inputStr;
 	}
 	public void setInputStr(String inputStr) {
 		this.inputStr = inputStr;
 	}
+	@XmlElement(name="braille", required=true)
 	public String getBrlStr() {
 		return brlStr;
 	}
