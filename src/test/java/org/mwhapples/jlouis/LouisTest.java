@@ -27,10 +27,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -92,12 +89,12 @@ public class LouisTest {
 	public void translate(String tableList, String inputStr, short[] typeForms, int cursor, int mode, String expectedBrl, int[] expectedOutpos, int[] expectedInpos) throws TranslationException {
 		TranslationResult result = translator.translate(tableList, inputStr, typeForms, cursor, mode);
 		
-		assertThat(result.getTranslation(), is(equalTo(expectedBrl)));
+		assertThat(result.getTranslation()).isEqualTo(expectedBrl);
 		if (expectedOutpos != null) {
-			assertThat(result.getOutputPos(), is(equalTo(expectedOutpos)));
+			assertThat(result.getOutputPos()).isEqualTo(expectedOutpos);
 		}
 		if (expectedInpos != null) {
-			 assertThat(result.getInputPos(), is(equalTo(expectedInpos)));
+			 assertThat(result.getInputPos()).isEqualTo(expectedInpos);
 		}
 	}
 }
