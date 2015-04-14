@@ -1,6 +1,5 @@
-package org.mwhapples.jlouis.cli;
-/*
- * Copyright (c) 2010-2011 Michael whapples
+/**
+ * Copyright (c) 2010-2015 Michael whapples
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +16,8 @@ package org.mwhapples.jlouis.cli;
  * For attribution notices please see the file NOTICES.TXT which should be
  * included in the distribution.
  */
+package org.mwhapples.jlouis.cli;
+
 import org.mwhapples.jlouis.Louis;
 import org.mwhapples.jlouis.TranslationException;
 import org.slf4j.Logger;

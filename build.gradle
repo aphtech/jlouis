@@ -25,7 +25,8 @@ dependencies {
 	compile group: 'net.java.dev.jna', name: 'jna', version: '4.1.0'
 	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.+'
 	runtime group: 'ch.qos.logback', name: 'logback-classic', version: '1.1.+'
-	testCompile group: 'junit', name: 'junit', version: '4.+'
+	testCompile group:'org.testng', name:'testng', version:'6.8.+'
+	testCompile group:'org.hamcrest', name:'java-hamcrest', version:'2.+'
 }
 
 task tablesZip(type: Zip) {
@@ -37,6 +38,11 @@ task tablesZip(type: Zip) {
 test {
 	systemProperty "jlouis.library.path", System.getProperty("jlouis.library.path")
 	systemProperty "jlouis.data.path", "src/main/dist/"
+	useTestNG()
+	testLogging {
+		events 'skipped', 'failed'
+		outputs.upToDateWhen {false}
+	}
 }
 
 artifacts {

@@ -16,25 +16,22 @@
  * For attribution notices please see the file NOTICES.TXT which should be
  * included in the distribution.
  */
-package org.mwhapples.jlouis;
+package org.mwhapples.jlouis.testutils;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.List;
 
-public class DefaultLogCallback implements LogCallback {
-	private static Logger logger = LoggerFactory.getLogger(DefaultLogCallback.class);
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
-	public void logMessage(int level, String msg) {
-		if (level <= LogLevels.DEBUG) {
-			logger.debug(msg);
-		} else if (level <= LogLevels.INFO) {
-			logger.info(msg);
-		} else if (level <= LogLevels.WARNING) {
-			logger.warn(msg);
-		} else {
-			logger.error(msg);
-		}
-		System.out.println("Logging message: " + msg);
+@XmlRootElement(name="translateTests")
+public class TranslateTests {
+	private List<TranslateData> data;
+	@XmlElement(name="data")
+	public List<TranslateData> getData() {
+		return data;
 	}
 
+	public void setData(List<TranslateData> data) {
+		this.data = data;
+	}
 }

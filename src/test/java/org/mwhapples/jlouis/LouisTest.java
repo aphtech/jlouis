@@ -1,21 +1,57 @@
+/**
+ * Copyright (c) 2010-2015 Michael whapples
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * For attribution notices please see the file NOTICES.TXT which should be
+ * included in the distribution.
+ */
 package org.mwhapples.jlouis;
 
-import org.junit.Test;
-import org.junit.Before;
-import org.junit.After;
-import static org.junit.Assert.*;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import static org.testng.Assert.assertEquals;
 
 import org.mwhapples.jlouis.Louis;
+import org.mwhapples.jlouis.testutils.TranslateData;
+import org.mwhapples.jlouis.testutils.TranslateTests;
 
 public class LouisTest {
 	Louis translator;
 
-	@Before
+	@BeforeClass
 	public void setupTranslator() {
 		translator = new Louis();
 	}
 
-	@After
+	@AfterClass
 	public void cleanUpTranslator() {
 		translator.close();
 	}
@@ -37,5 +73,28 @@ public class LouisTest {
 		String actual = translator.backTranslateString("en-us-g2.ctb",
 				",hello world", typeforms, 0);
 		assertEquals(expected, actual);
+	}
+	@DataProvider(name="translateProvider")
+	public Iterator<Object[]> translateProvider() throws JAXBException {
+		List<Object[]> dataList = new ArrayList<Object[]>();
+		InputStream is = this.getClass().getResourceAsStream("/org/mwhapples/jlouis/translateTests.xml");
+		JAXBContext jc = JAXBContext.newInstance(TranslateTests.class);
+		Unmarshaller unmarshaller = jc.createUnmarshaller();
+		TranslateTests tests = (TranslateTests)unmarshaller.unmarshal(is);
+		for (TranslateData data: tests.getData()) {
+			if (data.isEnabled()) {
+				dataList.add(new Object[] {data.getTables(), data.getInputStr(), data.getTypeForms(), data.getCursor(), data.getMode(), data.getBrlStr(), data.getOutputPos(), data.getInputPos()});
+			}
+		}
+		return dataList.iterator();
+	}
+	@Test(dataProvider="translateProvider")
+	public void translate(String tableList, String inputStr, short[] typeForms, int cursor, int mode, String expectedBrl, int[] expectedOutpos, int[] expectedInpos) throws TranslationException {
+		TranslationResult result = translator.translate(tableList, inputStr, typeForms, cursor, mode);
+		
+		assertThat(result.getTranslation(), is(equalTo(expectedBrl)));
+		
+		assertThat(result.getOutputPos(), is(equalTo(expectedOutpos)));
+		assertThat(result.getInputPos(), is(equalTo(expectedInpos)));
 	}
 }

@@ -1,7 +1,5 @@
-package org.mwhapples.jlouis;
-
-/*
- * Copyright (c) 2010-2011 Michael whapples
+/**
+ * Copyright (c) 2010-2015 Michael whapples
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +16,8 @@ package org.mwhapples.jlouis;
  * For attribution notices please see the file NOTICES.TXT which should be
  * included in the distribution.
  */
+package org.mwhapples.jlouis;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
