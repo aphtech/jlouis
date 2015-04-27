@@ -18,6 +18,7 @@
  */
 package org.mwhapples.jlouis;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -30,7 +31,6 @@ import org.slf4j.LoggerFactory;
 import com.sun.jna.FromNativeContext;
 import com.sun.jna.Memory;
 import com.sun.jna.Native;
-import com.sun.jna.NativeLibrary;
 import com.sun.jna.NativeMapped;
 import com.sun.jna.Platform;
 import com.sun.jna.Pointer;
@@ -359,41 +359,52 @@ public class Louis {
 		switch (platform) {
 		case Platform.FREEBSD:
 			libName = libConfig.getProperty("jlouis.library.name.freebsd",
-					"louis");
+					"liblouis.so");
 			break;
 		case Platform.LINUX:
 			libName = libConfig.getProperty("jlouis.library.name.linux",
-					"louis");
+					"liblouis.so");
 			break;
 		case Platform.MAC:
-			libName = libConfig.getProperty("jlouis.library.name.mac", "louis");
+			libName = libConfig.getProperty("jlouis.library.name.mac", "liblouis.dylib");
 			break;
 		case Platform.OPENBSD:
 			libName = libConfig.getProperty("jlouis.library.name.openbsd",
-					"louis");
+					"liblouis.so");
 			break;
 		case Platform.SOLARIS:
 			libName = libConfig.getProperty("jlouis.library.name.solaris",
-					"louis");
+					"liblouis.so");
 			break;
 		case Platform.WINDOWS:
 			libName = libConfig.getProperty("jlouis.library.name.windows",
-					"liblouis");
+					"liblouis.dll");
 			break;
 		case Platform.WINDOWSCE:
 			libName = libConfig.getProperty("jlouis.library.name.windowsce",
-					"liblouis");
+					"liblouis.dll");
+			break;
 		default:
-			libName = "louis";
+			libName = "liblouis.so";
 			break;
 		}
 		String libPath = System.getProperty("jlouis.library.path",
 				libConfig.getProperty("jlouis.library.path"));
-		if (libPath != null) {
-			logger.error("Adding path '" + libPath + "' to search path");
-			NativeLibrary.addSearchPath(libName, libPath);
+		File libFile;
+		if (libPath != null && (!libPath.isEmpty())) {
+			libFile = new File(libPath, libName);
+		} else {
+			try {
+				libFile = Native.extractFromResourcePath(Platform.RESOURCE_PREFIX + "/" + libName);
+			} catch (IOException e) {
+				logger.error("There is no bundled binary for your platform");
+				throw new RuntimeException("No bundled binary for platform");
+			}
 		}
-		Native.register(libName);
+		if (!(libFile.exists() && libFile.isFile())) {
+			throw new UnsatisfiedLinkError(String.format("Library \"%s\" does not exist", libFile.getAbsolutePath()));
+		}
+		Native.register(libFile.getAbsolutePath());
 		Louis.encodingSize = Louis.lou_charSize();
 		callback = new DefaultLogCallback();
 		lou_registerLogCallback(callback);
