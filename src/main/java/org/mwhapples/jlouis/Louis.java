@@ -397,7 +397,7 @@ public class Louis {
 			try {
 				libFile = Native.extractFromResourcePath(Platform.RESOURCE_PREFIX + "/" + libName);
 			} catch (IOException e) {
-				logger.error("There is no bundled binary for your platform");
+				logger.error("There is no bundled binary for your platform: " + Platform.RESOURCE_PREFIX + "/" + libName);
 				throw new RuntimeException("No bundled binary for platform");
 			}
 		}
