@@ -71,4 +71,16 @@
         <braille>--</braille>
         <inputPos>0 0</inputPos>
     </data>
+    <data>
+        <tables>en-us-g2.ctb</tables>
+        <text>Here is some text in a transcriber note</text>
+        <braille>,',"h is "s text 9 a transcrib} note,'</braille>
+        <typeForms>16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384</typeForms>
+    </data>
+    <data>
+        <tables>en-ueb-g2.ctb</tables>
+        <text>Some text</text>
+        <braille>`.&lt;,"s text`.&gt;</braille>
+        <typeForms>16384 16384 16384 16384 16384 16384 16384 16384 16384</typeForms>
+    </data>
 </translateTests>
