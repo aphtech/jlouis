@@ -83,4 +83,10 @@
         <braille>`.&lt;,"s text`.&gt;</braille>
         <typeForms>16384 16384 16384 16384 16384 16384 16384 16384 16384</typeForms>
     </data>
+    <data>
+        <tables>en-ueb-g2.ctb</tables>
+        <text>Some text in a note</text>
+        <braille>`.&lt;,"s`.&gt; text 9 a `.&lt;note`.&gt;</braille>
+        <typeForms>16384 16384 16384 16384 0 0 0 0 0 0 0 0 0 0 0 16384 16384 16384 16384</typeForms>
+    </data>
 </translateTests>
