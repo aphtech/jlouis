@@ -22,11 +22,12 @@ targetCompatibility = '1.8'
 
 repositories { mavenCentral() }
 dependencies {
+	//Use maven version ranges as ant-like ranges are incompatible with everything else
 	compile group: 'net.java.dev.jna', name: 'jna', version: '4.1.0'
-	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.+'
-	runtime group: 'ch.qos.logback', name: 'logback-classic', version: '1.1.+'
-	testCompile group:'org.testng', name:'testng', version:'6.8.+'
-	testCompile group:'org.assertj', name:'assertj-core', version:'3.+'
+	compile group: 'org.slf4j', name: 'slf4j-api', version: '[1.7,)'
+	runtime group: 'ch.qos.logback', name: 'logback-classic', version: '[1.1,)'
+	testCompile group:'org.testng', name:'testng', version:'[6.8,)'
+	testCompile group:'org.assertj', name:'assertj-core', version:'[3,)'
 }
 
 task tablesZip(type: Zip) {
