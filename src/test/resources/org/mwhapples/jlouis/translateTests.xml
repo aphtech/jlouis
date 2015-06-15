@@ -75,18 +75,18 @@
         <tables>en-us-g2.ctb</tables>
         <text>Here is some text in a transcriber note</text>
         <braille>,',"h is "s text 9 a transcrib} note,'</braille>
-        <typeForms>16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384 16384</typeForms>
+        <typeForms>128 128 128 128 128 128 128 128 128 128 128 128 128 128 128 128 128 128 128 128 128 128 128 128 128 128 128 128 128 128 128 128 128 128 128 128 128 128 128</typeForms>
     </data>
     <data>
         <tables>en-ueb-g2.ctb</tables>
         <text>Some text</text>
         <braille>`.&lt;,"s text`.&gt;</braille>
-        <typeForms>16384 16384 16384 16384 16384 16384 16384 16384 16384</typeForms>
+        <typeForms>128 128 128 128 128 128 128 128 128</typeForms>
     </data>
     <data>
         <tables>en-ueb-g2.ctb</tables>
         <text>Some text in a note</text>
         <braille>`.&lt;,"s`.&gt; text 9 a `.&lt;note`.&gt;</braille>
-        <typeForms>16384 16384 16384 16384 0 0 0 0 0 0 0 0 0 0 0 16384 16384 16384 16384</typeForms>
+        <typeForms>128 128 128 128 0 0 0 0 0 0 0 0 0 0 0 128 128 128 128</typeForms>
     </data>
 </translateTests>

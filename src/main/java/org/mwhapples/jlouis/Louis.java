@@ -54,20 +54,20 @@ public class Louis {
 	 * 
 	 */
 	public static interface TypeForms {
-		public static final short PLAIN_TEXT = 0;
-		public static final short ITALIC = 1;
-		public static final short UNDERLINE = 2;
-		public static final short BOLD = 4;
-		public static final short COMPUTER_BRAILLE = 8;
-		public static final short PASSAGE_BREAK = 16;
-		public static final short WORD_RESET = 32;
+		public static final short PLAIN_TEXT = 0x0000;
+		public static final short ITALIC = 0x0001;
+		public static final short UNDERLINE = 0x0002;
+		public static final short BOLD = 0x0004;
+		public static final short COMPUTER_BRAILLE = 0x0008;
+		public static final short PASSAGE_BREAK = 0x0010;
+		public static final short WORD_RESET = 0x0020;
+		public static final short SCRIPT = 0x0040;
+		public static final short TRANS_NOTE = 0x0080;
 		public static final short TRANS_1 = 0X0100;
 		public static final short TRANS_2 = 0X0200;
 		public static final short TRANS_3 = 0X0400;
 		public static final short TRANS_4 = 0X0800;
 		public static final short TRANS_5 = 0X1000;
-		public static final short SCRIPT = 0x2000;
-		public static final short TRANS_NOTE = 0x4000;
 	}
 
 	/**
