@@ -34,7 +34,6 @@ public class DefaultLogCallback implements LogCallback {
 		} else {
 			logger.error(msg);
 		}
-		System.out.println("Logging message: " + msg);
 	}
 
 }
