@@ -209,6 +209,7 @@ correct [$l]"̂" "̂"*
 
 sign \x0303 45-12456 ̃  tilde
 correct [$l]"̃" "̃"*
+pass2 @45-12456-6 @6-45-12456  move after capital sign
 
 sign \x0304 45-4-36 ̄  macron
 correct [$l]"̄" "̄"*
@@ -311,7 +312,6 @@ punctuation \x2013 6-36 –
 punctuation \x2014 5-6-36 —
 punctuation \x2015 5-6-36 ―
 noback punctuation \x2018 6-236 ‘
-noback punctuation \x2019 3 ’
 noback punctuation \x2019 356-3 ’
 punctuation \x201c 236 “
 punctuation \x201d 356 ”
