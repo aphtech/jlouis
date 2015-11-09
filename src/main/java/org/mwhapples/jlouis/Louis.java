@@ -68,6 +68,7 @@ public class Louis {
 		public static final short TRANS_3 = 0X0400;
 		public static final short TRANS_4 = 0X0800;
 		public static final short TRANS_5 = 0X1000;
+		public static final short NO_CONTRACT = 0x2000;
 	}
 
 	/**

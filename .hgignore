@@ -9,3 +9,5 @@ syntax: glob
 .gradle
 syntax: glob
 .settings
+syntax: glob
+*.iml
