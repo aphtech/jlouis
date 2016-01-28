@@ -88,6 +88,7 @@ public class Louis {
 		public static final int COMPBRL_LEFT_CURSOR = 32;
 		public static final int OTHER_TRANS = 64;
 		public static final int UC_BRL = 128;
+		public static final int NO_TERMINATOR = 256;
 	}
 
 	private int outRatio;
