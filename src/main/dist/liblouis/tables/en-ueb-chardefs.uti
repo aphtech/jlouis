@@ -185,6 +185,7 @@ punctuation " 5
 punctuation ; 56
 display , 6
 punctuation , 2
+display @ 4
 sign @ 4-1
 sign & 12346
 #sign $ 1246
