@@ -395,9 +395,13 @@ public class Louis {
 		File libFile;
 		if (libPath != null && (!libPath.isEmpty())) {
 			libFile = new File(libPath, libName);
+			logger.trace("Using given liblouis at " + libFile.getAbsolutePath());
 		} else {
 			try {
-				libFile = Native.extractFromResourcePath("/" + Platform.RESOURCE_PREFIX + "/" + libName);
+				String resourcePath = "/" + Platform.RESOURCE_PREFIX + "/" + libName;
+				logger.trace("Extracting liblouis resource at " + resourcePath);
+				libFile = Native.extractFromResourcePath(resourcePath);
+				logger.trace("Extracted liblouis to " + libFile.getAbsolutePath());
 			} catch (IOException e) {
 				String errorMsg = "There is no bundled binary for your platform: " + Platform.RESOURCE_PREFIX + "/" + libName;
 				logger.error(errorMsg);
@@ -411,8 +415,10 @@ public class Louis {
 		Louis.encodingSize = Louis.lou_charSize();
 		callback = new DefaultLogCallback();
 		lou_registerLogCallback(callback);
-		if (System.getProperty("jlouis.data.path") != null) {
-			lou_setDataPath(System.getProperty("jlouis.data.path"));
+		String dataPath = System.getProperty("jlouis.data.path");
+		if (dataPath != null) {
+			logger.trace("Using given data path " + dataPath);
+			lou_setDataPath(dataPath);
 		}
 		
 	}
