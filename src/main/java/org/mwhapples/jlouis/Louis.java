@@ -88,7 +88,6 @@ public class Louis {
 		public static final int COMPBRL_LEFT_CURSOR = 32;
 		public static final int OTHER_TRANS = 64;
 		public static final int UC_BRL = 128;
-		public static final int NO_TERMINATOR = 256;
 	}
 
 	private int outRatio;
@@ -331,10 +330,7 @@ public class Louis {
 		}
 		lou_registerLogCallback(callback);
 	}
-	
-	/**
-	 *
-	 */
+
 	public void dotsToChar(
 		String trantab,
 		Louis.WideChar inbuf, Louis.WideChar outbuf,
@@ -342,10 +338,7 @@ public class Louis {
 	{
 		lou_dotsToChar(trantab, inbuf, outbuf, length, mode);
 	}
-	
-	/**
-	 *
-	 */
+
 	public void charToDots(
 		String trantab,
 		Louis.WideChar inbuf, Louis.WideChar outbuf,
@@ -395,13 +388,10 @@ public class Louis {
 		File libFile;
 		if (libPath != null && (!libPath.isEmpty())) {
 			libFile = new File(libPath, libName);
-			logger.trace("Using given liblouis at " + libFile.getAbsolutePath());
 		} else {
 			try {
-				String resourcePath = "/" + Platform.RESOURCE_PREFIX + "/" + libName;
-				logger.trace("Extracting liblouis resource at " + resourcePath);
-				libFile = Native.extractFromResourcePath(resourcePath);
-				logger.trace("Extracted liblouis to " + libFile.getAbsolutePath());
+				libFile = Native.extractFromResourcePath("/" + Platform.RESOURCE_PREFIX + "/" + libName);
+				logger.info("libFile extract:  " + libFile);
 			} catch (IOException e) {
 				String errorMsg = "There is no bundled binary for your platform: " + Platform.RESOURCE_PREFIX + "/" + libName;
 				logger.error(errorMsg);
@@ -415,10 +405,8 @@ public class Louis {
 		Louis.encodingSize = Louis.lou_charSize();
 		callback = new DefaultLogCallback();
 		lou_registerLogCallback(callback);
-		String dataPath = System.getProperty("jlouis.data.path");
-		if (dataPath != null) {
-			logger.trace("Using given data path " + dataPath);
-			lou_setDataPath(dataPath);
+		if (System.getProperty("jlouis.data.path") != null) {
+			lou_setDataPath(System.getProperty("jlouis.data.path"));
 		}
 		
 	}
@@ -635,13 +623,13 @@ public class Louis {
 	 * @param typeform
 	 *            A byte array to mark which characters have certain attributes
 	 *            such as bold.
-	 *            {@link org.mwhapples.jlouis.library.Louis.typeforms}.
+	 *            {@link org.mwhapples.jlouis.Louis.TypeForms}.
 	 * @param spacing
 	 *            A byte array used to represent spacing.
 	 * @param mode
 	 *            This indicates how the translation should be done. Use values
 	 *            from
-	 *            {@link org.mwhapples.jlouis.TranslationModes.Louis.translationModes}.
+	 *            {@link org.mwhapples.jlouis.Louis.TranslationModes}.
 	 */
 	private static native int lou_translateString(String trantab,
 			Louis.WideChar inbuf, IntByReference inlen, Louis.WideChar outbuf,

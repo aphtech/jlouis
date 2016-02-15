@@ -79,3 +79,21 @@ modifyPom {
 task wrapper(type: Wrapper) {
 	gradleVersion = '2.3'
 }
+
+apply plugin: 'application'
+mainClassName = 'org.mwhapples.jlouis.cli.SimpleTranslate'
+applicationDefaultJvmArgs = ["-Djlouis.data.path=${projectDir}/src/main/dist"]
+
+
+//Gradle does not natively support passing args on the command line, nor changing the main class
+//http://forums.gradle.org/gradle/topics/how_can_i_provide_command_line_args_to_application_started_with_gradle_run
+run {
+    if ( project.hasProperty("appArgs") ) {
+		if (appArgs.startsWith("[")) {
+			//Eg ["--arg", "value", "--arg2"]
+			args Eval.me(appArgs);
+		} else {
+			args project.appArgs.tokenize()
+		}
+    }
+}

@@ -26,11 +26,13 @@ import org.slf4j.LoggerFactory;
 public class SimpleTranslate {
 	private static Logger logger = LoggerFactory.getLogger(SimpleTranslate.class);
 	public static void main(String[] args) throws TranslationException {
-    if (args.length != 2) {
-      System.out.println("Invalid usage: arguments should be translation table and text to translate");
-      System.exit(1);
-    }
+
+	//   check that library will load first
     Louis translator = new Louis();
+    if (args.length != 2) {
+      System.out.println("Usage: <translation table> <text to translate>");
+      System.exit(0);
+    }
     logger.info("Getting liblouis version");
     short[] typeforms = null;
     logger.info("Using buffer size %d", translator.getEncodingSize());

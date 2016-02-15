@@ -1,4 +1,4 @@
-﻿# liblouis: English (Unified) character definitions table
+# liblouis: English (Unified) character definitions table
 #
 #  Based on the Linux screenreader BRLTTY, copyright (C) 1999-2006 by
 #  The BRLTTY Team
@@ -125,7 +125,6 @@ punctuation > 4-345
 display ? 1456
 punctuation ? 56-236
 postpunc ? 236
-display @ 47
 sign @ 4-1
 
 display [ 2467
