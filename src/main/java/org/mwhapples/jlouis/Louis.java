@@ -38,6 +38,7 @@ import com.sun.jna.ptr.IntByReference;
 
 /**
  * <p>The main class for accessing the LibLouis API.</p>
+ * <p>The exposed public methods are synchronized as liblouis itself is not thread save
  * 
  * @author Michael Whapples
  *
@@ -96,6 +97,11 @@ public class Louis {
 	private static int encodingSize;
 	private static Properties libConfig;
 	private static Logger logger = LoggerFactory.getLogger(Louis.class);
+	/**
+	 * Note: All calls to the native lou_ methods must synchronize on this
+	 * as liblouis is not thread safe
+	 */
+	private static final Object THREAD_SAFE_LOCK = new Object();
 	static {
 		try {
 			libConfig = loadConfig("jlouis.properties");
@@ -127,7 +133,9 @@ public class Louis {
 	 * @return The LibLouis version.
 	 */
 	public String getVersion() {
-		return Louis.lou_version();
+		synchronized (THREAD_SAFE_LOCK) {
+			return Louis.lou_version();
+		}
 	}
 
 	/**
@@ -136,7 +144,9 @@ public class Louis {
 	 * @return The size of the widechar definition.
 	 */
 	public int getEncodingSize() {
-		return Louis.lou_charSize();
+		synchronized (THREAD_SAFE_LOCK) {
+			return Louis.lou_charSize();
+		}
 	}
 
 	/**
@@ -170,22 +180,24 @@ public class Louis {
 		if ((inbuf == null) || (inbuf.isEmpty())) {
 			return "";
 		}
-		byte[] spacing = null;
-		int inlen = inbuf.length();
-		Louis.WideChar wInbuf = new Louis.WideChar(inbuf);
-		int outlen = outRatio * inlen;
-		short[] typeformsCopy = null;
-		if (typeforms != null) {
-			typeformsCopy = Arrays.copyOf(typeforms, outlen);
+		synchronized (THREAD_SAFE_LOCK) {
+			byte[] spacing = null;
+			int inlen = inbuf.length();
+			Louis.WideChar wInbuf = new Louis.WideChar(inbuf);
+			int outlen = outRatio * inlen;
+			short[] typeformsCopy = null;
+			if (typeforms != null) {
+				typeformsCopy = Arrays.copyOf(typeforms, outlen);
+			}
+			Louis.WideChar wOutbuf = new Louis.WideChar(outlen);
+			IntByReference poutlen = new IntByReference(outlen);
+			if (Louis.lou_translateString(tablesList, wInbuf,
+					new IntByReference(inlen), wOutbuf, poutlen, typeformsCopy,
+					spacing, mode) == 0) {
+				throw new TranslationException("Unable to complete translation");
+			}
+			return wOutbuf.getText(poutlen.getValue());
 		}
-		Louis.WideChar wOutbuf = new Louis.WideChar(outlen);
-		IntByReference poutlen = new IntByReference(outlen);
-		if (Louis.lou_translateString(tablesList, wInbuf,
-				new IntByReference(inlen), wOutbuf, poutlen, typeformsCopy,
-				spacing, mode) == 0) {
-			throw new TranslationException("Unable to complete translation");
-		}
-		return wOutbuf.getText(poutlen.getValue());
 	}
 
 	public TranslationResult translate(String trantab, String inbuf,
@@ -197,49 +209,53 @@ public class Louis {
 	public TranslationResult translate(String trantab, String inbuf,
 			short[] typeForms, int cursorPos, int mode)
 			throws TranslationException {
-		if ((inbuf == null) || (inbuf.isEmpty())) {
-			return new TranslationResult("", new int[0], new int[0], 0);
+		synchronized (THREAD_SAFE_LOCK) {
+			if ((inbuf == null) || (inbuf.isEmpty())) {
+				return new TranslationResult("", new int[0], new int[0], 0);
+			}
+			byte[] spacing = null;
+			Louis.WideChar wInbuf = new Louis.WideChar(inbuf);
+			int inlen = wInbuf.length();
+			int outlen = inlen * outRatio;
+			short[] typeformsCopy = null;
+			if (typeForms != null) {
+				typeformsCopy = Arrays.copyOf(typeForms, outlen);
+			}
+			Louis.WideChar wOutbuf = new Louis.WideChar(outlen);
+			IntByReference poutlen = new IntByReference(outlen);
+			IntByReference pcursorPos = new IntByReference(cursorPos);
+			int[] outPos = new int[inlen];
+			int[] inPos = new int[outlen];
+			if (Louis.lou_translate(trantab, wInbuf, new IntByReference(inlen),
+					wOutbuf, poutlen, typeformsCopy, spacing, outPos, inPos,
+					pcursorPos, mode) == 0) {
+				throw new TranslationException("Unable to complete translation");
+			}
+			String outbuf = wOutbuf.getText(poutlen.getValue());
+			return new TranslationResult(outbuf, outPos, inPos,
+					pcursorPos.getValue());
 		}
-		byte[] spacing = null;
-		Louis.WideChar wInbuf = new Louis.WideChar(inbuf);
-		int inlen = wInbuf.length();
-		int outlen = inlen * outRatio;
-		short[] typeformsCopy = null;
-		if (typeForms != null) {
-			typeformsCopy = Arrays.copyOf(typeForms, outlen);
-		}
-		Louis.WideChar wOutbuf = new Louis.WideChar(outlen);
-		IntByReference poutlen = new IntByReference(outlen);
-		IntByReference pcursorPos = new IntByReference(cursorPos);
-		int[] outPos = new int[inlen];
-		int[] inPos = new int[outlen];
-		if (Louis.lou_translate(trantab, wInbuf, new IntByReference(inlen),
-				wOutbuf, poutlen, typeformsCopy, spacing, outPos, inPos,
-				pcursorPos, mode) == 0) {
-			throw new TranslationException("Unable to complete translation");
-		}
-		String outbuf = wOutbuf.getText(poutlen.getValue());
-		return new TranslationResult(outbuf, outPos, inPos,
-				pcursorPos.getValue());
 	}
 
 	public String backTranslateString(String trantab, String inbuf,
 			short[] typeforms, int mode) throws TranslationException {
-		byte[] spacing = null;
-		Louis.WideChar wInbuf = new Louis.WideChar(inbuf);
-		int inlen = wInbuf.length();
-		int outlen = outRatio * inlen;
-		Louis.WideChar wOutbuf = new Louis.WideChar(outlen);
-		short[] typeformsCopy = null;
-		if (typeforms != null) {
-			typeformsCopy = Arrays.copyOf(typeforms, outlen);
+		synchronized (THREAD_SAFE_LOCK) {
+			byte[] spacing = null;
+			Louis.WideChar wInbuf = new Louis.WideChar(inbuf);
+			int inlen = wInbuf.length();
+			int outlen = outRatio * inlen;
+			Louis.WideChar wOutbuf = new Louis.WideChar(outlen);
+			short[] typeformsCopy = null;
+			if (typeforms != null) {
+				typeformsCopy = Arrays.copyOf(typeforms, outlen);
+			}
+			IntByReference poutlen = new IntByReference(outlen);
+			if (Louis.lou_backTranslateString(trantab, wInbuf, new IntByReference(
+					inlen), wOutbuf, poutlen, typeformsCopy, spacing, mode) == 0) {
+				throw new TranslationException("Unable to complete translation");
+			}
+			return wOutbuf.getText(poutlen.getValue());
 		}
-		IntByReference poutlen = new IntByReference(outlen);
-		if (Louis.lou_backTranslateString(trantab, wInbuf, new IntByReference(
-				inlen), wOutbuf, poutlen, typeformsCopy, spacing, mode) == 0) {
-			throw new TranslationException("Unable to complete translation");
-		}
-		return wOutbuf.getText(poutlen.getValue());
 	}
 
 	public TranslationResult backTranslate(String trantab, String inbuf,
@@ -251,44 +267,50 @@ public class Louis {
 	public TranslationResult backTranslate(String trantab, String inbuf,
 			short[] typeForms, int cursorPos, int mode)
 			throws TranslationException {
-		byte[] spacing = null;
-		Louis.WideChar wInbuf = new Louis.WideChar(inbuf);
-		int inlen = wInbuf.length();
-		int outlen = inlen * outRatio;
-		short[] typeformsCopy = null;
-		if (typeForms != null) {
-			typeformsCopy = Arrays.copyOf(typeForms, outlen);
+		synchronized (THREAD_SAFE_LOCK) {
+			byte[] spacing = null;
+			Louis.WideChar wInbuf = new Louis.WideChar(inbuf);
+			int inlen = wInbuf.length();
+			int outlen = inlen * outRatio;
+			short[] typeformsCopy = null;
+			if (typeForms != null) {
+				typeformsCopy = Arrays.copyOf(typeForms, outlen);
+			}
+			Louis.WideChar wOutbuf = new Louis.WideChar(outlen);
+			IntByReference poutlen = new IntByReference(outlen);
+			IntByReference pcursorPos = new IntByReference(cursorPos);
+			int[] outPos = new int[inlen];
+			int[] inPos = new int[outlen];
+			if (Louis.lou_backTranslate(trantab, wInbuf, new IntByReference(inlen),
+					wOutbuf, poutlen, typeformsCopy, spacing, outPos, inPos,
+					pcursorPos, mode) == 0) {
+				throw new TranslationException("Unable to complete translation");
+			}
+			String outbuf = wOutbuf.getText(poutlen.getValue());
+			return new TranslationResult(outbuf, outPos, inPos,
+					pcursorPos.getValue());
 		}
-		Louis.WideChar wOutbuf = new Louis.WideChar(outlen);
-		IntByReference poutlen = new IntByReference(outlen);
-		IntByReference pcursorPos = new IntByReference(cursorPos);
-		int[] outPos = new int[inlen];
-		int[] inPos = new int[outlen];
-		if (Louis.lou_backTranslate(trantab, wInbuf, new IntByReference(inlen),
-				wOutbuf, poutlen, typeformsCopy, spacing, outPos, inPos,
-				pcursorPos, mode) == 0) {
-			throw new TranslationException("Unable to complete translation");
-		}
-		String outbuf = wOutbuf.getText(poutlen.getValue());
-		return new TranslationResult(outbuf, outPos, inPos,
-				pcursorPos.getValue());
 	}
 
 	public byte[] hyphenate(String trantab, String inbuf, int mode)
 			throws TranslationException {
-		Louis.WideChar wInbuf = new Louis.WideChar(inbuf);
-		int inlen = wInbuf.length();
-		byte[] hyphens = new byte[inlen * outRatio];
-		if (Louis.lou_hyphenate(trantab, wInbuf, inlen, hyphens, mode) == 0) {
-			for (int i = 0; i < hyphens.length; i++) {
-				hyphens[i] = ' ';
+		synchronized (THREAD_SAFE_LOCK) {
+			Louis.WideChar wInbuf = new Louis.WideChar(inbuf);
+			int inlen = wInbuf.length();
+			byte[] hyphens = new byte[inlen * outRatio];
+			if (Louis.lou_hyphenate(trantab, wInbuf, inlen, hyphens, mode) == 0) {
+				for (int i = 0; i < hyphens.length; i++) {
+					hyphens[i] = ' ';
+				}
 			}
+			return Arrays.copyOf(hyphens, inlen);
 		}
-		return Arrays.copyOf(hyphens, inlen);
 	}
 
 	public void close() {
-		Louis.lou_free();
+		synchronized (THREAD_SAFE_LOCK) {
+			Louis.lou_free();
+		}
 	}
 	
 	/**
@@ -297,7 +319,9 @@ public class Louis {
 	 * @param level The level at which the logging callback will be called by LibLouis.
 	 */
 	public void setLogLevel(int level) {
-		lou_setLogLevel(level);
+		synchronized (THREAD_SAFE_LOCK) {
+			lou_setLogLevel(level);
+		}
 	}
 	/**
 	 * Set the data path used by LibLouis. Tables should be inside a directory liblouis/tables inside the path given by this function call.
@@ -305,7 +329,9 @@ public class Louis {
 	 * @param path The data path for LibLouis.
 	 */
 	public void setDataPath(String path) {
-		lou_setDataPath(path);
+		synchronized (THREAD_SAFE_LOCK) {
+			lou_setDataPath(path);
+		}
 	}
 	
 	/**
@@ -314,7 +340,9 @@ public class Louis {
 	 * @return The data path currently used by LibLouis.
 	 */
 	public String getDataPath() {
-		return lou_getDataPath();
+		synchronized (THREAD_SAFE_LOCK) {
+			return lou_getDataPath();
+		}
 	}
 	
 	/**
@@ -329,7 +357,9 @@ public class Louis {
 		} else {
 			callback = cb;
 		}
-		lou_registerLogCallback(callback);
+		synchronized (THREAD_SAFE_LOCK) {
+			lou_registerLogCallback(callback);
+		}
 	}
 
 	public void dotsToChar(
@@ -337,7 +367,9 @@ public class Louis {
 		Louis.WideChar inbuf, Louis.WideChar outbuf,
 		int length, int mode)
 	{
-		lou_dotsToChar(trantab, inbuf, outbuf, length, mode);
+		synchronized (THREAD_SAFE_LOCK) {
+			lou_dotsToChar(trantab, inbuf, outbuf, length, mode);
+		}
 	}
 
 	public void charToDots(
@@ -345,7 +377,9 @@ public class Louis {
 		Louis.WideChar inbuf, Louis.WideChar outbuf,
 		int length, int mode)
 	{
-		lou_charToDots(trantab, inbuf, outbuf, length, mode);
+		synchronized (THREAD_SAFE_LOCK) {
+			lou_charToDots(trantab, inbuf, outbuf, length, mode);
+		}
 	}
 
 	// Initialise this as a native library for JNA
