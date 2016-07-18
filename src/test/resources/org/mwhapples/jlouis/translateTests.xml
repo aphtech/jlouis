@@ -95,4 +95,10 @@
         <braille>%o´uld</braille>
         <typeForms>8 8 8 8 8 8 8</typeForms>
     </data>
+    <data>
+        <tables>compress.cti,en-us-g2.ctb</tables>
+        <text>sho´uld</text>
+        <braille>%o´uld</braille>
+        <typeForms>8 8 8 8 8 8 8</typeForms>
+    </data>
 </translateTests>
