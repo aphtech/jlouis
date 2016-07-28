@@ -23,14 +23,19 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.sun.glass.utils.NativeLibLoader;
 import com.sun.jna.FromNativeContext;
+import com.sun.jna.Library;
 import com.sun.jna.Memory;
 import com.sun.jna.Native;
+import com.sun.jna.NativeLibrary;
 import com.sun.jna.NativeMapped;
 import com.sun.jna.Platform;
 import com.sun.jna.Pointer;
@@ -121,6 +126,7 @@ public class Louis {
 		return configProperties;
 	}
 
+	private static TableResolver tr = null;
 	/**
 	 * Create a object for accessing LibLouis.
 	 */
@@ -345,6 +351,12 @@ public class Louis {
 		}
 	}
 	
+	public static void registerTableResolver(TableResolver resolver) {
+		tr = resolver;
+		synchronized (THREAD_SAFE_LOCK) {
+			lou_registerTableResolver(tr);
+		}
+	}
 	/**
 	 * Register a callback for logging. If you give a null value for the callback object then the default logging callback will be used.
 	 * 
@@ -436,14 +448,16 @@ public class Louis {
 		if (!(libFile.exists() && libFile.isFile())) {
 			throw new UnsatisfiedLinkError(String.format("Library \"%s\" does not exist", libFile.getAbsolutePath()));
 		}
-		Native.register(libFile.getAbsolutePath());
+		Map<String, Object> options = new HashMap<>();
+		options.put(Library.OPTION_TYPE_MAPPER, new LouisTypeMapper());
+		NativeLibrary	nativeLib = NativeLibrary.getInstance(libFile.getAbsolutePath(), options);
+		Native.register(nativeLib);
 		Louis.encodingSize = Louis.lou_charSize();
 		callback = new DefaultLogCallback();
 		lou_registerLogCallback(callback);
 		if (System.getProperty("jlouis.data.path") != null) {
 			lou_setDataPath(System.getProperty("jlouis.data.path"));
 		}
-		
 	}
 
 	public static class WideChar implements NativeMapped {
@@ -691,6 +705,11 @@ public class Louis {
 	 */
 	private static native String lou_getDataPath();
 	
+	/**
+	 * 
+	 * @param resolver
+	 */
+	private static native void lou_registerTableResolver(TableResolver resolver);
 	/**
 	 * Set a callback for LibLouis logging.
 	 * 

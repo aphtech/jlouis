@@ -30,7 +30,7 @@ public interface TableResolver extends Callback {
 	 * 
 	 * @param tableList A string specifying the tables to be resolved. It is for the resolver to determine how the table names are deliminated in the string.
 	 * @param base If the table is being included by another table, then base is the file of the table which is including the requested table. If the table is not requested because of being included from another table, then base will be null. This parameter is undocumented in LibLouis and so this description is based upon the result of experimentation and thus may miss specific circumstances.
-	 * @return An array of the absolute table file names once resolved (eg. the file the table is downloaded or extracted to).
+	 * @return An array of the actual table file objects.
 	 */
-	public File[] resolveTable(String tableList, File base);
+	public File[] resolveTable(String tableList, String base);
 }
