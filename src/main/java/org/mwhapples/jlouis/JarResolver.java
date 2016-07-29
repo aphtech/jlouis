@@ -54,13 +54,14 @@ public class JarResolver implements TableResolver {
 				continue;
 			}
 			// As a fallback try and load from the classpath
-			if (EXTRACTED_FILES.contains(tables[i])) {
-				files.add(new File(tables[i]));
-				continue;
-			}
 			File tmpDir = getTempTableDir();
 			File tmpFile = new File(tmpDir, tables[i]);
-			URL resourceTable = Resources.getResource("/org/mwhapples/jlouis/tables/" + tables[i]);
+			String tmpFilePath = tmpFile.getAbsolutePath();
+			if (EXTRACTED_FILES.contains(tmpFilePath)) {
+				files.add(tmpFile);
+				continue;
+			}
+			URL resourceTable = getClass().getResource("/org/mwhapples/jlouis/tables/" + tables[i]);
 			try (OutputStream os = new FileOutputStream(tmpFile)) {
 				Resources.copy(resourceTable, os);
 			} catch (FileNotFoundException e) {
@@ -71,7 +72,7 @@ public class JarResolver implements TableResolver {
 				continue;
 			}
 			files.add(tmpFile);
-			EXTRACTED_FILES.add(tmpFile);
+			EXTRACTED_FILES.add(tmpFilePath);
 		}
 		return files.toArray(new File[0]);
 	}

@@ -43,5 +43,5 @@ public class LouisTypeMapper extends DefaultTypeMapper {
 		addToNativeConverter(File[].class, fileArrayConverter);
 		addToNativeConverter(String[].class, fileArrayConverter);
 	}
-
+	public static final LouisTypeMapper INSTANCE = new LouisTypeMapper();
 }

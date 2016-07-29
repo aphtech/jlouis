@@ -33,7 +33,7 @@ dependencies {
 
 task tablesZip(type: Zip) {
 	from 'src/main/dist/'
-	include 'liblouis/tables/*'
+	include 'org/mwhapples/jlouis/tables/*'
 	classifier 'tables'
 }
 

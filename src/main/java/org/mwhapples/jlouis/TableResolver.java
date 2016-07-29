@@ -21,6 +21,7 @@ package org.mwhapples.jlouis;
 import java.io.File;
 
 import com.sun.jna.Callback;
+import com.sun.jna.TypeMapper;
 
 public interface TableResolver extends Callback {
 	/**
@@ -33,4 +34,5 @@ public interface TableResolver extends Callback {
 	 * @return An array of the actual table file objects.
 	 */
 	public File[] resolveTable(String tableList, String base);
+	public TypeMapper TYPE_MAPPER = LouisTypeMapper.INSTANCE;
 }

@@ -458,6 +458,7 @@ public class Louis {
 		if (System.getProperty("jlouis.data.path") != null) {
 			lou_setDataPath(System.getProperty("jlouis.data.path"));
 		}
+		registerTableResolver(new JarResolver());
 	}
 
 	public static class WideChar implements NativeMapped {
