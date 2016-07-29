@@ -39,7 +39,7 @@ task tablesZip(type: Zip) {
 
 test {
 	systemProperty "jlouis.library.path", System.getProperty("jlouis.library.path")
-	systemProperty "jlouis.data.path", "src/main/dist/"
+	systemProperty "jlouis.data.path", "src/main/dist/org/mwhapples/jlouis/tables/"
 	useTestNG()
 	testLogging {
 		events 'skipped', 'failed'
@@ -83,7 +83,7 @@ task wrapper(type: Wrapper) {
 
 apply plugin: 'application'
 mainClassName = 'org.mwhapples.jlouis.cli.SimpleTranslate'
-applicationDefaultJvmArgs = ["-Djlouis.data.path=${projectDir}/src/main/dist"]
+applicationDefaultJvmArgs = ["-Djlouis.data.path=${projectDir}/src/main/dist/org/mwhapples/jlouis/tables/"]
 
 
 //Gradle does not natively support passing args on the command line, nor changing the main class
