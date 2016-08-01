@@ -30,7 +30,6 @@ import java.util.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.sun.glass.utils.NativeLibLoader;
 import com.sun.jna.FromNativeContext;
 import com.sun.jna.Library;
 import com.sun.jna.Memory;
