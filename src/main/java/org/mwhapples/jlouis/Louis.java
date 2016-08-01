@@ -356,6 +356,13 @@ public class Louis {
 			lou_registerTableResolver(tr);
 		}
 	}
+
+	public static void resetTableResolver() {
+		synchronized (THREAD_SAFE_LOCK) {
+			lou_resetTableResolver();
+		}
+	}
+
 	/**
 	 * Register a callback for logging. If you give a null value for the callback object then the default logging callback will be used.
 	 * 
@@ -710,6 +717,12 @@ public class Louis {
 	 * @param resolver
 	 */
 	private static native void lou_registerTableResolver(TableResolver resolver);
+
+	/**
+	 *
+	 */
+	private static native void lou_resetTableResolver();
+
 	/**
 	 * Set a callback for LibLouis logging.
 	 * 
