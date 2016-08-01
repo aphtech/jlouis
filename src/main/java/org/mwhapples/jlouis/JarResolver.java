@@ -69,10 +69,14 @@ public class JarResolver implements TableResolver {
 			int j = 0;
 			log.debug("Checking for table on data path");
 			while (j < louisDataPaths.length && file == null) {
-				String louisDataPath = louisDataPaths[j];
+				File louisDataPath = new File(louisDataPaths[j]);
 				file = new File(louisDataPath, tables[i]);
 				if (!file.isFile()) {
-					file = null;
+					// May be it uses the old inflexible LibLouis liblouis/tables/ subdirectory
+					file = new File(new File(louisDataPath, "liblouis/tables"), tables[i]);
+					if (!file.isFile()) {
+						file = null;
+					}
 				}
 				j++;
 			}
