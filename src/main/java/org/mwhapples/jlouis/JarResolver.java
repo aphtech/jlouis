@@ -109,6 +109,7 @@ public class JarResolver implements TableResolver {
 				}
 				log.debug("Extracted from classpath");
 				files.add(tmpFile);
+				tmpFile.deleteOnExit();
 				EXTRACTED_FILES.add(tmpFilePath);
 				continue;
 			}
