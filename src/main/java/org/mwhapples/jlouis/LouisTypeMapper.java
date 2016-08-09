@@ -4,11 +4,9 @@ import java.io.File;
 import java.io.IOException;
 
 import com.sun.jna.DefaultTypeMapper;
-import com.sun.jna.FromNativeContext;
 import com.sun.jna.StringArray;
 import com.sun.jna.ToNativeContext;
 import com.sun.jna.ToNativeConverter;
-import com.sun.jna.TypeConverter;
 
 public class LouisTypeMapper extends DefaultTypeMapper {
 
