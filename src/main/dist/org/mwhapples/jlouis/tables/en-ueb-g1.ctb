@@ -1,21 +1,25 @@
 # liblouis: Unified English Braille Code (Grade 1)
 #
-#  This file is free software; you can redistribute it and/or modify it
-#   under the terms of the Lesser or Library GNU General Public License 
-#  as published by the
-#  Free Software Foundation; either version 3, or (at your option) any
-#  later version.
-# 
-#  This file is distributed in the hope that it will be useful, but
-#  WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
-#  Library GNU General Public License for more details.
+#  Copyright (C) 2004-2008 ViewPlus Technologies, Inc. www.viewplus.com
+#  Copyright (C) 2004-2006 JJB Software, Inc. www.jjb-software.com
+#  Copyright (C) 2016 American Printing House for the Blind, Inc. www.aph.org
+#  Copyright (C) 2016 Joseph Lee <joseph.lee22590@gmail.com>
 #
-#  You should have received a copy of the Library GNU General Public 
-#  License along with this program; see the file COPYING.  If not, write 
-#  to
-#  the Free Software Foundation, 51 Franklin Street, Fifth Floor,
-#  Boston, MA 02110-1301, USA.
+#  This file is part of liblouis.
+#
+#  liblouis is free software: you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as
+#  published by the Free Software Foundation, either version 2.1 of the
+#  License, or (at your option) any later version.
+#
+#  liblouis is distributed in the hope that it will be useful, but
+#  WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+#  Lesser General Public License for more details.
+#
+#  You should have received a copy of the GNU Lesser General Public
+#  License along with liblouis. If not, see
+#  <http://www.gnu.org/licenses/>.
 #
 #  Maintained by John J. Boyer john.boyer@jjb-software.com
 #                Mike Gray <mgray@aph.org>
@@ -30,7 +34,7 @@ nocontractsign 56
 numericnocontchars abcdefghij
 
 #   add numeric space indicator
-#context _$d["\s"]$d @5
+context _$d["\s"]$d @5
 
 #   remove numeric indicator from numeric space indicator
 pass2 @245-5-3456-245 @245-5-245       0 0
@@ -134,80 +138,91 @@ pass2 @24-5-3456-1245 @24-5-1245       9 7
 pass2 @24-5-3456-125 @24-5-125         9 8
 pass2 @24-5-3456-24 @24-5-24           9 9
 
-singlelettercaps 6
-capsword 6-6
-capswordstop 6-3
+capsletter 6
+begcapsword 6-6
+endcapsword 6-3
 lencapsphrase 3
-firstwordcaps 6-6-6
-firstlettercaps 6-6-6
-lastlettercaps 6-3
+begcapsphrase 6-6-6
+begcaps 6-6-6
+endcaps 6-3
 
-singleletterital 46-23
-italword 46-2
-italwordstop 46-3
-lenitalphrase 3
-firstletterital 46-2356
-lastletterital 46-3
+emphclass italic
+emphclass underline
+emphclass bold
+emphclass script
+emphclass transnote
+emphclass trans1
+emphclass trans2
+emphclass trans3
+emphclass trans4
+emphclass trans5
 
-singleletterbold 45-23
-boldword 45-2
-boldwordstop 45-3
-lenboldphrase 3
-firstletterbold 45-2356
-lastletterbold 45-3
+emphletter italic 46-23
+begemphword italic 46-2
+endemphword italic 46-3
+lenemphphrase italic 3
+begemphphrase italic 46-2356
+endemphphrase italic after 46-3
 
-singleletterunder 456-23
-underword 456-2
-underwordstop 456-3
-lenunderphrase 3
-firstletterunder 456-2356
-lastletterunder 456-3
+emphletter bold 45-23
+begemphword bold 45-2
+endemphword bold 45-3
+lenemphphrase bold 3
+begemphphrase bold 45-2356
+endemphphrase bold after 45-3
 
-singleletterscript 4-23
-scriptword 4-2
-scriptwordstop 4-3
-lenscriptphrase 3
-firstletterscript 4-2356
-lastletterscript 4-3
+emphletter underline 456-23
+begemphword underline 456-2
+endemphword underline 456-3
+lenemphphrase underline 3
+begemphphrase underline 456-2356
+endemphphrase underline after 456-3
 
-firstlettertransnote 4-46-126
-lastlettertransnote 4-46-354
+emphletter script 4-23
+begemphword script 4-2
+endemphword script 4-3
+lenemphphrase script 3
+begemphphrase script 4-2356
+endemphphrase script after 4-3
+
+begemph transnote 4-46-126
+endemph transnote 4-46-354
 
 
-singlelettertrans1 4-3456-23
-trans1word 4-3456-2
-trans1wordstop 4-3456-3
-lentrans1phrase 3
-firstlettertrans1 4-3456-2356
-lastlettertrans1 4-3456-3
+emphletter trans1 4-3456-23
+begemphword trans1 4-3456-2
+endemphword trans1 4-3456-3
+lenemphphrase trans1 3
+begemphphrase trans1 4-3456-2356
+endemphphrase trans1 after 4-3456-3
 
-singlelettertrans2 45-3456-23
-trans2word 45-3456-2
-trans2wordstop 45-3456-3
-lentrans2phrase 3
-firstlettertrans2 45-3456-2356
-lastlettertrans2 45-3456-3
+emphletter trans2 45-3456-23
+begemphword trans2 45-3456-2
+endemphword trans2 45-3456-3
+lenemphphrase trans2 3
+begemphphrase trans2 45-3456-2356
+endemphphrase trans2 after 45-3456-3
 
-singlelettertrans3 456-3456-23
-trans3word 456-3456-2
-trans3wordstop 456-3456-3
-lentrans3phrase 3
-firstlettertrans3 456-3456-2356
-lastlettertrans3 456-3456-3
+emphletter trans3 456-3456-23
+begemphword trans3 456-3456-2
+endemphword trans3 456-3456-3
+lenemphphrase trans3 3
+begemphphrase trans3 456-3456-2356
+endemphphrase trans3 after 456-3456-3
 
-singlelettertrans4 5-3456-23
-trans4word 5-3456-2
-trans4wordstop 5-3456-3
-lentrans4phrase 3
-firstlettertrans4 5-3456-2356
-lastlettertrans4 5-3456-3
+emphletter trans4 5-3456-23
+begemphword trans4 5-3456-2
+endemphword trans4 5-3456-3
+lenemphphrase trans4 3
+begemphphrase trans4 5-3456-2356
+endemphphrase trans4 after 5-3456-3
 
-singlelettertrans5 46-3456-23
-trans5word 46-3456-2
-trans5wordstop 46-3456-3
-lentrans5phrase 3
-firstlettertrans5 46-3456-2356
-lastlettertrans5 46-3456-3
+emphletter trans5 46-3456-23
+begemphword trans5 46-3456-2
+endemphword trans5 46-3456-3
+lenemphphrase trans5 3
+begemphphrase trans5 46-3456-2356
+endemphphrase trans5 after 46-3456-3
 
 # display/passthrough for unicode braille
 include braille-patterns.cti

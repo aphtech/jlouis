@@ -63,17 +63,16 @@ public class Louis {
 		public static final short ITALIC = 0x0001;
 		public static final short UNDERLINE = 0x0002;
 		public static final short BOLD = 0x0004;
-		public static final short COMPUTER_BRAILLE = 0x0008;
-		public static final short PASSAGE_BREAK = 0x0010;
-		public static final short WORD_RESET = 0x0020;
-		public static final short SCRIPT = 0x0040;
-		public static final short TRANS_NOTE = 0x0080;
-		public static final short TRANS_1 = 0X0100;
-		public static final short TRANS_2 = 0X0200;
-		public static final short TRANS_3 = 0X0400;
-		public static final short TRANS_4 = 0X0800;
-		public static final short TRANS_5 = 0X1000;
-		public static final short NO_CONTRACT = 0x2000;
+		public static final short SCRIPT = 0x008;
+		public static final short TRANS_NOTE = 0x0010;
+		public static final short TRANS_1 = 0X0020;
+		public static final short TRANS_2 = 0X0040;
+		public static final short TRANS_3 = 0X0080;
+		public static final short TRANS_4 = 0X0100;
+		public static final short TRANS_5 = 0X0200;
+		public static final short COMPUTER_BRAILLE = 0x0400;
+		public static final short NO_TRANSLATE = 0x0800;
+		public static final short NO_CONTRACT = 0x1000;
 	}
 
 	/**
