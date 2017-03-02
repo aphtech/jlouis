@@ -80,6 +80,70 @@ always \x00b0 45-46-16
 always \x00B1 346-36
 
 # semantic character pairs
+math \xf400 0
+math \xf401 0
+math \xf402 0
+math \xf403 0
+# Begin and end equation
+# replace \xf32e
+# replace \xf32f
+grouping math \xf32e\xf32f 12e,15e
+# Sub and superscript
+math \xf320 56
+replace \xf401\xf320
+always \xf402\xf320 5
+math \xf321 45
+replace \xf401\xf321
+always \xf402\xf321 5
+# Underscript and overscript
+math \xf322 146
+always \xf401\xf322 5
+always \xf402\xf322 12456
+math \xf323 126
+always \xf401\xf323 5
+always \xf402\xf323 12456
+# Fenced characters
+always \xf401( 12356
+always \xf402) 23456
+always \xf401{ 246
+always \xf402} 12456
+# Expression groups
+replace \xf326
+replace \xf327
+# Fractions
+math \xf500 1456
+math \xf501 34
+math \xf502 456-34
+math \xf503 3456
+# Mixed Fractions
+math \xf504 456-1456
+math \xf505 34
+math \xf506 456-34
+math \xf507 456-3456
+# Complex Fractions
+math \xf508 6-1456
+math \xf509 6-34
+math \xf50a 6-456-34
+math \xf50b 6-3456
+# Roots
+math \xf32a 345
+always \xf403\xf32a 345
+math \xf32b 12456
+math \xf32c 126
+# Matrices
+replace \xf330
+replace \xf331
+math \xf332 4-6-12356
+math \xf333 4-6-23456
+replace \xf334
+replace \xf335
+# Protect against wrong use of prefixes
+replace \xf400
+replace \xf401
+replace \xf402
+replace \xf403
+
+# Old LibLouisUTDML semantic character pairs
 always ^, 6
 always ^; 56
 always ^: 156
@@ -180,9 +244,13 @@ pass2 $d[]@1456 @456
 pass2 @456-1456!$s3-8[]@3456 @456
 # Put number sign on numbers after spaces
 pass2 @a[]$d @3456
+pass2 [@a-0]$d @a-3456
+pass2 @a-36[]$d @3456
+pass2 [@a-0-36]$d @a-36-3456
 pass2 @0[]$d @3456
-pass2 @1b-12[]$d @3456
+pass2 @0-36[]$d @3456
 pass2 @a-0 @a
+pass2 @0-a @a
 # fix anomaly with superscripts
 pass2 @45-0-5 @45
 pass2 @45-5 @45
@@ -209,4 +277,8 @@ pass2 @1256-4-6-12356 @4-6-12356
 pass2 [@5-6]!$l @6
 pass2 @1b-12[]$d @3456 number sign before digit at beginning
 pass2 @1b-12-36[]$d @3456 number sign before minus before digit at beginning
-
+pass2 [@12e]$d @3456
+pass2 [@12e-36]$d @36-3456
+pass2 [@12e-46]$d @3456-46
+pass2 @12e ?
+pass2 @15e ?
