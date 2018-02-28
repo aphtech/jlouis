@@ -90,9 +90,9 @@ public class Louis {
 		public static final int COMP8DOTS = 8;
 		public static final int PASS1_ONLY = 16;
 		public static final int COMPBRL_LEFT_CURSOR = 32;
-		public static final int OTHER_TRANS = 64;
-		public static final int UC_BRL = 128;
-		public static final int NO_TERMINATOR = 256;
+		public static final int UC_BRL = 64;
+		public static final int NO_UNDEFINED_DOTS = 128;
+		public static final int PARTIAL_TRANS = 256;
 	}
 
 	private int outRatio;
