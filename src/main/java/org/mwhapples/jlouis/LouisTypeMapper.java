@@ -34,7 +34,7 @@ public class LouisTypeMapper extends DefaultTypeMapper {
 				return null;
 			}
 			@Override
-			public Class nativeType() {
+			public Class<?> nativeType() {
 				return StringArray.class;
 			}
 		};
