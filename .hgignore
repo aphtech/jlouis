@@ -11,3 +11,5 @@ syntax: glob
 .settings
 syntax: glob
 *.iml
+syntax: glob
+.idea
