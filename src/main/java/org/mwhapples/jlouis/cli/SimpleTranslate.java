@@ -30,6 +30,7 @@ public class SimpleTranslate {
 	//   check that library will load first
     Louis translator = new Louis();
     if (args.length != 2) {
+      System.out.println("LibLouis version:  " + translator.getVersion());
       System.out.println("Usage: <translation table> <text to translate>");
       System.exit(0);
     }

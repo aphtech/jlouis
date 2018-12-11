@@ -4,7 +4,7 @@
         <tables>en-us-g2.ctb</tables>
         <text>Hello world</text>
         <braille>,hello _w</braille>
-        <outputPos>1 2 3 4 5 6 7 7 7 7 7</outputPos>
+        <outputPos>0 2 3 4 5 6 7 7 7 7 7</outputPos>
         <inputPos>0 0 1 2 3 4 5 6 6</inputPos>
     </data>
     <data>
@@ -63,7 +63,7 @@
         <tables>en-us-g2.ctb</tables>
         <text>&#x2022;Voice40</text>
         <braille>'\x2022',voice#dj</braille>
-        <outputPos>0 9 10 11 12 13 15 16</outputPos>
+        <outputPos>0 8 10 11 12 13 14 16</outputPos>
         <inputPos>0 0 0 0 0 0 0 0 1 1 2 3 4 5 6 6 7</inputPos>
     </data>
     <data>
