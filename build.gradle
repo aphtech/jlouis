@@ -81,8 +81,8 @@ modifyPom {
 	}
 }
 
-task wrapper(type: Wrapper) {
-	gradleVersion = '4.4.1'
+wrapper {
+	gradleVersion = '5.0'
 }
 
 apply plugin: 'application'
