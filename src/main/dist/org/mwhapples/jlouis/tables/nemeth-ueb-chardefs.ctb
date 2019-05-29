@@ -1,0 +1,45 @@
+# liblouis: English (Unified) character definitions table
+#
+#  Based on the Linux screenreader BRLTTY
+#
+#  Copyright (C) 1999-2006 by The BRLTTY Team
+#  Copyright (C) 2004-2006 ViewPlus Technologies, Inc. www.viewplus.com
+#  Copyright (C) 2004-2006 JJB Software, Inc. www.jjb-software.com
+#  Copyright (C) 2016 American Printing House for the Blind, Inc. www.aph.org
+#
+#  This file is part of liblouis.
+#
+#  liblouis is free software: you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as
+#  published by the Free Software Foundation, either version 2.1 of the
+#  License, or (at your option) any later version.
+#
+#  liblouis is distributed in the hope that it will be useful, but
+#  WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+#  Lesser General Public License for more details.
+#
+#  You should have received a copy of the GNU Lesser General Public
+#  License along with liblouis. If not, see
+#  <http://www.gnu.org/licenses/>.
+
+#  Maintained by Mike Gray <mgray@aph.org>
+
+include nemethdefs.cti
+
+space \s 0 blank
+space \t 9 tab
+space \x000a 0 newline
+space \x000c 0
+space \x000d 0 carriage return
+space \x001b 1b escape character for html back-translation
+space \x00A0 a NO-BREAK SPACE <noBreak> 0020 NON-BREAKING SPACE 
+
+include latinLetterDef8Dots.uti
+
+
+#   Numeric Symbols
+include loweredDigits6Dots.uti
+
+include chardefs.cti
+
