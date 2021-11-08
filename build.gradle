@@ -82,7 +82,7 @@ modifyPom {
 }
 
 wrapper {
-	gradleVersion = '6.8'
+	gradleVersion = '6.9.1'
 }
 
 apply plugin: 'application'
