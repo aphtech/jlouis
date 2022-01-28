@@ -2,13 +2,13 @@
 #  Copyright (C) 2010, 2011 by DocArch <http://www.docarch.be>
 #  Copyright (C) 2014 by Bert Frees
 #  Copyright (C) 2014 by CBB <http://www.cbb.nl>
-#  Copyright (C) 2015, 2016 by Dedicon <http://www.dedicon.nl>
+#  Copyright (C) 2015, 2016, 2018 by Dedicon <http://www.dedicon.nl>
 #
 #  This file is part of liblouis.
 #
 #  liblouis is free software: you can redistribute it and/or modify it
 #  under the terms of the GNU Lesser General Public License as
-#  published by the Free Software Foundation, either version 3 of the
+#  published by the Free Software Foundation, either version 2.1 of the
 #  License, or (at your option) any later version.
 #
 #  liblouis is distributed in the hope that it will be useful, but
@@ -22,19 +22,18 @@
 #
 # -------------------------------------------------------------------------------
 #
-#  Dutch Braille as used in the Netherlands
+#  Dutch Braille as used in Belgium
 #
 #     Created by Bert Frees <bertfrees@gmail.com>
 #     Modified by Henri Apperloo <h.apperloo@cbb.nl>
 #     Modified by Davy Kager <DavyKager@dedicon.nl>
 #
 #     See also: « Braillestandaard voor algemeen gebruik in het Nederlandse taalgebied,
-#                Van toepassing vanaf 1 september 2005 »
-#              (Federatie Slechtzienden- en Blindenbelang en 
-#                Belgische Confederatie voor Blinden en Slechtzienden, 2005)
-#               [https://cdn.rawgit.com/liblouis/braille-specs/master/Belgium/Eindtekst-zonder-voorblad-dec-2005.doc][1]
+#                Van toepassing vanaf 19 april 2018 »
+#              (Braille Autoriteit, 2018)
+#               [http://liblouis.org/braille-specs/dutch][1]
 #          and: « World Braille Usage (3rd edition) »
-#               [https://cdn.rawgit.com/liblouis/braille-specs/master/world-braille-usage-third-edition.pdf][2]
+#               [http://liblouis.org/braille-specs/world-braille-usage-third-edition.pdf][2]
 #
 # ----------------------------------------------------------------------------------------------
 
@@ -63,13 +62,6 @@ uplow       \x00D5\x00F5  246,246             Õõ                  LATIN CAPITA
 
 punctuation \x007B        12356               {                   LEFT CURLY BRACKET
 punctuation \x007D        23456               }                   RIGHT CURLY BRACKET
-
-# Middle dot
-# Definition missing from standard
-# Belgium uses "5-256"
-# The Netherlands use "56"
-
-math        \x00B7        5-256               ·                   MIDDLE DOT
 
 # Greek letters
 # Clear definition missing from standard

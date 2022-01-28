@@ -1,9 +1,13 @@
 # -----------
+#-index-name: Portuguese, computer
 #-display-name: Portuguese computer braille
 #
 #+locale:pt
 #+type:computer
 #+dots:8
+# Marked as "direction:both" by Bue Vester-Andersen
+# as it is a computer Braille table.
+#+direction:both
 #
 # TODO: Please correct the metadata above. It is not meant to be
 # accurate nor complete. It hasn't been verified by the table
@@ -106,4 +110,4 @@ sign \x00a3 12378 # £
 sign \x00a7 2348 # §
 uplow \x00d1\x00f1 134578,13458 # Ññ
 
-noback sign \X25CF 35	# 9679 black circle
+noback sign \x25CF 35	# 9679 black circle

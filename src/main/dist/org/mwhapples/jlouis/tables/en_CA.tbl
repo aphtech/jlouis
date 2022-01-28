@@ -1,10 +1,12 @@
-#-display-name: Canadian English computer braille
+#-index-name: English, Canada, computer
+#-display-name: English computer braille as used in Canada
 
 #+locale:en-CA
 #+type:computer
 #+dots:8
-#+hyphenation:yes
-
+# Marked as "direction:both" by Bue Vester-Andersen
+# as it is a computer Braille table.
+#+direction:both
 # TODO: Please correct the metadata above. It is not meant to be
 # accurate nor complete. It hasn't been verified by the table
 # author yet. It is merely an attempt by the liblouis maintainers
@@ -15,5 +17,4 @@
 # to https://github.com/liblouis/braille-specs.
 
 include en_CA.ctb
-include hyph_en_US.dic
 include braille-patterns.cti

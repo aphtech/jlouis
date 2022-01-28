@@ -1,11 +1,15 @@
 # liblouis: Czech 8-dot Computer Braille Table
 
+#-index-name: Czech, computer
 #-display-name: Czech computer braille
 #
 #+locale:cs
 #+type:computer
 #+grade:0
 #+dots:8
+# Marked as "direction:both" by Bue Vester-Andersen
+# as it is a computer Braille table.
+#+direction:both
 #
 #  Copyright (C) 2011, 2018 Jan Hegr <hegrjan@gmail.com>
 #
