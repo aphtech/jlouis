@@ -2,16 +2,11 @@ buildscript {
 	repositories {
 		jcenter()
 	}
-	dependencies {
-		classpath 'org.gradle.api.plugins:gradle-nexus-plugin:0.7.1'
-	}
 }
 
-apply plugin: 'nexus'
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
-apply plugin: 'maven'
-apply plugin: 'signing'
 
 group = 'org.bitbucket.mwhapples'
 archivesBaseName = 'jlouis'
@@ -41,66 +36,9 @@ task tablesZip(type: Zip) {
 	classifier 'tables'
 }
 
-test {
-	systemProperty "jlouis.library.path", System.getProperty("jlouis.library.path")
-	systemProperty "jlouis.data.path", "src/main/dist/org/mwhapples/jlouis/tables/"
-	useTestNG()
-	testLogging {
-		events 'skipped', 'failed'
-		outputs.upToDateWhen {false}
-	}
-}
-
 artifacts {
 	archives tablesZip
 }
 			
-modifyPom {
-	project {
-		name 'jlouis'
-		description 'Java bindings for LibLouis Braille translator'
-		url 'http://bitbucket.org/mwhapples/jlouis'
-		scm {
-			connection 'scm:hg:http://bitbucket.org/mwhapples/jlouis'
-			developerConnection 'scm:hg:https://bitbucket.org/mwhapples/jlouis'
-			url 'http://bitbucket.org/mwhapples/jlouis'
-		}
-		licenses {
-			license {
-				name 'The Apache License, Version 2.0'
-				url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-			}
-		}
-		developers {
-			developer {
-				id 'mwhapples'
-				name 'Michael Whapples'
-				email 'mwhapples@aim.com'
-			}
-		}
-	}
-}
 
-wrapper {
-	gradleVersion = '6.9.1'
-}
 
-apply plugin: 'application'
-mainClassName = 'org.mwhapples.jlouis.cli.SimpleTranslate'
-applicationDefaultJvmArgs = ["-Djlouis.data.path=${projectDir}/src/main/dist/org/mwhapples/jlouis/tables/"]
-install {
-	dependsOn 'build'
-}
-
-//Gradle does not natively support passing args on the command line, nor changing the main class
-//http://forums.gradle.org/gradle/topics/how_can_i_provide_command_line_args_to_application_started_with_gradle_run
-run {
-    if ( project.hasProperty("appArgs") ) {
-		if (appArgs.startsWith("[")) {
-			//Eg ["--arg", "value", "--arg2"]
-			args Eval.me(appArgs);
-		} else {
-			args project.appArgs.tokenize()
-		}
-    }
-}

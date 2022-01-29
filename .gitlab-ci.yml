@@ -1,7 +1,7 @@
 # This is the Gradle build system for JVM applications
 # https://gradle.org/
 # https://github.com/gradle/gradle
-image: gradle:6.9-jdk11
+image: gradle:7.3-jdk17
 # Disable the Gradle daemon for Continuous Integration servers as correctness
 # is usually a priority over speed in CI environments. Using a fresh
 # runtime for each build is more reliable since the runtime is completely
@@ -31,8 +31,8 @@ test:
     paths:
       - build
       - .gradle
-deploy:
-  stage: deploy
-  script: gradle publish
-  only:
-    - master
+#deploy:
+#  stage: deploy
+#  script: gradle publish
+#  only:
+#    - master
