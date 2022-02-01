@@ -1,7 +1,6 @@
 plugins {
     id 'java-library'
     id 'maven-publish'
-    id 'signing'
 }
 
 group = 'org.bitbucket.mwhapples'
@@ -67,9 +66,6 @@ publishing {
     }
 }
 
-signing {
-    sign publishing.publications.mavenJava
-}
 
 
 javadoc {
