@@ -57,7 +57,8 @@ publishing {
     }
     repositories {
         maven {
-//        mavenCentral() 
+        mavenCentral() 
+        				name = 'aphtech-mrepo'
                 url= 'https://nexus.aphtech.org/repository/aphtech-mrepo' 
         }
     }
