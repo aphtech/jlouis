@@ -29,7 +29,7 @@ publishing {
             pom {
                 name = 'jlouis'
                 description =  'Java bindings for LibLouis Braille translator' 
-                		url = 'http://bitbucket.org/mwhapples/jlouis'
+                url= 'https://nexus.aphtech.org/repository/aphtech-mrepo' 
                 properties = [
                     myProp: "value",
                     "prop.with.dots": "anotherValue"
