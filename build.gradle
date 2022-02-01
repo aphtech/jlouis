@@ -1,35 +1,86 @@
-
-buildscript {
-	repositories {
-		jcenter()
-	}
-}
-
 plugins {
-	id "net.linguica.maven-settings" version "0.5"
+    id 'java-library'
+    id 'maven-publish'
+    id 'signing'
 }
-
-
-
-     subprojects {
-	apply plugin: 'maven-publish'
-	apply plugin: 'net.linguica.maven-settings'
-
-apply plugin: 'java'
-apply plugin: 'eclipse'
 
 group = 'org.bitbucket.mwhapples'
 archivesBaseName = 'jlouis'
 version = '1.0.3'
 
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = 'jlouis'
+            from components.java
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+            pom {
+                name = 'jlouis'
+                description =  'Java bindings for LibLouis Braille translator' 
+                		url = 'http://bitbucket.org/mwhapples/jlouis'
+                properties = [
+                    myProp: "value",
+                    "prop.with.dots": "anotherValue"
+                ]
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+				id= 'mwhapples'
+				name= 'Michael Whapples'
+				email= 'mwhapples@aim.com'
+                    }
+                }
+                scm {
+			connection= 'scm:hg:http://bitbucket.org/mwhapples/jlouis'
+			developerConnection= 'scm:hg:https://bitbucket.org/mwhapples/jlouis'
+			url= 'http://bitbucket.org/mwhapples/jlouis'
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+        mavenCentral() 
+            // change URLs to point to your repos, e.g. http://my.org/repo
+            def releasesRepoUrl = layout.buildDirectory.dir('repos/releases')
+            def snapshotsRepoUrl = layout.buildDirectory.dir('repos/snapshots')
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
+}
+
+
+javadoc {
+    if(JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
+    }
+}
 
 repositories { 
+mavenCentral() 
+}
 
-mavenCentral() }
-		mavenLocal()
-    		maven { url 'https://nexus.aphtech.org/repository/aphtech-mrepo' }
 dependencies {
 	//Use maven version ranges as ant-like ranges are incompatible with everything else
 	implementation group: 'net.java.dev.jna', name: 'jna', version: '5.8.0'
@@ -43,17 +94,8 @@ dependencies {
 	testImplementation group:'org.testng', name:'testng', version:'6.11'
 	testImplementation group:'org.assertj', name:'assertj-core', version:'[3,)'
 }
-publishing {
-		repositories {
-			maven {
-				// Get server credentials from maven-settings
-				name = "aphtech-mrepo"
-				url "https://nexus.aphtech.org/repository/aphtech-mrepo/"
-			}
-		}
-	}
 
-
+ 
 task tablesZip(type: Zip) {
 	from 'src/main/dist/'
 	include 'org/mwhapples/jlouis/tables/*'
@@ -63,10 +105,9 @@ task tablesZip(type: Zip) {
 artifacts {
 	archives tablesZip
 }
-               }
+
 wrapper {
 	gradleVersion = '7.3'
 }
+
 			
-
-
