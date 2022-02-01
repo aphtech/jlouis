@@ -18,6 +18,7 @@ publishing {
         mavenJava(MavenPublication) {
             artifactId = 'jlouis'
             from components.java
+                        suppressAllPomMetadataWarnings()
             versionMapping {
                 usage('java-api') {
                     fromResolutionOf('runtimeClasspath')
