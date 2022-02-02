@@ -1,101 +1,195 @@
 plugins
 {
-id 'java-library'  id 'maven-publish' }
 
- group = 'org.bitbucket.mwhapples' 
-  archivesBaseName = 'jlouis'  version = '1.0.3'  java
-{
-withJavadocJar ()  withSourcesJar () }
+id 'java-library' 
+ id 'maven-publish' 
+}
 
- publishing
+
+ 
+group = 'org.bitbucket.mwhapples' 
+  archivesBaseName = 'jlouis' 
+ version = '1.0.3' 
+ 
+java
 {
-  publications
+
+withJavadocJar () 
+ withSourcesJar () 
+}
+
+
+ 
+publishing
+{
+  
+publications
   {
-    mavenJava (MavenPublication)
+    
+mavenJava (MavenPublication)
     {
-      artifactId = 'jlouis' 
+      
+artifactId = 'jlouis' 
 	from components.java 
-	suppressAllPomMetadataWarnings ()  versionMapping
+	suppressAllPomMetadataWarnings () 
+ versionMapping
       {
-	usage ('java-api')
+	
+usage ('java-api')
 	{
-	fromResolutionOf ('runtimeClasspath') }
-	usage ('java-runtime')
+	
+fromResolutionOf ('runtimeClasspath') 
+}
+	
+usage ('java-runtime')
 	{
-	fromResolutionResult () }
-      }
-      pom
+	
+fromResolutionResult () 
+}
+      
+}
+      
+pom
       {
-      name = 'jlouis'  description = 'Java bindings for LibLouis Braille translator'  url = 'https://nexus.aphtech.org/repository/aphtech-mrepo'  properties =[myProp: "value", "prop.with.dots":"anotherValue" ] 
+      
+name = 'jlouis' 
+ description = 'Java bindings for LibLouis Braille translator' 
+ url = 'https://nexus.aphtech.org/repository/aphtech-mrepo/' 
+ properties =[
+myProp: "value", 
+"prop.with.dots":"anotherValue" 
+] 
 	  licenses
 	{
-	  license
+	  
+license
 	  {
-	  name = 'The Apache License, Version 2.0' 
-	      url = 'http://www.apache.org/licenses/LICENSE-2.0.txt' }
-	}
-	developers
+	  
+name = 'The Apache License, Version 2.0' 
+	      url = 'http://www.apache.org/licenses/LICENSE-2.0.txt' 
+}
+	
+}
+	
+developers
 	{
-	  developer
+	  
+developer
 	  {
-	  id = 'mwhapples' 
-	      name = 'Michael Whapples'  email = 'mwhapples@aim.com' }
-	}
-	scm
+	  
+id = 'mwhapples' 
+	      name = 'Michael Whapples' 
+ email = 'mwhapples@aim.com' 
+}
+	
+}
+	
+scm
 	{
-	connection = 'scm:hg:http://bitbucket.org/mwhapples/jlouis' 
+	
+connection = 'scm:hg:http://bitbucket.org/mwhapples/jlouis' 
 	    developerConnection =
-	    'scm:hg:https://bitbucket.org/mwhapples/jlouis'  url =
-	    'http://bitbucket.org/mwhapples/jlouis' }
-      }
-    }
-  }
-  repositories
+	    'scm:hg:https://bitbucket.org/mwhapples/jlouis' 
+ url =
+	    'http://bitbucket.org/mwhapples/jlouis' 
+}
+      
+}
+    
+}
+  
+}
+  
+repositories
   {
-    maven
+    
+maven
     {
-    mavenCentral () 
+    
+mavenCentral () 
 	name = 'aphtech-mrepo' 
-	url = 'https://nexus.aphtech.org/repository/aphtech-mrepo' }
-  }
-}
+	url = 'https://nexus.aphtech.org/repository/aphtech-mrepo/' 
+}
+  
+}
 
-   javadoc
+}
+
+
+ 
+ 
+ 
+javadoc
 {
-  if (JavaVersion.current ().isJava9Compatible ())
+  
+if (JavaVersion.current ().isJava9Compatible ())
     {
-    options.addBooleanOption ('html5', true) }
-}
+    
+options.addBooleanOption ('html5', true) 
+}
 
- repositories
+}
+
+
+ 
+repositories
 {
-  maven
+  
+maven
   {
-  mavenCentral () 
+  
+mavenCentral () 
       name = 'aphtech-mrepo' 
-      url = 'https://nexus.aphtech.org/repository/aphtech-mrepo' }
-}
+      url = 'https://nexus.aphtech.org/repository/aphtech-mrepo' 
+}
 
- dependencies
+}
+
+
+ 
+dependencies
 {
   
     //Use maven version ranges as ant-like ranges are incompatible with everything else
-implementation group: 'net.java.dev.jna', name: 'jna', version: '5.8.0'  implementation group: 'com.google.guava', name: 'guava', version: '[30.1.1-jre,)'  testImplementation group: 'javax.xml.bind', name: 'jaxb-api', version: '[2.3.1,)'  testRuntimeOnly group: 'org.glassfish.jaxb', name: 'jaxb-runtime', version:'[2.3.1,)'
+implementation group: 'net.java.dev.jna', name: 'jna', version: '5.8.0' 
+ implementation group: 'com.google.guava', name: 'guava', version: '[30.1.1-jre,)' 
+ testImplementation group: 'javax.xml.bind', name: 'jaxb-api', version: '[2.3.1,)' 
+ testRuntimeOnly group: 'org.glassfish.jaxb', name: 'jaxb-runtime', version:'[2.3.1,)'
     
     // block slf4j 1.8 due to jigsaw rewrite and logback not being fully updated -Leon April 27, 2017
     // original version range '[1.7,)'
-implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'  runtimeOnly group: 'ch.qos.logback', name: 'logback-classic', version: '[1.1,)'  testImplementation group: 'org.testng', name: 'testng', version: '6.11'  testImplementation group: 'org.assertj', name: 'assertj-core', version:'[3,)'
-    }
-  task tablesZip (type:Zip)
-{
-from 'src/main/dist/' 
-    include 'org/mwhapples/jlouis/tables/*'  classifier 'tables' }
- artifacts
-{
-archives tablesZip }
+implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25' 
+ runtimeOnly group: 'ch.qos.logback', name: 'logback-classic', version: '[1.1,)' 
+ testImplementation group: 'org.testng', name: 'testng', version: '6.11' 
+ testImplementation group: 'org.assertj', name: 'assertj-core', version:'[3,)'
+    
+}
 
- wrapper
+ 
+ 
+task tablesZip (type:Zip)
 {
-gradleVersion = '7.3' }
 
-  
+from 'src/main/dist/' 
+    include 'org/mwhapples/jlouis/tables/*' 
+ classifier 'tables' 
+}
+
+ 
+artifacts
+{
+
+archives tablesZip 
+}
+
+
+ 
+wrapper
+{
+
+gradleVersion = '7.3' 
+}
+
+
+ 
+ 
