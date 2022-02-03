@@ -24,9 +24,7 @@ build:
       - .gradle
 test:
   stage: test
-  script:
-    - ls -l $HOME/.m2/settings.xml
-    - gradle check
+  script: gradle check
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: pull
@@ -35,6 +33,8 @@ test:
       - .gradle
 deploy:
   stage: deploy
-  script: gradle publish
+  script:
+    - ls -l $HOME/.m2/settings.xml
+    - gradle publish
   only:
     - master
