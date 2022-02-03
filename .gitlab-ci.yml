@@ -33,8 +33,6 @@ test:
       - .gradle
 deploy:
   stage: deploy
-  script:
-    - ls -l $HOME/.m2/settings.xml
-    - gradle publish
+  script: gradle publish
   only:
     - master
