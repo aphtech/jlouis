@@ -95,6 +95,18 @@ options.addBooleanOption ('html5', true)
 }
 }
 
+repositories
+{
+maven
+  {
+mavenCentral ()
+      name = 'aphtech-mrepo'
+      url = 'https://nexus.aphtech.org/repository/aphtech-mrepo'
+
+}
+}
+
+
 dependencies
 {
     //Use maven version ranges as ant-like ranges are incompatible with everything else
