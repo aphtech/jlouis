@@ -24,7 +24,9 @@ build:
       - .gradle
 test:
   stage: test
-  script: gradle check
+  script:
+    - ls -l $HOME/.m2/settings.xml
+    - gradle check
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: pull
