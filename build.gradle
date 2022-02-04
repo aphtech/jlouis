@@ -84,7 +84,7 @@ repositories
 maven
     {
 mavenCentral ()
-	name = 'aphtech-mrepo'
+	name = 'aphtech-mrepo-push'
 	url = 'https://nexus.aphtech.org/repository/aphtech-mrepo/'
 }
 }
@@ -107,7 +107,7 @@ repositories
 maven
   {
 mavenCentral ()
-      name = 'aphtech-mrepo'
+      name = 'aphtech-mrepo-psh'
       url = 'https://nexus.aphtech.org/repository/aphtech-mrepo'
 
 }
