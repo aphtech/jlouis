@@ -15,7 +15,7 @@ before_script:
 build:
   stage: build
   script:
-    - gradle --build-cache --info --debug assemble
+    - gradle --build-cache assemble
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: push
@@ -36,3 +36,4 @@ deploy:
   script: gradle publish
   only:
     - master
+  

@@ -4,7 +4,8 @@ id 'java-library'
  id 'maven-publish'
 }
 
-group = 'org.bitbucket.mwhapples'
+group = 'org.aph'
+//org.bitbucket.mwhapples'
   archivesBaseName = 'jlouis'
  version = '1.0.4-SNAPSHOT'
 
