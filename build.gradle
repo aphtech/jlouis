@@ -23,6 +23,9 @@ mavenJava (MavenPublication)
     {
 artifactId = 'jlouis'
 	from components.java
+                  afterEvaluate {
+                    artifactId = 'jlouis'
+                }
 //	suppressAllPomMetadataWarnings ()
  versionMapping
       {
