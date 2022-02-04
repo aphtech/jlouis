@@ -6,12 +6,11 @@ id 'java-library'
 }
 
 group = 'org.bitbucket.mwhapples'
-  archivesBaseName = 'jlouis'
+//  archivesBaseName = 'jlouis'
  version = '1.0.4-SNAPSHOT'
 
 java
 {
-
 withJavadocJar ()
  withSourcesJar ()
 }
