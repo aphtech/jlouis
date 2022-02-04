@@ -2,7 +2,7 @@ plugins
 {
 id 'java-library'
  id 'maven-publish'
-     id 'signing'
+//     id 'signing'
 }
 
 group = 'org.bitbucket.mwhapples'
@@ -90,9 +90,9 @@ mavenCentral ()
 }
 } //publishing 
 
-signing {
-    sign publishing.publications.mavenJava
-}
+//signing {
+//    sign publishing.publications.mavenJava
+//}
 
 javadoc
 {
