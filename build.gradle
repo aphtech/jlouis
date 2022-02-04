@@ -2,10 +2,10 @@ plugins
 {
 id 'java-library'
  id 'maven-publish'
+     id 'signing'
 }
 
-group = 'org.aph'
-//org.bitbucket.mwhapples'
+group = 'org.bitbucket.mwhapples'
   archivesBaseName = 'jlouis'
  version = '1.0.4-SNAPSHOT'
 
@@ -87,6 +87,10 @@ mavenCentral ()
 }
 }
 } //publishing 
+
+signing {
+    sign publishing.publications.mavenJava
+}
 
 javadoc
 {
