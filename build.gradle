@@ -31,6 +31,7 @@ publications
 mavenJava (MavenPublication)
     {
 	from components.java
+            artifact source: tablesZip, extension: 'zip'
                   afterEvaluate {
                     artifactId = 'jlouis'
                 }
@@ -85,13 +86,6 @@ connection = 'scm:hg:http://bitbucket.org/mwhapples/jlouis'
 }
 }
 }
-mavenZip (MavenPublication)
-{
- from  components.java
-            artifact source: tablesZip, extension: 'zip'
-}
-
-
 }
 
 
