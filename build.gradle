@@ -5,6 +5,14 @@ id 'java-library'
 //     id 'signing'
 }
 
+task tablesZip (type:Zip)
+{
+from 'src/main/dist/'
+    include 'org/mwhapples/jlouis/tables/*'
+ classifier 'tables'
+}
+
+
 group = 'org.bitbucket.mwhapples'
 //  archivesBaseName = 'jlouis'
  version = '1.0.4-SNAPSHOT'
@@ -15,13 +23,13 @@ withJavadocJar ()
  withSourcesJar ()
 }
 
+
 publishing
 {
 publications
   {
 mavenJava (MavenPublication)
     {
-artifactId = 'jlouis'
 	from components.java
                   afterEvaluate {
                     artifactId = 'jlouis'
@@ -37,8 +45,8 @@ usage ('java-runtime')
 	{
 fromResolutionResult ()
 }
-}
 
+}
 pom
       {
 name = 'jlouis'
@@ -77,7 +85,15 @@ connection = 'scm:hg:http://bitbucket.org/mwhapples/jlouis'
 }
 }
 }
+mavenZip (MavenPublication)
+{
+c	from components.java
+            artifact source: tablesZip, extension: 'zip'
 }
+
+
+}
+
 
 repositories
   {
@@ -87,6 +103,10 @@ maven
 //mavenLocal()
 	name = 'aphtech-mrepo'
 	url = 'https://nexus.aphtech.org/repository/aphtech-mrepo/'
+        credentials {
+            username= System.getenv("MAVEN_REPO_USER")
+            password= System.getenv("MAVEN_REPO_PASS")
+        }
 }
 }
 } //publishing 
@@ -108,7 +128,7 @@ repositories
 maven
   {
 mavenCentral ()
-mavenLocal()
+//mavenLocal()
       name = 'aphtech-mrepo-psh'
       url = 'https://nexus.aphtech.org/repository/aphtech-mrepo'
 }
@@ -129,13 +149,6 @@ implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
  runtimeOnly group: 'ch.qos.logback', name: 'logback-classic', version: '[1.1,)'
  testImplementation group: 'org.testng', name: 'testng', version: '6.11'
  testImplementation group: 'org.assertj', name: 'assertj-core', version:'[3,)'
-}
-
-task tablesZip (type:Zip)
-{
-from 'src/main/dist/'
-    include 'org/mwhapples/jlouis/tables/*'
- classifier 'tables'
 }
 
 
