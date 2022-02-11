@@ -8,7 +8,7 @@
 dlname='liblouis.so.20'
 
 # Names of this library.
-library_names='liblouis.so.20.0.7 liblouis.so.20 liblouis.so'
+library_names='liblouis.so.20.0.8 liblouis.so.20 liblouis.so'
 
 # The name of the static archive.
 old_library='liblouis.a'
@@ -25,7 +25,7 @@ weak_library_names=''
 # Version information for liblouis.
 current=20
 age=0
-revision=7
+revision=8
 
 # Is this an already installed library?
 installed=yes

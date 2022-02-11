@@ -25,7 +25,7 @@ weak_library_names=''
 # Version information for liblouis.
 current=20
 age=0
-revision=7
+revision=8
 
 # Is this an already installed library?
 installed=yes
