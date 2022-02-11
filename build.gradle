@@ -15,8 +15,7 @@ from 'src/main/dist/'
 
 group = 'org.bitbucket.mwhapples'
 //  archivesBaseName = 'jlouis'
- version = '1.0.4'
- //-SNAPSHOT'
+ version = '1.0.4-SNAPSHOT'
 
 java
 {
