@@ -1,4 +1,4 @@
-prefix=/mnt/c/data/liblouis/builds/linux-x86-64
+prefix=/mnt/c/data//liblouis/builds/linux-x86-64
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
@@ -6,7 +6,7 @@ tablesdir=${prefix}/share/liblouis/tables
 
 Name: liblouis
 Description: a braille translator and back-translator
-Version: 3.20.0
+Version: 3.21.0
 Requires: 
 Libs: -L${libdir} -llouis
 Cflags: -I${includedir}/liblouis

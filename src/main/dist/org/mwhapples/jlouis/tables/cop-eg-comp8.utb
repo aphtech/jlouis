@@ -24,7 +24,7 @@
 #-author-name: Ibraam Nasif 
 #-author-email: ibraam.wahib@gmail.com
 
-#+locale: cop
+#+language: cop
 #+type: computer
 #+dots: 8
 #+direction: forward
@@ -151,10 +151,10 @@ sign  \x0304  56    # Coptic  ̄
 sign  \x0305  56    # Coptic  ̅
 
 #swap: the following to correct Coptic Diagritics   symbol, which should be written before the character in braille 
- attribute CopLtr ⲁⲀⲃⲂⲅⲄⲇⲆⲉⲈⲋⲊⲍⲌⲏⲎⲑⲐⲓⲒⲕⲔⲗⲖⲙⲘⲛⲚⲝⲜⲟⲞⲡⲠⲣⲢⲥⲤⲧⲦⲩⲨⲫⲪⲭⲬⲯⲮⲱⲰϣϢϥϤϧϦϩϨϫϪϭϬϯϮ
- noback context [%CopLtr]"\x0300" @12345*
- noback context [%CopLtr]"\x0304" @56*
- noback context [%CopLtr]"\x0305" @56*
+attribute CopLtr ⲁⲀⲃⲂⲅⲄⲇⲆⲉⲈⲋⲊⲍⲌⲏⲎⲑⲐⲓⲒⲕⲔⲗⲖⲙⲘⲛⲚⲝⲜⲟⲞⲡⲠⲣⲢⲥⲤⲧⲦⲩⲨⲫⲪⲭⲬⲯⲮⲱⲰϣϢϥϤϧϦϩϨϫϪϭϬϯϮ
+noback context [%CopLtr]"\x0300" @12345*
+noback context [%CopLtr]"\x0304" @56*
+noback context [%CopLtr]"\x0305" @56*
 
 # adding latin letters & numerals
 include latinLetterDef8Dots.uti

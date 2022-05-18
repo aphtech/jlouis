@@ -25,7 +25,7 @@ weak_library_names=''
 # Version information for liblouis.
 current=20
 age=0
-revision=8
+revision=9
 
 # Is this an already installed library?
 installed=yes
@@ -38,4 +38,4 @@ dlopen=''
 dlpreopen=''
 
 # Directory that this library needs to be installed in:
-libdir='/mnt/c/data/liblouis/builds/darwin/lib'
+libdir='/mnt/c/data//liblouis/builds/darwin/lib'
