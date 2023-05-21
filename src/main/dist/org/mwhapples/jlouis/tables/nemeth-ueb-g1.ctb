@@ -29,9 +29,11 @@
 math \x2810 5
 
 numsign 3456  number sign, just a dots operand
-numericmodechars .,\x2810
+#commmented next line for 3.2X
+#numericmodechars .,\x2810
 nocontractsign 56
-numericnocontchars abcdefghij
+#commented next line for 3.2x
+#numericnocontchars abcdefghij
 
 #   add numeric space indicator
 noback context _$d["\x2810"]$d @5
