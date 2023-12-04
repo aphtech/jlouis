@@ -143,7 +143,6 @@ am__aclocal_m4_deps = $(top_srcdir)/tools/gnulib/m4/close.m4 \
 	$(top_srcdir)/gnulib/m4/limits-h.m4 \
 	$(top_srcdir)/gnulib/m4/malloc.m4 \
 	$(top_srcdir)/gnulib/m4/malloca.m4 \
-	$(top_srcdir)/gnulib/m4/manywarnings.m4 \
 	$(top_srcdir)/gnulib/m4/multiarch.m4 \
 	$(top_srcdir)/gnulib/m4/off_t.m4 \
 	$(top_srcdir)/gnulib/m4/pid_t.m4 \
@@ -160,7 +159,6 @@ am__aclocal_m4_deps = $(top_srcdir)/tools/gnulib/m4/close.m4 \
 	$(top_srcdir)/gnulib/m4/sys_types_h.m4 \
 	$(top_srcdir)/gnulib/m4/unistd_h.m4 \
 	$(top_srcdir)/gnulib/m4/warn-on-use.m4 \
-	$(top_srcdir)/gnulib/m4/warnings.m4 \
 	$(top_srcdir)/gnulib/m4/wchar_h.m4 \
 	$(top_srcdir)/gnulib/m4/wchar_t.m4 \
 	$(top_srcdir)/gnulib/m4/wint_t.m4 \
@@ -1337,7 +1335,6 @@ UNISTD_H_HAVE_SYS_RANDOM_H = @UNISTD_H_HAVE_SYS_RANDOM_H@
 UNISTD_H_HAVE_WINSOCK2_H = @UNISTD_H_HAVE_WINSOCK2_H@
 UNISTD_H_HAVE_WINSOCK2_H_AND_USE_SOCKETS = @UNISTD_H_HAVE_WINSOCK2_H_AND_USE_SOCKETS@
 VERSION = @VERSION@
-WARN_CFLAGS = @WARN_CFLAGS@
 WCHAR_T_SUFFIX = @WCHAR_T_SUFFIX@
 WIDECHAR_TYPE = @WIDECHAR_TYPE@
 WINDOWS_64_BIT_OFF_T = @WINDOWS_64_BIT_OFF_T@
@@ -1563,6 +1560,7 @@ table_files = \
 	fa-ir-g1.utb \
 	fi-fi-8dot.ctb \
 	fi.utb \
+	fil-g2.ctb \
 	fr-bfu-comp68.cti \
 	fr-bfu-comp6.utb \
 	fr-bfu-comp8.utb \

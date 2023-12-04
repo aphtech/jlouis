@@ -143,7 +143,6 @@ am__aclocal_m4_deps = $(top_srcdir)/tools/gnulib/m4/close.m4 \
 	$(top_srcdir)/gnulib/m4/limits-h.m4 \
 	$(top_srcdir)/gnulib/m4/malloc.m4 \
 	$(top_srcdir)/gnulib/m4/malloca.m4 \
-	$(top_srcdir)/gnulib/m4/manywarnings.m4 \
 	$(top_srcdir)/gnulib/m4/multiarch.m4 \
 	$(top_srcdir)/gnulib/m4/off_t.m4 \
 	$(top_srcdir)/gnulib/m4/pid_t.m4 \
@@ -160,7 +159,6 @@ am__aclocal_m4_deps = $(top_srcdir)/tools/gnulib/m4/close.m4 \
 	$(top_srcdir)/gnulib/m4/sys_types_h.m4 \
 	$(top_srcdir)/gnulib/m4/unistd_h.m4 \
 	$(top_srcdir)/gnulib/m4/warn-on-use.m4 \
-	$(top_srcdir)/gnulib/m4/warnings.m4 \
 	$(top_srcdir)/gnulib/m4/wchar_h.m4 \
 	$(top_srcdir)/gnulib/m4/wchar_t.m4 \
 	$(top_srcdir)/gnulib/m4/wint_t.m4 \
@@ -1075,7 +1073,7 @@ LIBFUZZER_NO_MAIN =
 LIBINTL = 
 LIBLOUIS_AGE = 0
 LIBLOUIS_CURRENT = 20
-LIBLOUIS_REVISION = 15
+LIBLOUIS_REVISION = 16
 LIBOBJS =  ${LIBOBJDIR}memcmp$U.o
 LIBS = 
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
@@ -1134,10 +1132,10 @@ OTOOL64 = :
 PACKAGE = liblouis
 PACKAGE_BUGREPORT = liblouis-liblouisxml@freelists.org
 PACKAGE_NAME = Liblouis
-PACKAGE_STRING = Liblouis 3.27.0
+PACKAGE_STRING = Liblouis 3.28.0
 PACKAGE_TARNAME = liblouis
 PACKAGE_URL = http://www.liblouis.io
-PACKAGE_VERSION = 3.27.0
+PACKAGE_VERSION = 3.28.0
 PATH_SEPARATOR = :
 PRAGMA_COLUMNS = 
 PRAGMA_SYSTEM_HEADER = #pragma GCC system_header
@@ -1336,8 +1334,7 @@ UNISTD_H_DEFINES_STRUCT_TIMESPEC = 0
 UNISTD_H_HAVE_SYS_RANDOM_H = 0
 UNISTD_H_HAVE_WINSOCK2_H = 0
 UNISTD_H_HAVE_WINSOCK2_H_AND_USE_SOCKETS = 0
-VERSION = 3.27.0
-WARN_CFLAGS =  -fanalyzer -fno-common -Wall -Warith-conversion -Wbad-function-cast -Wcast-align=strict -Wdate-time -Wdisabled-optimization -Wdouble-promotion -Wduplicated-branches -Wduplicated-cond -Wextra -Wformat-signedness -Winit-self -Winline -Winvalid-pch -Wlogical-op -Wmissing-declarations -Wmissing-include-dirs -Wmissing-prototypes -Wnested-externs -Wnull-dereference -Wold-style-definition -Wopenmp-simd -Woverlength-strings -Wpacked -Wpointer-arith -Wshadow -Wstack-protector -Wstrict-overflow -Wstrict-prototypes -Wsuggest-attribute=cold -Wsuggest-attribute=malloc -Wsuggest-final-methods -Wsuggest-final-types -Wsync-nand -Wtrampolines -Wuninitialized -Wunknown-pragmas -Wunsafe-loop-optimizations -Wunused-macros -Wvariadic-macros -Wvector-operation-performance -Wvla -Wwrite-strings -Warray-bounds=2 -Wattribute-alias=2 -Wformat-overflow=2 -Wformat=2 -Wformat-truncation=2 -Wimplicit-fallthrough=5 -Wshift-overflow=2 -Wunused-const-variable=2 -Wvla-larger-than=4031 -Wno-analyzer-malloc-leak
+VERSION = 3.28.0
 WCHAR_T_SUFFIX = 
 WIDECHAR_TYPE = unsigned short int
 WINDOWS_64_BIT_OFF_T = 0
@@ -1563,6 +1560,7 @@ table_files = \
 	fa-ir-g1.utb \
 	fi-fi-8dot.ctb \
 	fi.utb \
+	fil-g2.ctb \
 	fr-bfu-comp68.cti \
 	fr-bfu-comp6.utb \
 	fr-bfu-comp8.utb \
