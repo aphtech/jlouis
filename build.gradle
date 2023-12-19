@@ -6,22 +6,21 @@ plugins
         }
 
 tasks.register('tablesZip', Zip)
-{
-    from 'src/main/dist/'
-    include 'org/mwhapples/jlouis/tables/*'
-    archiveClassifier = 'tables'
-}
+        {
+            from 'src/main/dist/'
+            include 'org/mwhapples/jlouis/tables/*'
+            archiveClassifier = 'tables'
+        }
 
 
 group = 'org.bitbucket.mwhapples'
 //  archivesBaseName = 'jlouis'
 version = '1.0.5'
 
-java
-        {
-            withJavadocJar()
-            withSourcesJar()
-        }
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
 
 
 publishing
