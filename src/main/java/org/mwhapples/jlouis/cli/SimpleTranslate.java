@@ -36,8 +36,8 @@ public class SimpleTranslate {
             System.exit(0);
         }
         logger.info("Getting liblouis version");
-        logger.info("Using buffer size %d", translator.getEncodingSize());
-        logger.info("Performing forward translation for string of length %d using mode %d", args[1].length(), 0);
+        logger.info("Using buffer size {}", translator.getEncodingSize());
+        logger.info("Performing forward translation for string of length {} using mode {}", args[1].length(), 0);
         String brailleStr = translator.translateString(args[0], args[1], null, 0);
         logger.info(brailleStr);
         byte[] hyphens = translator.hyphenate(args[0], brailleStr, 1);

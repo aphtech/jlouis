@@ -1,18 +1,18 @@
 /**
  * Copyright (c) 2010-2015 Michael whapples
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
+ * <p>
  * For attribution notices please see the file NOTICES.TXT which should be
  * included in the distribution.
  */
@@ -22,18 +22,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class DefaultLogCallback implements LogCallback {
-	private static Logger logger = LoggerFactory.getLogger(DefaultLogCallback.class);
+    private static final Logger logger = LoggerFactory.getLogger(DefaultLogCallback.class);
 
-	public void logMessage(int level, String msg) {
-		if (level <= LogLevels.DEBUG) {
-			logger.debug(msg);
-		} else if (level <= LogLevels.INFO) {
-			logger.info(msg);
-		} else if (level <= LogLevels.WARNING) {
-			logger.warn(msg);
-		} else {
-			logger.error(msg);
-		}
-	}
+    public void logMessage(int level, String msg) {
+        if (level <= LogLevels.DEBUG) {
+            logger.debug(msg);
+        } else if (level <= LogLevels.INFO) {
+            logger.info(msg);
+        } else if (level <= LogLevels.WARNING) {
+            logger.warn(msg);
+        } else {
+            logger.error(msg);
+        }
+    }
 
 }
