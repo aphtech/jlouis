@@ -18,14 +18,11 @@
  */
 package org.mwhapples.jlouis;
 
-import java.io.Serial;
-
 public class TranslationException extends Exception {
     /**
      *
      */
-    @Serial
-	private static final long serialVersionUID = -1316274222832443390L;
+    private static final long serialVersionUID = -1316274222832443390L;
 
     public TranslationException(String msg) {
         super(msg);

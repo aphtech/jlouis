@@ -358,7 +358,7 @@ public class Louis {
      */
     public static void registerLogCallback(LogCallback cb) {
         // Remember that we should hold a reference to the callback object to ensure it remains valid for LibLouis.
-        callback = Objects.requireNonNullElseGet(cb, DefaultLogCallback::new);
+        callback = cb != null ? cb : new DefaultLogCallback();
         synchronized (THREAD_SAFE_LOCK) {
             lou_registerLogCallback(callback);
         }
