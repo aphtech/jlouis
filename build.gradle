@@ -5,7 +5,7 @@ plugins
 //     id 'signing'
         }
 
-task tablesZip(type: Zip)
+tasks.register('tablesZip', Zip)
 {
     from 'src/main/dist/'
     include 'org/mwhapples/jlouis/tables/*'
