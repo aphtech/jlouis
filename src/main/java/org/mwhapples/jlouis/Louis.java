@@ -40,6 +40,8 @@ import com.sun.jna.Platform;
 import com.sun.jna.Pointer;
 import com.sun.jna.ptr.IntByReference;
 
+import javax.annotation.Nullable;
+
 /**
  * <p>The main class for accessing the LibLouis API.</p>
  * <p>The exposed public methods are synchronized as liblouis itself is not thread save
@@ -180,7 +182,7 @@ public class Louis {
 	 * @throws TranslationException When LibLouis cannot perform the translation.
 	 */
 	public String translateString(String tablesList, String inbuf,
-			short[] typeforms, int mode) throws TranslationException {
+								  @Nullable short[] typeforms, int mode) throws TranslationException {
 		if ((inbuf == null) || (inbuf.isEmpty())) {
 			return "";
 		}
@@ -211,7 +213,7 @@ public class Louis {
 	}
 
 	public TranslationResult translate(String trantab, String inbuf,
-			short[] typeForms, int cursorPos, int mode)
+			@Nullable short[] typeForms, int cursorPos, int mode)
 			throws TranslationException {
 		synchronized (THREAD_SAFE_LOCK) {
 			if ((inbuf == null) || (inbuf.isEmpty())) {
@@ -242,7 +244,7 @@ public class Louis {
 	}
 
 	public String backTranslateString(String trantab, String inbuf,
-			short[] typeforms, int mode) throws TranslationException {
+			@Nullable short[] typeforms, int mode) throws TranslationException {
 		synchronized (THREAD_SAFE_LOCK) {
 			byte[] spacing = null;
 			Louis.WideChar wInbuf = new Louis.WideChar(inbuf);
@@ -269,7 +271,7 @@ public class Louis {
 	}
 
 	public TranslationResult backTranslate(String trantab, String inbuf,
-			short[] typeForms, int cursorPos, int mode)
+			@Nullable short[] typeForms, int cursorPos, int mode)
 			throws TranslationException {
 		synchronized (THREAD_SAFE_LOCK) {
 			byte[] spacing = null;
