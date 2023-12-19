@@ -9,7 +9,7 @@ tasks.register('tablesZip', Zip)
 {
     from 'src/main/dist/'
     include 'org/mwhapples/jlouis/tables/*'
-    classifier 'tables'
+    archiveClassifier = 'tables'
 }
 
 
@@ -152,5 +152,5 @@ artifacts
 
 wrapper
         {
-            gradleVersion = '7.3'
+            gradleVersion = '8.5'
         }
