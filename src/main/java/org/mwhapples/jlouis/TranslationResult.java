@@ -18,6 +18,7 @@
  */
 package org.mwhapples.jlouis;
 
+import javax.annotation.Nonnull;
 import java.util.Arrays;
 /*
  * Copyright (c) 2010-2011 Michael whapples
@@ -44,7 +45,7 @@ public class TranslationResult {
     private final int[] outputPos;
     private final int cursorPos;
 
-    TranslationResult(String translation, int[] outputPos, int[] inputPos, int cursorPos) {
+    TranslationResult(@Nonnull String translation, int[] outputPos, @Nonnull int[] inputPos, int cursorPos) {
         if (translation.length() > inputPos.length) {
             throw new IllegalArgumentException("The inputPos is too short, it should be at least as long as the translation string");
         }
@@ -54,11 +55,11 @@ public class TranslationResult {
         this.cursorPos = cursorPos;
     }
 
-    public String getTranslation() {
+    public @Nonnull String getTranslation() {
         return translation;
     }
 
-    public int[] getInputPos() {
+    public @Nonnull int[] getInputPos() {
         return inputPos;
     }
 
