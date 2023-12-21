@@ -1,36 +1,33 @@
 package org.mwhapples.jlouis;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-
+import com.google.common.io.Resources;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.io.Files;
-import com.google.common.io.Resources;
+import javax.annotation.Nonnull;
+import java.io.*;
+import java.net.URL;
+import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JarResolver implements TableResolver {
     private static final Logger log = LoggerFactory.getLogger(JarResolver.class);
     private static volatile File TABLE_TEMP_DIR = null;
 
-    public static File getTempTableDir() {
-        File result = TABLE_TEMP_DIR;
-        if (result == null) {
+    public static @Nonnull File getTempTableDir() {
+        if (TABLE_TEMP_DIR == null) {
             synchronized (JarResolver.class) {
-                result = TABLE_TEMP_DIR;
-                if (result == null) {
-                    result = Files.createTempDir();
-                    TABLE_TEMP_DIR = result;
+                if (TABLE_TEMP_DIR == null) {
+                    try {
+                        TABLE_TEMP_DIR = Files.createTempDirectory(null).toFile();
+                    } catch (IOException e) {
+                        throw new IllegalStateException("Unable to create temp directory", e);
+                    }
                 }
             }
         }
-        return result;
+        return TABLE_TEMP_DIR;
     }
 
     private final static List<String> EXTRACTED_FILES = new ArrayList<>();

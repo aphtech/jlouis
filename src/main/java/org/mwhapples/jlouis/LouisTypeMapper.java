@@ -8,12 +8,15 @@ import com.sun.jna.StringArray;
 import com.sun.jna.ToNativeContext;
 import com.sun.jna.ToNativeConverter;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 public class LouisTypeMapper extends DefaultTypeMapper {
 
     public LouisTypeMapper() {
         ToNativeConverter fileArrayConverter = new ToNativeConverter() {
             @Override
-            public Object toNative(Object value, ToNativeContext context) {
+            public @Nullable Object toNative(Object value, ToNativeContext context) {
                 if (value == null) {
                     return null;
                 }
@@ -35,7 +38,7 @@ public class LouisTypeMapper extends DefaultTypeMapper {
             }
 
             @Override
-            public Class<?> nativeType() {
+            public @Nonnull Class<?> nativeType() {
                 return StringArray.class;
             }
         };
