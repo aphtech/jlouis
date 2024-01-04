@@ -143,7 +143,6 @@ am__aclocal_m4_deps = $(top_srcdir)/tools/gnulib/m4/close.m4 \
 	$(top_srcdir)/gnulib/m4/limits-h.m4 \
 	$(top_srcdir)/gnulib/m4/malloc.m4 \
 	$(top_srcdir)/gnulib/m4/malloca.m4 \
-	$(top_srcdir)/gnulib/m4/manywarnings.m4 \
 	$(top_srcdir)/gnulib/m4/multiarch.m4 \
 	$(top_srcdir)/gnulib/m4/off_t.m4 \
 	$(top_srcdir)/gnulib/m4/pid_t.m4 \
@@ -160,7 +159,6 @@ am__aclocal_m4_deps = $(top_srcdir)/tools/gnulib/m4/close.m4 \
 	$(top_srcdir)/gnulib/m4/sys_types_h.m4 \
 	$(top_srcdir)/gnulib/m4/unistd_h.m4 \
 	$(top_srcdir)/gnulib/m4/warn-on-use.m4 \
-	$(top_srcdir)/gnulib/m4/warnings.m4 \
 	$(top_srcdir)/gnulib/m4/wchar_h.m4 \
 	$(top_srcdir)/gnulib/m4/wchar_t.m4 \
 	$(top_srcdir)/gnulib/m4/wint_t.m4 \
@@ -260,7 +258,7 @@ DUMPBIN =
 ECHO_C = 
 ECHO_N = -n
 ECHO_T = 
-EGREP = /usr/bin/grep -E
+EGREP = /usr/bin//grep -E
 EMULTIHOP_HIDDEN = 
 EMULTIHOP_VALUE = 
 ENOLINK_HIDDEN = 
@@ -269,7 +267,7 @@ EOVERFLOW_HIDDEN =
 EOVERFLOW_VALUE = 
 ERRNO_H = 
 EXEEXT = 
-FGREP = /usr/bin/grep -F
+FGREP = /usr/bin//grep -F
 GETOPT_CDEFS_H = getopt-cdefs.h
 GETOPT_H = getopt.h
 GL_CFLAG_ALLOW_WARNINGS = -Wno-error
@@ -825,7 +823,7 @@ GL_GNULIB_WRITE = 0
 GL_GNULIB__EXIT = 0
 GNULIBHEADERS_OVERRIDE_WINT_T = 0
 GNULIB_GETTIMEOFDAY = 0
-GREP = /usr/bin/grep
+GREP = /usr/bin//grep
 HAVE_ALIGNED_ALLOC = 1
 HAVE_ALLOCA_H = 1
 HAVE_ALPHASORT = 1
@@ -1062,7 +1060,7 @@ HAVE__EXIT = 1
 HELP2MAN = 
 INCLUDE_NEXT = include_next
 INCLUDE_NEXT_AS_FIRST_DIRECTIVE = include_next
-INSTALL = /usr/bin/install -c
+INSTALL = /usr/bin//install -c
 INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
@@ -1071,10 +1069,11 @@ INT32_MAX_LT_INTMAX_MAX = 1
 INT64_MAX_EQ_LONG_MAX = defined _LP64
 LD = /mnt/c/data/tools-linux/osxcross/target/bin/x86_64-apple-darwin20.4-ld
 LDFLAGS = 
+LIBFUZZER_NO_MAIN = 
 LIBINTL = 
 LIBLOUIS_AGE = 0
 LIBLOUIS_CURRENT = 20
-LIBLOUIS_REVISION = 9
+LIBLOUIS_REVISION = 16
 LIBOBJS =  ${LIBOBJDIR}memcmp$U.o
 LIBS = 
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
@@ -1089,7 +1088,7 @@ LT_SYS_LIBRARY_PATH =
 MAKEINFO = ${SHELL} /mnt/c/data/liblouis/build-aux/missing makeinfo
 MAKEINFO_FOUND = yes
 MANIFEST_TOOL = :
-MKDIR_P = /usr/bin/mkdir -p
+MKDIR_P = /usr/bin//mkdir -p
 NEXT_AS_FIRST_DIRECTIVE_DIRENT_H = <dirent.h>
 NEXT_AS_FIRST_DIRECTIVE_ERRNO_H = 
 NEXT_AS_FIRST_DIRECTIVE_FCNTL_H = <fcntl.h>
@@ -1133,10 +1132,10 @@ OTOOL64 = :
 PACKAGE = liblouis
 PACKAGE_BUGREPORT = liblouis-liblouisxml@freelists.org
 PACKAGE_NAME = Liblouis
-PACKAGE_STRING = Liblouis 3.21.0
+PACKAGE_STRING = Liblouis 3.28.0
 PACKAGE_TARNAME = liblouis
-PACKAGE_URL = http://www.liblouis.org
-PACKAGE_VERSION = 3.21.0
+PACKAGE_URL = http://www.liblouis.io
+PACKAGE_VERSION = 3.28.0
 PATH_SEPARATOR = :
 PRAGMA_COLUMNS = 
 PRAGMA_SYSTEM_HEADER = #pragma GCC system_header
@@ -1314,7 +1313,7 @@ REPLACE_WCTOB = 0
 REPLACE_WCTOMB = 0
 REPLACE_WCWIDTH = 0
 REPLACE_WRITE = 0
-SED = /usr/bin/sed
+SED = /usr/bin//sed
 SET_MAKE = 
 SHELL = /bin/bash
 SIG_ATOMIC_T_SUFFIX = 
@@ -1335,8 +1334,7 @@ UNISTD_H_DEFINES_STRUCT_TIMESPEC = 0
 UNISTD_H_HAVE_SYS_RANDOM_H = 0
 UNISTD_H_HAVE_WINSOCK2_H = 0
 UNISTD_H_HAVE_WINSOCK2_H_AND_USE_SOCKETS = 0
-VERSION = 3.21.0
-WARN_CFLAGS =  -fanalyzer -fno-common -Wall -Warith-conversion -Wbad-function-cast -Wcast-align=strict -Wdate-time -Wdisabled-optimization -Wdouble-promotion -Wduplicated-branches -Wduplicated-cond -Wextra -Wformat-signedness -Winit-self -Winline -Winvalid-pch -Wlogical-op -Wmissing-declarations -Wmissing-include-dirs -Wmissing-prototypes -Wnested-externs -Wnull-dereference -Wold-style-definition -Wopenmp-simd -Woverlength-strings -Wpacked -Wpointer-arith -Wshadow -Wstack-protector -Wstrict-overflow -Wstrict-prototypes -Wsuggest-attribute=cold -Wsuggest-attribute=malloc -Wsuggest-final-methods -Wsuggest-final-types -Wsync-nand -Wtrampolines -Wuninitialized -Wunknown-pragmas -Wunsafe-loop-optimizations -Wunused-macros -Wvariadic-macros -Wvector-operation-performance -Wvla -Wwrite-strings -Warray-bounds=2 -Wattribute-alias=2 -Wformat-overflow=2 -Wformat=2 -Wformat-truncation=2 -Wimplicit-fallthrough=5 -Wshift-overflow=2 -Wunused-const-variable=2 -Wvla-larger-than=4031 -Wno-analyzer-malloc-leak
+VERSION = 3.28.0
 WCHAR_T_SUFFIX = 
 WIDECHAR_TYPE = unsigned short int
 WINDOWS_64_BIT_OFF_T = 0
@@ -1466,18 +1464,28 @@ table_files = \
 	cy-cy-g1.utb \
 	cy-cy-g2.ctb \
 	cy.tbl \
+	da-dk-6miscChars_1993.cti \
 	da-dk-6miscChars.cti \
+	da-dk-8miscChars_1993.cti \
 	da-dk-8miscChars.cti \
+	da-dk-g08_1993.ctb \
 	da-dk-g08.ctb \
+	da-dk-g16_1993.ctb \
 	da-dk-g16.ctb \
-	da-dk-g16-lit.ctb \
+	da-dk-g16-lit_1993.ctb \
+	da-dk-g18_1993.ctb \
 	da-dk-g18.ctb \
+	da-dk-g26_1993.ctb \
 	da-dk-g26.ctb \
-	da-dk-g26l.ctb \
-	da-dk-g26-lit.ctb \
-	da-dk-g26l-lit.ctb \
+	da-dk-g26l_1993.ctb \
+	da-dk-g26-lit_1993.ctb \
+	da-dk-g26l-lit_1993.ctb \
+	da-dk-g28_1993.ctb \
 	da-dk-g28.ctb \
-	da-dk-g28l.ctb \
+	da-dk-g28l_1993.ctb \
+	da-dk-g2_1993.dic \
+	da-dk-g2.dic \
+	da-dk-octobraille_1993.dis \
 	da-dk-octobraille.dis \
 	de-accents.cti \
 	de-accents-detailed.cti \
@@ -1499,6 +1507,7 @@ table_files = \
 	de-g2-core.cti \
 	de-g2-core-patterns.dic \
 	de-g2.ctb \
+	de-g2-detailed.ctb \
 	devanagari.cti \
 	digits6DotsPlusDot6.uti \
 	digits6Dots.uti \
@@ -1551,6 +1560,7 @@ table_files = \
 	fa-ir-g1.utb \
 	fi-fi-8dot.ctb \
 	fi.utb \
+	fil-g2.ctb \
 	fr-bfu-comp68.cti \
 	fr-bfu-comp6.utb \
 	fr-bfu-comp8.utb \
@@ -1594,7 +1604,6 @@ table_files = \
 	hu-hu-g2_exceptions.cti \
 	hu.tbl \
 	hy.ctb \
-	hyph_brl_da_dk.dic \
 	hyph_cs_CZ.dic \
 	hyph_da_DK.dic \
 	hyph_de_DE.dic \
@@ -1623,6 +1632,7 @@ table_files = \
 	it.tbl \
 	iu-ca-g1.ctb \
 	ja-kantenji.utb \
+	ka.utb \
 	ka-in-g1.utb \
 	kannada.cti \
 	kha.tbl \
@@ -1650,6 +1660,7 @@ table_files = \
 	latinUppercaseComp6.uti \
 	litdigits6DotsPlusDot6.uti \
 	litdigits6Dots.uti \
+	lg-ug-g1.utb \
 	loweredDigits6Dots.uti \
 	loweredDigits8Dots.uti \
 	latinLowercase.uti \
@@ -1688,6 +1699,8 @@ table_files = \
 	nl-chardefs.uti \
 	nl-comp8.utb \
 	nl-NL-g0.utb \
+	nl-print.dis \
+	nl-unicode.dis \
 	nl.tbl \
 	no-no-8dot-fallback-6dot-g0.utb \
 	no-no-8dot.utb \
@@ -1702,10 +1715,10 @@ table_files = \
 	no-no-generic.ctb \
 	no-no-generic.dis \
 	no-no-latinLetterDef6Dots_diacritics.uti \
-	no.tbl \
 	np-in-g1.utb \
 	nso-za-g1.utb \
 	nso-za-g2.ctb \
+	ny-mw.utb \
 	or-in-g1.utb \
 	oriya.cti \
 	or.tbl \
@@ -1723,6 +1736,7 @@ table_files = \
 	pu-in-g1.utb \
 	ro.ctb \
 	ro.tbl \
+	ro-g0.utb \
 	ru-brf.dis \
 	ru-compbrl.ctb \
 	ru.ctb \
@@ -1731,22 +1745,19 @@ table_files = \
 	ru-litbrl-detailed.utb \
 	ru-ru-g1.ctb \
 	ru-unicode.dis \
+	rw-rw-g1.utb \
 	sa-in-g1.utb \
 	sa.tbl \
 	sah.utb \
 	sd.tbl \
 	se-se.ctb \
 	se-se.dis \
-	Se-Se-g1.utb \
 	si-in-g1.utb \
 	sin.cti \
 	sin.utb \
-	sk-chardefs.cti \
 	sk-g1.ctb \
 	sk-sk-g1.utb \
 	sk-sk.utb \
-	sk.tbl \
-	sk-translation.cti \
 	sl-si-comp8.ctb \
 	sl-si-g1.utb \
 	sl.tbl \
@@ -1758,7 +1769,15 @@ table_files = \
 	sr.tbl \
 	sv-1989.ctb \
 	sv-1996.ctb \
-	sv.tbl \
+	sv-g0.utb \
+	sv-g1.ctb \
+	sv-g2.ctb \
+	sw-ke-g1-2.ctb \
+	sw-ke-g1-3.ctb \
+	sw-ke-g1-4.ctb \
+	sw-ke-g1-5.ctb \
+	sw-ke-g1.utb \
+	sw-ke-g2.ctb \
 	ta.ctb \
 	tamil.cti \
 	ta-ta-g1.ctb \
@@ -1767,6 +1786,8 @@ table_files = \
 	telugu.cti \
 	te.tbl \
 	text_nabcc.dis \
+	th-g0.utb \
+	th-comp8-backward.utb \
 	tr.ctb \
 	tr-g1.ctb \
 	tr-g2.ctb \
@@ -1790,7 +1811,7 @@ table_files = \
 	uz-g1.utb \
 	ve-za-g1.utb \
 	ve-za-g2.ctb \
-	vi.ctb \
+	vi-cb8.utb \
 	vi-charsdef.uti \
 	vi-lettersdef.uti \
 	vi-puncsdef.uti \
@@ -1804,15 +1825,17 @@ table_files = \
 	xh-za-g2.ctb \
 	zh-chn.ctb \
 	zh_CHN.tbl \
+	zhcn-cbs.ctb \
 	zhcn-g1.ctb \
 	zhcn-g2.ctb \
 	zh-hk.ctb \
 	zh_HK.tbl \
 	zh-tw.ctb \
-	zh_TW.tbl \
 	zu-za-g1.utb \
 	zu-za-g2.ctb
 
+comma = ,
+fuzzing_yml = $(top_srcdir)/.github/workflows/fuzzing.yml
 tablesdir = $(datadir)/liblouis/tables
 tables_DATA = $(table_files)
 EXTRA_DIST = $(table_files)
@@ -1918,7 +1941,7 @@ distdir-am: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(DATA)
+all-am: Makefile $(DATA) all-local
 installdirs:
 	for dir in "$(DESTDIR)$(tablesdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
@@ -2025,21 +2048,26 @@ uninstall-am: uninstall-tablesDATA
 
 .MAKE: install-am install-strip
 
-.PHONY: all all-am check check-am clean clean-generic clean-libtool \
-	cscopelist-am ctags-am distclean distclean-generic \
-	distclean-libtool distdir dvi dvi-am format-sources-am \
-	format-sources-local html html-am info info-am install \
-	install-am install-data install-data-am install-dvi \
-	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-info install-info-am install-man \
-	install-pdf install-pdf-am install-ps install-ps-am \
-	install-strip install-tablesDATA installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-generic mostlyclean-libtool pdf pdf-am \
-	ps ps-am tags-am uninstall uninstall-am uninstall-tablesDATA
+.PHONY: all all-am all-local check check-am clean clean-generic \
+	clean-libtool cscopelist-am ctags-am distclean \
+	distclean-generic distclean-libtool distdir dvi dvi-am \
+	format-sources-am format-sources-local html html-am info \
+	info-am install install-am install-data install-data-am \
+	install-dvi install-dvi-am install-exec install-exec-am \
+	install-html install-html-am install-info install-info-am \
+	install-man install-pdf install-pdf-am install-ps \
+	install-ps-am install-strip install-tablesDATA installcheck \
+	installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-generic \
+	mostlyclean-libtool pdf pdf-am ps ps-am tags-am uninstall \
+	uninstall-am uninstall-tablesDATA
 
 .PRECIOUS: Makefile
 
+$(fuzzing_yml): $(srcdir)/Makefile.am
+	[ ! -w $(fuzzing_yml) ] || sed -i -e "s/table: .*/table: [ $(patsubst %,%$(comma),$(filter %.utb %.ctb,$(table_files))) ]/" $(fuzzing_yml)
+
+all-local: $(fuzzing_yml)
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

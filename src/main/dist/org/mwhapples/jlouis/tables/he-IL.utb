@@ -38,10 +38,8 @@
 # assistance of BAUM Engineering.
 
 #-license: LGPLv2.1
-#-author-name: BAUM Engineering
-#-author-email: liblouis@baum.ro
-#-author-name: Erez Kugler
-#-author-email: erez@tsr-gaash.com
+#-author: BAUM Engineering <liblouis@baum.ro>
+#-author: Erez Kugler <erez@tsr-gaash.com>
 
 # The 4 most used languages in Israel are Hebrew, Arabic, Russian and
 # English. This table supports 3 of them: Hebrew, Arabic and
@@ -52,8 +50,8 @@
 # the result of their decision.
 
 # Refer to World Braille Usage (3rd edition), page 74
-# <http://liblouis.org/braille-specs/world-braille-usage-third-edition.pdf>
-# and <http://liblouis.org/braille-specs/hebrew>.
+# <http://liblouis.io/braille-specs/world-braille-usage-third-edition.pdf>
+# and <http://liblouis.io/braille-specs/hebrew>.
 
 # Braille indicators
 numsign 3456  number sign, just a dots operand
