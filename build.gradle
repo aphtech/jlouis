@@ -115,13 +115,7 @@ javadoc {
 }
 
 repositories {
-    maven
-            {
-                mavenCentral()
-//mavenLocal()
-                name = 'aphtech-mrepo-psh'
-                url = 'https://nexus.aphtech.org/repository/aphtech-mrepo'
-            }
+    mavenCentral()
 }
 
 
