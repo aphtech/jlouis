@@ -24,6 +24,10 @@ compileJava {
     options.release = 8
 }
 
+test {
+    useTestNG()
+}
+
 publishing {
     publications
             {
