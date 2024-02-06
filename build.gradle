@@ -26,6 +26,7 @@ compileJava {
 
 test {
     useTestNG()
+    systemProperty("jlouis.test.data.path", layout.projectDirectory.dir("src/main/dist/org/mwhapples/jlouis/tables").asFile.absolutePath)
 }
 
 publishing {

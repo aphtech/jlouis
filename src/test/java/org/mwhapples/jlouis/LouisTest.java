@@ -46,6 +46,10 @@ public class LouisTest {
 	@BeforeClass
 	public void setupTranslator() {
 		translator = new Louis();
+		String testDataPath = System.getProperty("jlouis.test.data.path", null);
+		if (testDataPath != null) {
+			translator.setDataPath(testDataPath);
+		}
 	}
 
 	@AfterClass
