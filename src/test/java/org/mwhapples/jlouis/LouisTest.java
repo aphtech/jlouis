@@ -39,6 +39,9 @@ import static org.testng.Assert.assertEquals;
 import org.mwhapples.jlouis.Louis;
 import org.mwhapples.jlouis.testutils.TranslateData;
 import org.mwhapples.jlouis.testutils.TranslateTests;
+import org.mwhapples.jlouis.Louis.TypeForms;
+import java.util.Arrays;
+
 
 public class LouisTest {
 	Louis translator;
@@ -101,4 +104,66 @@ public class LouisTest {
 			 assertThat(result.getInputPos()).isEqualTo(expectedInpos);
 		}
 	}
+    
+    
+
+	@Test
+	public void translateStringBoldParan() throws Exception {
+		String expected = "\"<~7abc abc defg~'\"> defg";
+		String actual = null;
+        
+        // make the phrase bold
+		short[] typeForms = new short[19];
+        typeForms[0]=TypeForms.PLAIN_TEXT ;
+        Arrays.fill(typeForms, 1, 13, TypeForms.BOLD);
+        Arrays.fill(typeForms, 13, 19, TypeForms.PLAIN_TEXT );
+		actual = translator.translateString("en-ueb-g2.ctb", "(abc abc defg) defg",
+				typeForms, 0);
+		assertEquals(expected, actual);
+	}
+
+    	@Test
+	public void translateStringBoldBrackets() throws Exception {
+		String expected = ".<~7abc abc defg~'.> defg";
+		String actual = null;
+		short[] typeForms = new short[19];
+        typeForms[0]=TypeForms.PLAIN_TEXT ;
+        Arrays.fill(typeForms, 1, 13, TypeForms.BOLD);
+        Arrays.fill(typeForms, 13, 19, TypeForms.PLAIN_TEXT );
+		actual = translator.translateString("en-ueb-g2.ctb", "[abc abc defg] defg",
+				typeForms, 0);
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void translateStringBoldBraces() throws Exception {
+		String expected = "_<~7abc abc defg~'_> defg";
+		String actual = null;
+		short[] typeForms = new short[19];
+        typeForms[0]=TypeForms.PLAIN_TEXT ;
+        Arrays.fill(typeForms, 1, 13, TypeForms.BOLD);
+        Arrays.fill(typeForms, 13, 19, TypeForms.PLAIN_TEXT );
+		actual = translator.translateString("en-ueb-g2.ctb", "{abc abc defg} defg",
+				typeForms, 0);
+		assertEquals(expected, actual);
+	}
+
+    	@Test
+	public void translateStringBoldAngle() throws Exception {
+		String expected = "`<~7abc abc defg~'`> defg";
+		String actual = null;
+		short[] typeForms = new short[19];
+        typeForms[0]=TypeForms.PLAIN_TEXT ;
+        Arrays.fill(typeForms, 1, 13, TypeForms.BOLD);
+        Arrays.fill(typeForms, 13, 19, TypeForms.PLAIN_TEXT );
+
+		actual = translator.translateString("en-ueb-g2.ctb", "<abc abc defg> defg",
+				typeForms, 0);
+		assertEquals(expected, actual);
+	}
+    
+    
+    
+    
+    
 }
