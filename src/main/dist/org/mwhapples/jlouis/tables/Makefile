@@ -1073,7 +1073,7 @@ LIBFUZZER_NO_MAIN =
 LIBINTL = 
 LIBLOUIS_AGE = 0
 LIBLOUIS_CURRENT = 20
-LIBLOUIS_REVISION = 16
+LIBLOUIS_REVISION = 17
 LIBOBJS =  ${LIBOBJDIR}memcmp$U.o
 LIBS = 
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
@@ -1132,10 +1132,10 @@ OTOOL64 = :
 PACKAGE = liblouis
 PACKAGE_BUGREPORT = liblouis-liblouisxml@freelists.org
 PACKAGE_NAME = Liblouis
-PACKAGE_STRING = Liblouis 3.28.0
+PACKAGE_STRING = Liblouis 3.29.0
 PACKAGE_TARNAME = liblouis
 PACKAGE_URL = http://www.liblouis.io
-PACKAGE_VERSION = 3.28.0
+PACKAGE_VERSION = 3.29.0
 PATH_SEPARATOR = :
 PRAGMA_COLUMNS = 
 PRAGMA_SYSTEM_HEADER = #pragma GCC system_header
@@ -1334,7 +1334,7 @@ UNISTD_H_DEFINES_STRUCT_TIMESPEC = 0
 UNISTD_H_HAVE_SYS_RANDOM_H = 0
 UNISTD_H_HAVE_WINSOCK2_H = 0
 UNISTD_H_HAVE_WINSOCK2_H_AND_USE_SOCKETS = 0
-VERSION = 3.28.0
+VERSION = 3.29.0
 WCHAR_T_SUFFIX = 
 WIDECHAR_TYPE = unsigned short int
 WINDOWS_64_BIT_OFF_T = 0
@@ -1429,6 +1429,7 @@ table_files = \
 	be-in-g1.utb \
 	bel.utb \
 	bel-comp.utb \
+	bel-detailed.utb \
 	bengali.cti \
 	bg.dis \
 	bg.ctb \
@@ -1483,7 +1484,6 @@ table_files = \
 	da-dk-g28_1993.ctb \
 	da-dk-g28.ctb \
 	da-dk-g28l_1993.ctb \
-	da-dk-g2_1993.dic \
 	da-dk-g2.dic \
 	da-dk-octobraille_1993.dis \
 	da-dk-octobraille.dis \
@@ -1576,6 +1576,7 @@ table_files = \
 	grc-international-composed.uti \
 	grc-international-decomposed.uti \
 	grc-international-en.utb \
+	grc-international-es.utb \
 	gr-pl-comp8.uti \
 	gu-in-g1.utb \
 	gujarati.cti \
@@ -1661,6 +1662,7 @@ table_files = \
 	litdigits6DotsPlusDot6.uti \
 	litdigits6Dots.uti \
 	lg-ug-g1.utb \
+	lo-g1.utb \
 	loweredDigits6Dots.uti \
 	loweredDigits8Dots.uti \
 	latinLowercase.uti \
@@ -1801,6 +1803,7 @@ table_files = \
 	ukmaths_unicode_defs.cti \
 	uk.utb \
 	uk-comp.utb \
+	uk-detailed.utb \
 	unicode-braille.utb \
 	unicode.dis \
 	unicode-without-blank.dis \
