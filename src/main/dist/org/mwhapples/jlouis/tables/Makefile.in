@@ -1415,6 +1415,8 @@ top_srcdir = @top_srcdir@
 table_files = \
 	afr-za-g1.ctb \
 	afr-za-g2.ctb \
+	akk.utb \
+	akk-borger.utb \
 	ar-ar-comp8.utb \
 	ar-ar-g1-core.uti \
 	ar-ar-g1.utb \
@@ -1464,6 +1466,7 @@ table_files = \
 	cs-translation.cti \
 	cy-cy-g1.utb \
 	cy-cy-g2.ctb \
+	cuneiform-transliterated.utb \
 	cy.tbl \
 	da-dk-6miscChars_1993.cti \
 	da-dk-6miscChars.cti \
@@ -1576,6 +1579,7 @@ table_files = \
 	grc-international-composed.uti \
 	grc-international-decomposed.uti \
 	grc-international-en.utb \
+	grc-international-en-composed.utb \
 	grc-international-es.utb \
 	gr-pl-comp8.uti \
 	gu-in-g1.utb \
@@ -1583,6 +1587,7 @@ table_files = \
 	gurumuki.cti \
 	gu.tbl \
 	haw-us-g1.ctb \
+	hbo.utb \
 	he-IL.utb \
 	he-IL-comp8.utb \
 	hi-in-g1.utb \
@@ -1633,6 +1638,7 @@ table_files = \
 	it.tbl \
 	iu-ca-g1.ctb \
 	ja-kantenji.utb \
+	ja-kantenji-ucs2.utb \
 	ka.utb \
 	ka-in-g1.utb \
 	kannada.cti \
@@ -1703,7 +1709,6 @@ table_files = \
 	nl-NL-g0.utb \
 	nl-print.dis \
 	nl-unicode.dis \
-	nl.tbl \
 	no-no-8dot-fallback-6dot-g0.utb \
 	no-no-8dot.utb \
 	no-no-braillo-047-01.dis \
@@ -1766,9 +1771,11 @@ table_files = \
 	sot-za-g1.ctb \
 	sot-za-g2.ctb \
 	spaces.uti \
-	sr-chardefs.cti \
+	sr-common.cti \
 	sr-g1.ctb \
-	sr.tbl \
+	sr-Cyrl.ctb \
+	sr-cyrletters.cti \
+	sr-latletters.cti \
 	sv-1989.ctb \
 	sv-1996.ctb \
 	sv-g0.utb \
@@ -1780,6 +1787,7 @@ table_files = \
 	sw-ke-g1-5.ctb \
 	sw-ke-g1.utb \
 	sw-ke-g2.ctb \
+	syc.utb \
 	ta.ctb \
 	tamil.cti \
 	ta-ta-g1.ctb \
@@ -1789,6 +1797,7 @@ table_files = \
 	te.tbl \
 	text_nabcc.dis \
 	th-g0.utb \
+	th-g1.utb \
 	th-comp8-backward.utb \
 	tr.ctb \
 	tr-g1.ctb \
@@ -1798,6 +1807,7 @@ table_files = \
 	tsn-za-g1.ctb \
 	tsn-za-g2.ctb \
 	tt.utb \
+	uga.utb \
 	ukchardefs.cti \
 	ukmaths_single_cell_defs.cti \
 	ukmaths_unicode_defs.cti \
@@ -1826,23 +1836,31 @@ table_files = \
 	wordcx.dis \
 	xh-za-g1.utb \
 	xh-za-g2.ctb \
+	yi.utb \
 	zh-chn.ctb \
 	zh_CHN.tbl \
 	zhcn-cbs.ctb \
 	zhcn-g1.ctb \
 	zhcn-g2.ctb \
 	zh-hk.ctb \
-	zh_HK.tbl \
 	zh-tw.ctb \
 	zu-za-g1.utb \
 	zu-za-g2.ctb
 
 comma = ,
 fuzzing_yml = $(top_srcdir)/.github/workflows/fuzzing.yml
+
+# tables that use macros need to be expanded
+BUILT_SOURCES = nl-chardefs.uti nl-NL-g0.utb
+CLEANFILES = nl-chardefs.uti nl-NL-g0.utb
 tablesdir = $(datadir)/liblouis/tables
 tables_DATA = $(table_files)
-EXTRA_DIST = $(table_files)
-all: all-am
+EXTRA_DIST = $(table_files) \
+	nl-chardefs.uti.in \
+	nl-NL-g0.utb.in
+
+all: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
 $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
@@ -1943,13 +1961,15 @@ distdir-am: $(DISTFILES)
 	  fi; \
 	done
 check-am: all-am
-check: check-am
+check: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(DATA) all-local
 installdirs:
 	for dir in "$(DESTDIR)$(tablesdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
-install: install-am
+install: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) install-am
 install-exec: install-exec-am
 install-data: install-data-am
 uninstall: uninstall-am
@@ -1971,6 +1991,7 @@ install-strip:
 mostlyclean-generic:
 
 clean-generic:
+	-test -z "$(CLEANFILES)" || rm -f $(CLEANFILES)
 
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
@@ -1979,6 +2000,7 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
+	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 clean: clean-am
 
 clean-am: clean-generic clean-libtool mostlyclean-am
@@ -2049,7 +2071,7 @@ ps-am:
 
 uninstall-am: uninstall-tablesDATA
 
-.MAKE: install-am install-strip
+.MAKE: all check install install-am install-strip
 
 .PHONY: all all-am all-local check check-am clean clean-generic \
 	clean-libtool cscopelist-am ctags-am distclean \
@@ -2071,6 +2093,8 @@ $(fuzzing_yml): $(srcdir)/Makefile.am
 	[ ! -w $(fuzzing_yml) ] || sed -i -e "s/table: .*/table: [ $(patsubst %,%$(comma),$(filter %.utb %.ctb,$(table_files))) ]/" $(fuzzing_yml)
 
 all-local: $(fuzzing_yml)
+nl-chardefs.uti nl-NL-g0.utb: % : %.in Makefile
+	m4 -G $< > $@
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
