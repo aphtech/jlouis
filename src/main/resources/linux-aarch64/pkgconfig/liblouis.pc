@@ -1,4 +1,4 @@
-prefix=/home/kperry/liblouis/builds/linux-arm64
+prefix=/home/kperry/liblouis/builds/linux-aarch64
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
