@@ -37,7 +37,7 @@ import com.sun.jna.Platform;
 import com.sun.jna.Pointer;
 import com.sun.jna.ptr.IntByReference;
 
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 
 /**
  * <p>The main class for accessing the LibLouis API.</p>

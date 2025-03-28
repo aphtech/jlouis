@@ -18,7 +18,7 @@
  */
 package org.mwhapples.jlouis;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 import java.util.Arrays;
 /*
  * Copyright (c) 2010-2011 Michael whapples

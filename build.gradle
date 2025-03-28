@@ -126,6 +126,7 @@ repositories {
 
 dependencies {
     //Use maven version ranges as ant-like ranges are incompatible with everything else
+    compileOnly "jakarta.annotation:jakarta.annotation-api:3.0.0"
     implementation group: 'net.java.dev.jna', name: 'jna', version: '5.14.0'
     implementation group: 'com.google.guava', name: 'guava', version: '[33.0.0-jre,)'
     testImplementation group: 'javax.xml.bind', name: 'jaxb-api', version: '[2.3.1,)'

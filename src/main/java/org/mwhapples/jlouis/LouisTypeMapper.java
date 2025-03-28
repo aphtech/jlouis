@@ -8,8 +8,8 @@ import com.sun.jna.StringArray;
 import com.sun.jna.ToNativeContext;
 import com.sun.jna.ToNativeConverter;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 
 public class LouisTypeMapper extends DefaultTypeMapper {
 
