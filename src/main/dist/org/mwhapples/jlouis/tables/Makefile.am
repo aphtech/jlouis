@@ -3,8 +3,10 @@
 table_files = \
 	afr-za-g1.ctb \
 	afr-za-g2.ctb \
-	akk.utb \
 	akk-borger.utb \
+	akk.utb \
+	ancient-languages-borger.utb \
+	ancient-languages-us.utb \
 	ar-ar-comp8.utb \
 	ar-ar-g1-core.uti \
 	ar-ar-g1.utb \
@@ -17,12 +19,12 @@ table_files = \
 	aw-in-g1.utb \
 	ba.utb \
 	be-in-g1.utb \
-	bel.utb \
 	bel-comp.utb \
 	bel-detailed.utb \
+	bel.utb \
 	bengali.cti \
-	bg.dis \
 	bg.ctb \
+	bg.dis \
 	bg.tbl \
 	bg.utb \
 	bh.ctb \
@@ -45,16 +47,19 @@ table_files = \
 	compress.cti \
 	controlchars.cti \
 	cop-eg-comp8.utb \
+	cop.utb \
 	corrections.cti \
 	countries.cti \
+	critical-apparatus.uti \
 	cs-chardefs.cti \
 	cs-comp8.utb \
 	cs-g1.ctb \
 	cs.tbl \
 	cs-translation.cti \
+	cuneiform-transliterated-compact.utb \
+	cuneiform-transliterated.utb \
 	cy-cy-g1.utb \
 	cy-cy-g2.ctb \
-	cuneiform-transliterated.utb \
 	cy.tbl \
 	da-dk-6miscChars_1993.cti \
 	da-dk-6miscChars.cti \
@@ -89,8 +94,8 @@ table_files = \
 	de-eurobrl6.dis \
 	de-eurobrl6u.dis \
 	de-g0-core.uti \
-	de-g0.utb \
 	de-g0-detailed.utb \
+	de-g0.utb \
 	de-g1-core.cti \
 	de-g1-core-patterns.dic \
 	de-g1.ctb \
@@ -110,6 +115,8 @@ table_files = \
 	en_CA.tbl \
 	en-chardefs.cti \
 	en-chess.ctb \
+	en-g3.ctb \
+	en-g3-patterns.dic \
 	en-gb-comp8.ctb \
 	en-gb-g1.utb \
 	en-GB-g2.ctb \
@@ -143,6 +150,7 @@ table_files = \
 	es-old.dis \
 	es.tbl \
 	et.ctb \
+	et-6dot.utb \
 	et-g0.utb \
 	ethio-g1.ctb \
 	et.tbl \
@@ -150,8 +158,8 @@ table_files = \
 	fa-ir-comp8.ctb \
 	fa-ir-g1.utb \
 	fi-fi-8dot.ctb \
-	fi.utb \
 	fil-g2.ctb \
+	fi.utb \
 	fr-bfu-comp68.cti \
 	fr-bfu-comp6.utb \
 	fr-bfu-comp8.utb \
@@ -166,8 +174,8 @@ table_files = \
 	grc-international-common.uti \
 	grc-international-composed.uti \
 	grc-international-decomposed.uti \
-	grc-international-en.utb \
 	grc-international-en-composed.utb \
+	grc-international-en.utb \
 	grc-international-es.utb \
 	gr-pl-comp8.uti \
 	gu-in-g1.utb \
@@ -175,9 +183,17 @@ table_files = \
 	gurumuki.cti \
 	gu.tbl \
 	haw-us-g1.ctb \
+	hbo-cantillated-rules.uti \
+	hbo-cantillated.utb \
+	hbo-common-rules.uti \
+	hbo-ihbc-rules.uti \
+	hbo-slim-rules.uti \
+	hbo-slim.utb \
 	hbo.utb \
-	he-IL.utb \
+	he-common-consonants.uti \
+	he-common-vowels-ihbc.uti \
 	he-IL-comp8.utb \
+	he-IL.utb \
 	hi-in-g1.utb \
 	hi.tbl \
 	hr-chardefs.cti \
@@ -223,13 +239,13 @@ table_files = \
 	is.tbl \
 	it-it-comp6.utb \
 	it-it-comp8.utb \
-	it.tbl \
 	iu-ca-g1.ctb \
-	ja-kantenji.utb \
 	ja-kantenji-ucs2.utb \
-	ka.utb \
+	ja-kantenji.utb \
+	ja-rokutenkanji.utb \
 	ka-in-g1.utb \
 	kannada.cti \
+	ka.utb \
 	kha.tbl \
 	kh-in-g1.utb \
 	kk.utb \
@@ -252,24 +268,24 @@ table_files = \
 	ks-in-g1.utb \
 	latinLetterDef6Dots.uti \
 	latinLetterDef8Dots.uti \
+	latinLowercase.uti \
 	latinUppercaseComp6.uti \
+	lg-ug-g1.utb \
 	litdigits6DotsPlusDot6.uti \
 	litdigits6Dots.uti \
-	lg-ug-g1.utb \
 	lo-g1.utb \
 	loweredDigits6Dots.uti \
 	loweredDigits8Dots.uti \
-	latinLowercase.uti \
-	lt-6dot.tbl \
 	lt-6dot.utb \
+	lt-8dot.utb \
 	lt.ctb \
-	lt.tbl \
 	Lv-Lv-g1.utb \
 	lv.tbl \
 	malayalam.cti \
 	mao-nz-g1.ctb \
 	marburg_single_cell_defs.cti \
 	marburg_unicode_defs.cti \
+	mk-g1.utb \
 	ml-in-g1.utb \
 	ml.tbl \
 	mn-in-g1.utb \
@@ -302,6 +318,7 @@ table_files = \
 	no-no-braillo-047-01.dis \
 	no-no-chardefs6.uti \
 	no-no-comp8.ctb \
+	no-no-cyrillic6dot.uti \
 	no-no.dis \
 	no-no-g0.utb \
 	no-no-g1.ctb \
@@ -324,26 +341,28 @@ table_files = \
 	Pl-Pl-g1.utb \
 	pl.tbl \
 	printables.cti \
+	pt-comp6.utb \
 	pt-pt-comp8.ctb \
 	pt-pt-g1.utb \
 	pt-pt-g2.ctb \
 	pt.tbl \
 	pu-in-g1.utb \
+	quotation-marks.uti \
 	ro.ctb \
-	ro.tbl \
 	ro-g0.utb \
+	ro.tbl \
 	ru-brf.dis \
-	ru-compbrl.ctb \
-	ru.ctb \
+	ru-comp6.utb \
+	ru-comp8.utb \
 	ru-letters.dis \
 	ru-litbrl.ctb \
 	ru-litbrl-detailed.utb \
 	ru-ru-g1.ctb \
 	ru-unicode.dis \
 	rw-rw-g1.utb \
+	sah.utb \
 	sa-in-g1.utb \
 	sa.tbl \
-	sah.utb \
 	sd.tbl \
 	se-se.ctb \
 	se-se.dis \
@@ -360,9 +379,9 @@ table_files = \
 	sot-za-g2.ctb \
 	spaces.uti \
 	sr-common.cti \
-	sr-g1.ctb \
 	sr-Cyrl.ctb \
 	sr-cyrletters.cti \
+	sr-g1.ctb \
 	sr-latletters.cti \
 	sv-1989.ctb \
 	sv-1996.ctb \
@@ -384,9 +403,11 @@ table_files = \
 	telugu.cti \
 	te.tbl \
 	text_nabcc.dis \
+	th-comp8-backward.utb \
 	th-g0.utb \
 	th-g1.utb \
-	th-comp8-backward.utb \
+	th-g1.uti \
+	th-g2.ctb \
 	tr.ctb \
 	tr-g1.ctb \
 	tr-g2.ctb \
@@ -397,11 +418,11 @@ table_files = \
 	tt.utb \
 	uga.utb \
 	ukchardefs.cti \
+	uk-comp.utb \
+	uk-detailed.utb \
 	ukmaths_single_cell_defs.cti \
 	ukmaths_unicode_defs.cti \
 	uk.utb \
-	uk-comp.utb \
-	uk-detailed.utb \
 	unicode-braille.utb \
 	unicode.dis \
 	unicode-without-blank.dis \
@@ -438,7 +459,10 @@ table_files = \
 comma=,
 fuzzing_yml = $(top_srcdir)/.github/workflows/fuzzing.yml
 $(fuzzing_yml): $(srcdir)/Makefile.am
-	[ ! -w $(fuzzing_yml) ] || sed -i -e "s/table: .*/table: [ $(patsubst %,%$(comma),$(filter %.utb %.ctb,$(table_files))) ]/" $(fuzzing_yml)
+	[ ! -w $(fuzzing_yml) ] || \
+	perl -0777 -i -pe \
+	     's~(table:).*?(steps:)~\1'"$$(printf '\n          - %s' $(filter %.utb %.ctb,$(table_files)))"'\n    \2~is' \
+	     $@
 
 all-local: $(fuzzing_yml)
 
