@@ -123,6 +123,8 @@ table_files = \
 	en_GB.tbl \
 	en-in-g1.ctb \
 	en-nabcc.utb \
+	en-nz-g1.utb \
+	en-nz-g2.ctb \
 	en-ueb-chardefs.uti \
 	en-ueb-g1.ctb \
 	en-ueb-g2.ctb \
@@ -146,14 +148,13 @@ table_files = \
 	Es-Es-G0.utb \
 	es-g1.ctb \
 	es-g2.ctb \
+	es-no.utb \
 	es-new.dis \
 	es-old.dis \
 	es.tbl \
-	et.ctb \
 	et-6dot.utb \
 	et-g0.utb \
 	ethio-g1.ctb \
-	et.tbl \
 	eurodefs.cti \
 	fa-ir-comp8.ctb \
 	fa-ir-g1.utb \
@@ -161,6 +162,7 @@ table_files = \
 	fil-g2.ctb \
 	fi.utb \
 	fr-bfu-comp68.cti \
+	fr-bfu-comp6-puncs-math.uti \
 	fr-bfu-comp6.utb \
 	fr-bfu-comp8.utb \
 	fr-bfu-g2.ctb \
@@ -203,6 +205,8 @@ table_files = \
 	hr-g1.ctb \
 	hr-g1.tbl \
 	hr-translation.cti \
+	ht-g1.utb \
+	ht-frenchcompatibility.uti \
 	hu-backtranslate-correction.dis \
 	hu-backtranslate-word-corrections.cti \
 	hu-chardefs.cti \
@@ -212,7 +216,6 @@ table_files = \
 	hu-hu-g1.ctb \
 	hu-hu-g2.ctb \
 	hu-hu-g2_exceptions.cti \
-	hu.tbl \
 	hy.ctb \
 	hyph_cs_CZ.dic \
 	hyph_da_DK.dic \
@@ -334,6 +337,8 @@ table_files = \
 	or-in-g1.utb \
 	oriya.cti \
 	or.tbl \
+	ovd-6g0.utb \
+	ovd-8g0.utb \
 	pa.tbl \
 	pi.ctb \
 	pi.tbl \
@@ -357,6 +362,7 @@ table_files = \
 	ru-letters.dis \
 	ru-litbrl.ctb \
 	ru-litbrl-detailed.utb \
+	ru-math.uti \
 	ru-ru-g1.ctb \
 	ru-unicode.dis \
 	rw-rw-g1.utb \
@@ -375,6 +381,8 @@ table_files = \
 	sl-si-comp8.ctb \
 	sl-si-g1.utb \
 	sl.tbl \
+	smi-6g0.utb \
+	smi-8g0.utb \
 	sot-za-g1.ctb \
 	sot-za-g2.ctb \
 	spaces.uti \
@@ -388,6 +396,22 @@ table_files = \
 	sv-g0.utb \
 	sv-g1.ctb \
 	sv-g2.ctb \
+	sv-6common.uti \
+	sv-6g0d.utb \
+	sv-6g0p.utb \
+	sv-6g1.uti \
+	sv-6g1d.ctb \
+	sv-6g2.uti \
+	sv-6g2d.ctb \
+	sv-8g0d.utb \
+	sv-8g0n.utb \
+	sv-8g1.uti \
+	sv-8g1d.ctb \
+	sv-8g1n.ctb \
+	sv-8g2.uti \
+	sv-8g2d.ctb \
+	sv-8g2n.ctb \
+	sv-phon.uti \
 	sw-ke-g1-2.ctb \
 	sw-ke-g1-3.ctb \
 	sw-ke-g1-4.ctb \

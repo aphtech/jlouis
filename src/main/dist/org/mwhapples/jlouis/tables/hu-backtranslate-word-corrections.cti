@@ -1,6 +1,6 @@
 # liblouis: Hungarian Grade 1 table
 #
-#  Copyright (C) 2011-2023 Attila Hammer from IT Foundation for the Visually Impaired - Hungary. www.infoalap.hu
+#  Copyright (C) 2011-2026 Attila Hammer from IT Foundation for the Visually Impaired - Hungary. www.infoalap.hu
 #
 #  This file is part of liblouis.
 #
@@ -315,6 +315,33 @@ nofor correct "endviccse" "endvicscse"	For example szendvicscsemege word
 nofor correct "ENDVICCSE" "ENDVICSCSE"	For example SZENDVICSCSEMEGE word
 nofor correct "uhanccsa" *	For example suhanccsapat word
 nofor correct "UHANCCSA" *	For example SUHANCCSAPAT word
+nofor correct "úccsav" "úcscsav"	For example csúcscsavar word
+nofor correct "ÚCCSAV" "ÚCSCSAV"	For example CSÚCSCSAVAR word
+nofor correct "áccsík" "ácscsík"	For example rácscsík word
+nofor correct "ÁCCSÍK" "ÁCSCSÍK"	For example RÁCSCSÍK word
+nofor correct "abarccso" "abarcscso"	For example habarcscsomó word
+nofor correct "ABARCCSO" "ABARCSCSO"	For example HABARCSCSOMÓ word
+nofor correct "ümölccsar" "ümölcscsar"	For example gyümölcscsarnok word
+nofor correct "ÜMÖLCCSAR" "ÜMÖLCSCSAR"	For example GYÜMÖLCSCSARNOK word
+nofor correct "apuccsig" "apucscsig"	For example papucscsiga word
+nofor correct "APUCCSIG" "APUCSCSIG"	For example PAPUCSCSIGA word
+nofor correct "ullanccső" "ullancscső"	For example kullancscső word
+nofor correct "ULLANCCSŐ" "ULLANCSCSŐ"	For example KULLANCSCSŐ word
+nofor correct "ullanccsö" "ullancscsö"	For example kullancscsövek word
+nofor correct "ULLANCCSÖ" "ULLANCSCSÖ"	For example KULLANCSCSÖVEK word
+nofor correct "ulccsalá" "ulcscsalá"	For example kulcscsaládot word
+nofor correct "ULCCSALÁ" "ULCSCSALÁ"	For example KULCSCSALÁDOT word
+nofor correct "úccsalá" "úcscsalá"	For example csúcscsalád word
+nofor correct "ÚCCSALÁ" "ÚCSCSALÁ"	For example CSÚCSCSALÁD word
+nofor correct "ográccsat" "ográcscsat"	For example bográcscsata word
+nofor correct "OGRÁCCSAT" "OGRÁCSCSAT"	For example BOGRÁCSCSATA word
+nofor correct "kinccser" "kincscser"	For example kincscsere, műkincscsere word
+nofor correct "Kinccser" "Kincscser"	For example Kincscsere word
+nofor correct "KINCCSER" "KINCSCSER"	For example KINCSCSERE, MŰKINCSCSERE word
+nofor correct "akanccsi" "akancscsi"	For example bakancscsizma word
+nofor correct "AKANCCSI" "AKANCSCSI"	For example BAKANCSCSIZMA word
+nofor correct "aviccsí" "avicscsí"  For example kavicscsík word
+nofor correct "AVICCSÍ" "AVICSCSÍ"  For example KAVICSCSÍK word
 
 #ggy, gygy backtranslation rule corrections
 nofor correct "szalaggyak" *
@@ -632,6 +659,16 @@ nofor correct "írsággy" *	For example bírsággyártók word
 nofor correct "ÍRSÁGGY" *	For example BÍRSÁGGYÁRTÓK word
 nofor correct "ólyaggy" *	For example hólyaggyakorlat word
 nofor correct "ÓLYAGGY" *	For example HÓLYAGGYAKORLAT word
+nofor correct "leggyőz" *	For example leggyőztesebb word
+nofor correct "Leggyőz" *	For example Leggyőztesebb word
+nofor correct "LEGGYŐZ" *	For example LEGGYŐZTESEBB word
+nofor correct "öveggyö" *	For example szöveggyönyör word
+nofor correct "ÖVEGGYÖ" *	For example SZÖVEGGYÖNYÖR word
+nofor correct "vággyak" "vágygyak"	For example étvágygyakorlat word
+nofor correct "Vággyak" "Vágygyak"	For example Vágygyakorlat word
+nofor correct "VÁGGYAK" "VÁGYGYAK"	For example ÉTVÁGYGYAKORLAT word
+nofor correct "írességgy" *
+nofor correct "ÍRESSÉGGY" *
 
 #nyny, nyny letters related backtranslate corrections
 nofor correct "rannyak" "ranynyak"	For example aranynyakláncának word
@@ -1058,6 +1095,20 @@ nofor correct "LAPÍTVÁNNYÁR" "LAPÍTVÁNYNYÁR"	For example ALAPÍTVÁNYNYÁR
 nofor correct "látvánnye" "látványnye"	For example látványnyelve word
 nofor correct "Látvánnye" "Látványnye"	For example Látványnyelve word
 nofor correct "LÁTVÁNNYE" "LÁTVÁNYNYE"	For example LÁTVÁNYNYELVE word
+nofor correct "ormánnyusz" "ormánynyusz"	For example kormánynyuszi word
+nofor correct "ORMÁNNYUSZ" "ORMÁNYNYUSZ"	For example KORMÁNYNYUSZI word
+nofor correct "gúnnye" "gúnynye"	For example gúnynyelven word
+nofor correct "Gúnnye" "Gúnynye"	For example Gúnynyelven word
+nofor correct "GÚNNYE" "GÚNYNYE"	For example GÚNYNYELVEN word
+nofor correct "kénnyom" *	For example kénnyom word
+nofor correct "Kénnyom" *	For example Kénnyom word
+nofor correct "KÉNNYOM" *	For example KÉNNYOM word
+nofor correct "ampánnyu" "ampánynyu"	For example kampánynyuszimotorok word
+nofor correct "AMPÁNNYU" "AMPÁNYNYU"	For example KAMPÁNYNYUSZIMOTOROK word
+nofor correct "igonnyo" "igonynyo"	For example szigonynyomokat word
+nofor correct "IGONNYO" "IGONYNYO"	For example SZIGONYNYOMOKAT word
+nofor correct "endezvénnyi" "endezvénynyi"	For example rendezvénynyitó word
+nofor correct "ENDEZVÉNNYI" "ENDEZVÉNYNYI"	For example RENDEZVÉNYNYITÓ word
 
 #lyly letters related backtranslate corrections
 nofor correct "amelylyel" *
@@ -1066,6 +1117,8 @@ nofor correct "EGÉLLYU" "EGÉLYLYU"	For example SZEGÉLYLYUK word
 nofor correct "méllyuk" "mélylyuk"	For example mélylyuk-fúrás word
 nofor correct "Méllyuk" "Mélylyuk"	For example Mélylyuk-fúrás word
 nofor correct "MÉLLYUK" "MÉLYLYUK"	For example MÉLYLYUK-fúrás word
+nofor correct "arkállyu" "arkálylyu"	For example harkálylyukak word
+nofor correct "ARKÁLLYU" "ARKÁLYLYU"	For example HARKÁLYLYUK word
 
 #szsz backtranstrated words related exceptions
 nofor correct "bortusszab" "bortuszszab"	For example abortuszszabadság, abortuszszabály words backtranslation
@@ -2780,7 +2833,7 @@ nofor correct "ERASSZIG" "ERASZSZIG"	For example TERASZSZIGETELÉS word
 nofor correct "úcsdísszet" "úcsdíszszet"	For example csúcsdíszszettet word
 nofor correct "ÚCSDÍSSZET" "ÚCSDÍSZSZET"	For example CSÚCSDÍSZSZETTET word
 nofor correct "aritásszen" "aritászszen"	For example karitászszentmise word
-nofor correct "ARITÁSSZE" "ARITÁSZSZE"	For example KARITÁSSZENTMISE word
+nofor correct "ARITÁSSZEN" "ARITÁSZSZEN"	For example KARITÁSSZENTMISE word
 nofor correct "lusszala" "luszszala"	For example pluszszalag word
 nofor correct "LUSSZALA" "LUSZSZALA"	For example PLUSZSZALAG word
 nofor correct "akasszig" "akaszszig"	For example szakaszszigetelés word
@@ -3851,6 +3904,325 @@ nofor correct "OKSSZEKV" "OKSZSZEKV"	For example BOKSZSZEKVENCIÁK word
 nofor correct "hússzab" *	For example hússzabály word
 nofor correct "Hússzab" *	For example Hússzabály word
 nofor correct "HÚSSZAB" *	For example HÚSSZABÁLY word
+nofor correct "gyásszin" "gyászszin"	For example gyászszindróma word
+nofor correct "Gyásszin" "Gyászszin"	For example Gyászszindróma word
+nofor correct "GYÁSSZIN" "GYÁSZSZIN"	For example GYÁSZSZINDRÓMA word
+nofor correct "ifogássz" *	For example kifogásszerű word
+nofor correct "IFOGÁSSZ" *	For example KIFOGÁSSZERŰ word
+nofor correct "üklopssze" "üklopszsze"	For example küklopszszerű word
+nofor correct "ÜKLOPSSZE" "ÜKLOPSZSZE"	For example KÜKLOPSZSZERŰ word
+nofor correct "lkusszolg" "lkuszszolg"	For example alkuszszolgáltató word
+nofor correct "LKUSSZOLG" "LKUSZSZOLG"	For example ALKUSZSZOLGÁLTATÓ word
+nofor correct "álasszk" "álaszszk"	For example válaszszkript word
+nofor correct "ÁLASSZK" "ÁLASZSZK"	For example VÁLASZSZKRIPT word
+nofor correct "iznissza" "izniszsza"	For example bizniszszabályozás word
+nofor correct "IZNISSZA" "IZNISZSZA"	For example BIZNISZSZABÁLYOZÁS word
+nofor correct "ambusszala" "ambuszszala"	For example bambuszszalag word
+nofor correct "AMBUSSZALA" "AMBUSZSZALA"	For example BAMBUSZSZALAG word
+nofor correct "campusszer" *	For example campusszerűen word
+nofor correct "Campusszer" *	For example Campusszerűen word
+nofor correct "CAMPUSSZER" *	For example CAMPUSSZERŰEN word
+nofor correct "késszerz" *	For example késszerzés word
+nofor correct "Késszerz" *	For example Késszerzés word
+nofor correct "KÉSSZERZ" *	For example KÉSSZERZÉS word
+nofor correct "násszül" "nászszül"	For example nászszülő word
+nofor correct "Násszül" "Nászszül"	For example Nászszülővel word
+nofor correct "NÁSSZÜL" "NÁSZSZÜL"	For example NÁSZSZÜLŐ word
+nofor correct "oksszcé" "okszszcé"	For example bokszszcéna word
+nofor correct "OKSSZCÉ" "OKSZSZCÉ"	For example BOKSZSZCÉNA word
+nofor correct "jelzéssz" *	For example jelzésszó word
+nofor correct "Jelzéssz" *	For example Jelzésszó word
+nofor correct "JELZÉSSZ" *	For example JELZÉSSZÓ word
+nofor correct "ísszól" "íszszól"	For example díszszólam word
+nofor correct "ÍSSZÓL" "ÍSZSZÓL"	For example DÍSZSZÓLAM word
+nofor correct "erkésszo" "erkészszo"	For example cserkészszokás word
+nofor correct "ERKÉSSZO" "ERKÉSZSZO"	For example CSERKÉSZSZOKÁS word
+nofor correct "ónusszig" "ónuszszig"	For example bónuszsziget word
+nofor correct "ÓNUSSZIG" "ÓNUSZSZIG"	For example BÓNUSZSZIGET word
+nofor correct "itnesszi" "itneszszi"	For example fitneszsziget word
+nofor correct "ITNESSZI" "ITNESZSZI"	For example FITNESZSZIGET
+nofor correct "ornásszala" "ornászszala"	For example tornászszalag word
+nofor correct "ORNÁSSZALA" "ORNÁSZSZALA"	For example TORNÁSZSZALAG word
+nofor correct "sertéssza" *	For example sertésszakma word
+nofor correct "Sertéssza" *	For example Sertésszakma word
+nofor correct "SERTÉSSZA" *	For example SERTÉSSZAKMA word
+nofor correct "vadásszér" "vadászszér"	For example fejvadászszéria word
+nofor correct "Vadásszér" "Vadászszér"	For example Vadászszéria word
+nofor correct "VADÁSSZÉR" "VADÁSZSZÉR"	For example VADÁSZSZÉRIA word
+nofor correct "tátusszk" "tátuszszk"	For example státuszszkennelés word
+nofor correct "TÁTUSSZK" "TÁTUSZSZK"	For example STÁTUSZSZKENNELÉS word
+nofor correct "gyásszim" "gyászszim"	For example gyászszimfónia word
+nofor correct "Gyásszim" "Gyászszim"	For example Gyászszimfónia word
+nofor correct "GYÁSSZIM" "GYÁSZSZIM"	For example GYÁSZSZIMFÓNIA word
+nofor correct "ajusszab" "ajuszszab"	For example bajuszszabadság word
+nofor correct "AJUSSZAB" "AJUSZSZAB"	For exampe BAJUSZSZABADSÁG word
+nofor correct "elkésszo" "elkészszo"	For example lelkészszobát word
+nofor correct "ELKÉSSZO" "ELKÉSZSZO"	For example LELKÉSZSZOBÁT word
+nofor correct "gyásszaká" "gyászszaká"	For example gyászszakáll word
+nofor correct "Gyásszaká" "Gyászszaká"	For example Gyászszakáll word
+nofor correct "GYÁSSZAKÁ" "GYÁSZSZAKÁ"	For example GYÁSZSZAKÁLL word
+nofor correct "hússzü" *	For example hússzünetet word
+nofor correct "Hússzü" *	For example Hússzünetet word
+nofor correct "HÚSSZÜ" *	For example HÚSSZÜNETET word
+nofor correct "assziszten" *	For example pedálasszisztens word
+nofor correct "Assziszten" *	For example Asszisztens word
+nofor correct "ASSZISZTEN" *	For example ASSZISZTENS word
+nofor correct "pedálassz" *	For example pedálasszisztens word
+nofor correct "Pedálassz" *	For example Pedálasszisztens word
+nofor correct "PEDÁLASSZ" *	For example PEDÁLASSZISZTENS word
+nofor correct "occsalá" "ocscsalá"	For example bocscsalád word
+nofor correct "OCCSALÁ" "OCSCSALÁ"	For example BOCSCSALÁD word
+nofor correct "odrássztr" "odrászsztr"	For example fodrászsztrájk word
+nofor correct "ODRÁSSZTR" "ODRÁSZSZTR"	For example FODRÁSZSZTRÁJK word
+nofor correct "ányásszel" "ányászszel"	For example bányászszellem word
+nofor correct "ÁNYÁSSZEL" "ÁNYÁSZSZEL"	For example BÁNYÁSZSZELLEM word
+nofor correct "fasszag" "faszszag"
+nofor correct "Fasszag" "Faszszag"
+nofor correct "FASSZAG" "FASZSZAG"
+nofor correct "kókussze" "kókuszsze"	For example kókuszszedő word
+nofor correct "Kókussze" "Kókuszsze"	For example Kókuszszedő word
+nofor correct "KÓKUSSZE" "KÓKUSZSZE"	For example KÓKUSZSZEDŐ word
+nofor correct "ganccsö" "gancscsö"	For example agancscsökevény word
+nofor correct "GANCCSÖ" "GANCSCSÖ"	For example AGANCSCSÖKEVÉNY word
+nofor correct "léggyűjtő" *	For example léggyűjtő word
+nofor correct "Léggyűjtő" *	For example Léggyűjtő word
+nofor correct "LÉGGYŰJTŐ" *	For example LÉGGYŰJTŐ word
+nofor correct "ifilisszer" "ifiliszszer"	For example szifiliszszerű word
+nofor correct "IFILISSZER" "IFILISZSZER"	For example SZIFILISZSZERŰ word
+nofor correct "téréssz" *	For example kitérésszenzor word
+nofor correct "Téréssz" *	For example Térésszerű word
+nofor correct "TÉRÉSSZ" *	For example TÉRÉSSZERŰ word
+nofor correct "alásszand" "alászszand"	For example halászszandál word
+nofor correct "ALÁSSZAND" "ALÁSZSZAND"	For example HALÁSZSZANDÁL word
+nofor correct "ónusszáz" "ónuszszáz"	For example bónuszszázalék word
+nofor correct "ÓNUSSZÁZ" "ÓNUSZSZÁZ"	For example BÓNUSZSZÁZALÉK word
+nofor correct "tússzem" "túszszem"	For example túszszemtanú word
+nofor correct "Tússzem" "Túszszem"	For example Túszszemtanú word
+nofor correct "TÚSSZEM" "TÚSZSZEM"	For example TÚSZSZEMTANÚ word
+nofor correct "ransszarv" "ranszszarv"	For example transzszarvasbogár word
+nofor correct "RANSSZARV" "RANSZSZARV"	For example TRANSZSZARVASBOGÁR word
+nofor correct "űvésszc" "űvészszc"	For example művészszcéna word
+nofor correct "ŰVÉSSZC" "ŰVÉSZSZC"	For example MŰVÉSZSZCÉNA word
+nofor correct "erasszab" "eraszszab"	For example teraszszabály word
+nofor correct "ERASSZAB" "ERASZSZAB"	For example TERASZSZABÁLY word
+nofor correct "veréssz" *	For example szívverésszünet word
+nofor correct "Veréssz" *	For example Verésszünet word
+nofor correct "VERÉSSZ" *	For example SZÍVVERÉSSZÜNET word
+nofor correct "enisszi" "eniszszi"	For example teniszszintet word
+nofor correct "ENISSZI" "ENISZSZI"	For example TENISZSZINT word
+nofor correct "ipsszin" "ipszszin"	For example gipszszint word
+nofor correct "IPSSZIN" "IPSZSZIN"	For example GIPSZSZINT word
+nofor correct "otesszer" "oteszszer"	For example noteszszerű word
+nofor correct "OTESSZER" "OTESZSZER"	For example NOTESZSZERŰ word
+nofor correct "adathalásszű" "adathalászszű"	For example adathalászszűrő word
+nofor correct "Adathalásszű" "Adathalászszű"	For example Adathalászszűrő word
+nofor correct "ADATHALÁSSZŰ" "ADATHALÁSZSZŰ"	For example ADATHALÁSZSZŰRŐ word
+nofor correct "epatitisszű" "epatitiszszű"	For example hepatitiszszűrés word
+nofor correct "EPATITISSZŰ" "EPATITISZSZŰ"	For example HEPATITISZSZŰRÉS word
+nofor correct "ogadássz" *	For example fogadásszimulátor word
+nofor correct "OGADÁSSZ" *	For example FOGADÁSSZIMULÁTOR word
+nofor correct "elsőépítésszett" "elsőépítészszett"	For example belsőépítészszettel word
+nofor correct "ELSŐÉPÍTÉSSZETT" "ELSŐÉPÍTÉSZSZETT"	For example BELSŐÉPÍTÉSZSZETTEL word
+nofor correct "árcissze" "árciszsze"	For example nárciszszerű word
+nofor correct "ÁRCISSZE" "ÁRCISZSZE"	For example NÁRCISZSZERŰ word
+nofor correct "énissziv" "éniszsziv"
+nofor correct "ÉNISSZIV" "ÉNISZSZIV"
+nofor correct "inusszűr" "inuszszűr"	For example szinuszszűrő word
+nofor correct "INUSSZŰR" "INUSZSZŰR"	For example SZINUSZSZŰRŐ word
+nofor correct "isiásszi" "isiászszi"	For example isiászszindróma word
+nofor correct "Isiásszi" "Isiászszi"	For example Isiászszindróma word
+nofor correct "ISIÁSSZI" "ISIÁSZSZI"	For example ISIÁSZSZINDRÓMA word
+nofor correct "szövésszá" *	For example szövésszálak word
+nofor correct "Szövésszá" *	For example szövésszálak word
+nofor correct "SZÖVÉSSZÁ" *	For example SZÖVÉSSZÁLAK word
+nofor correct "estésszó" *	For example festésszórás word
+nofor correct "Estésszó" *	For example Festésszórás word
+nofor correct "ESTÉSSZÓ" *	For example FESTÉSSZÓRÁS word
+nofor correct "áosszi" "áoszszi"	For example káoszsziget word
+nofor correct "ÁOSSZI" "ÁOSZSZI"	For example KÁOSZSZIGET word
+nofor correct "szósszól" "szószszól"	For example szószszólója word
+nofor correct "Szósszól" "Szószszól"	For example Szószszólója word
+nofor correct "SZÓSSZÓL" "SZÓSZSZÓL"	For example SZÓSZSZÓLÓJA word
+nofor correct "résszelet" "részszelet"	For example részszelet word
+nofor correct "Résszelet" "Részszelet"	For example Részszelet word
+nofor correct "RÉSSZELET" "RÉSZSZELET"	For example RÉSZSZELET word
+nofor correct "ambusszi" "ambuszszi"	For example bambuszszimbólum word
+nofor correct "AMBUSSZI" "AMBUSZSZI"	For example BAMBUSZSZIMBÓLUM word
+nofor correct "ütéssz" *	For example napsütésszegény, ütésszám, ütésszerű words
+nofor correct "ütéssz" *	For example Ütésszám, Ütésszegény words
+nofor correct "ÜTÉSSZ" *	For example ÜTÉSSZÁM, ÜTÉSSZEGÉNY words
+nofor correct "arhesszen" "arheszszen"	For example barheszszendvics word
+nofor correct "ARHESSZEN" "ARHESZSZEN"	For example BARHESZSZENDVICS word
+nofor correct "ransszak" "ranszszak"	For example transzszakértő word
+nofor correct "RANSSZAK" "RANSZSZAK"	For example TRANSZSZAKÉRTŐ word
+nofor correct "orgásszaká" "orgászszaká"	For example horgászszakág word
+nofor correct "ORGÁSSZAKÁ" "ORGÁSZSZAKÁ"	For example HORGÁSZSZAKÁG word
+nofor correct "fogásszerű" *	For example fogásszerű word
+nofor correct "Fogásszerű" *	For example Fogásszerű word
+nofor correct "FOGÁSSZERŰ" *	For example FOGÁSSZERŰ word
+nofor correct "lösszelv" "löszszelv"	For example löszszelvény word
+nofor correct "Lösszelv" "Löszszelv"	For example Löszszelvény word
+nofor correct "LÖSSZELV" "LÖSZSZELV"	For example LÖSZSZELVÉNY word
+nofor correct "ertésszeg" *	For example sertésszegmens word
+nofor correct "ERTÉSSZEG" *	For example SERTÉSSZEGMENS word
+nofor word ászszakma 4-156-156-1-13-134-1	For example ászszakma word back-translation
+nofor correct "áosszolg" "áoszszolg"	For example káoszszolgával word
+nofor correct "ÁOSSZOLG" "ÁOSZSZOLG"	For example KÁOSZSZOLGÁVAL word
+nofor correct "obrásszö" "obrászszö"	For example szobrászszörnyek word
+nofor correct "OBRÁSSZÖ" "OBRÁSZSZÖ"	For example SZOBRÁSZSZÖRNYEK word
+nofor correct "égésszt" "égészszt"	For example régészsztár word
+nofor correct "ÉGÉSSZT" "ÉGÉSZSZT"	For example RÉGÉSZSZTÁR word
+nofor correct "oklásszál" "oklászszál"	For example toklászszálak word
+nofor correct "OKLÁSSZÁL" "OKLÁSZSZÁL"	For example TOKLÁSZSZÁLAK word
+nofor correct "lusszekc" "luszszekc"	For example pluszszekcióban word
+nofor correct "LUSSZEKC" "LUSZSZEKC"	For example PLUSZSZEKCIÓBAN word
+nofor correct "ölcsésszoc" "ölcsészszoc"	For example bölcsészszociológus word
+nofor correct "ÖLCSÉSSZOC" "ÖLCSÉSZSZOC"	For example BÖLCSÉSZSZOCIOLÓGUS word
+nofor word vészszükség 1236-16-156-156-12356-13-234-16-1245
+nofor correct "olbásszaf" "olbászszaf"	For example kolbászszaft word
+nofor correct "OLBÁSSZAF" "OLBÁSZSZAF"	For example KOLBÁSZSZAFT word
+nofor correct "lusszíj" "luszszíj"	For example pluszszíj word
+nofor correct "LUSSZÍJ" "LUSZSZÍJ"	For example PLUSZSZÍJ word
+nofor correct "alanssze" "alanszsze"	For example balanszszempontból word
+nofor correct "ALANSSZE" "ALANSZSZE"	For example BALANSZSZEMPONTBÓL word
+nofor correct "atyvassze" "atyvaszsze"	For example katyvaszszerű word
+nofor correct "ATYVASSZE" "ATYVASZSZE"	For example KATYVASZSZERŰ word
+nofor correct "elussze" *	For example pelusszemetes word
+nofor correct "ELUSSZE" *	For example PELUSSZEMETES word
+nofor correct "vadásszab" "vadászszab"	For example vadászszabályok word
+nofor correct "Vadásszab" "Vadászszab"	For example Vadászszabályok word
+nofor correct "VADÁSSZAB" "VADÁSZSZAB"	For example VADÁSZSZABÁLYOK word
+nofor correct "bussze" "buszsze"	For example buszszektor word
+nofor correct "Bussze" "Buszsze"	For example Buszszektor word
+nofor correct "BUSSZE" "BUSZSZE"	For example BUSZSZEKTOR word
+nofor correct "asztorálasszi" *	For example pasztorálasszisztens word
+nofor correct "ASZTORÁLASSZI" *	For example PASZTORÁLASSZISZTENS word
+nofor correct "aktusszí" "aktuszszí"	For example kaktuszszínű word
+nofor correct "AKTUSSZÍ" "AKTUSZSZÍ"	For example KAKTUSZSZÍNŰ word
+nofor correct "etésszó" *	For example vetésszója word
+nofor correct "ETÉSSZÓ" *	For example VETÉSSZÓJA word
+nofor correct "horgásszám" "horgászszám"	For example morgászszám word
+nofor correct "Horgásszám" "Horgászszám"	For example Horgászszám word
+nofor correct "HORGÁSSZÁM" "HORGÁSZSZÁM"	For example HORGÁSZSZÁM word
+nofor correct "umusszáz" "umuszszáz"	For example humuszszázalék word
+nofor correct "UMUSSZÁZ" "UMUSZSZÁZ"	For example HUMUSZSZÁZALÉK word
+nofor correct "apusszi" *	For example kapusszimulátor word
+nofor correct "APUSSZI" *	For example KAPUSSZIMULÁTOR word
+nofor correct "olbásszo" "olbászszo"	For example kolbászszobra word
+nofor correct "OLBÁSSZO" "OLBÁSZSZO"	For example KOLBÁSZSZOBRA word
+nofor correct "enissztrá" "eniszsztrá"	For example teniszsztrájk word
+nofor correct "ENISSZTRÁ" "ENISZSZTRÁ"	For example TENISZSZTRÁJK word
+nofor correct "orgásszok" "orgászszok"	For example horgászszokások word
+nofor correct "ORGÁSSZOK" "ORGÁSZSZOK"	For example HORGÁSZSZOKÁSZOK word
+nofor correct "lusszapp" "luszszapp"	For example pluszszappan word
+nofor correct "LUSSZAPP" "LUSZSZAPP"	For example PLUSZSZAPPAN word
+nofor correct "ítosszi" "ítoszszi"	For example mítoszszilánk word
+nofor correct "ÍTOSSZI" "ÍTOSZSZI"	For example MÍTOSZSZILÁNK word
+nofor correct "árogássze" *	For example károgásszerű word
+nofor correct "ÁROGÁSSZE" *	For example KÁROGÁSSZERŰ word
+nofor always koszszívá 13-135-156-156-34-1236-4	For example koszszívás word
+nofor correct "ónusszor" "ónuszszor"	For example bónuszszorzó word
+nofor correct "ÓNUSSZOR" "ÓNUSZSZOR"	For example BÓNUSZSZORZÓ word
+nofor always böjtöléssz 12-12345-245-2345-12345-123-16-234-156	For example böjtölésszerű word
+nofor correct "fasszak" "faszszak"
+nofor correct "Fasszaké" "Faszszaké"
+nofor correct "FASSZAKÉ" "FASZSZAKÉ"
+nofor correct "öréssz" *	For example törésszimulátor, törésszerű words
+nofor correct "ÖRÉSSZ" *	For example TÖRÉSSZIMULÁTOR, TÖRÉSSZERŰ words
+nofor correct "vadásszaka" "vadászszaka"	For example vadászszakasz word
+nofor correct "Vadásszaka" "Vadászszaka"	For example Vadászszakasz word
+nofor correct "VADÁSSZAKA" "VADÁSZSZAKA"	For example VADÁSZSZAKASZ word
+nofor correct "adásszakasz" *	For example adásszakasz word
+nofor correct "Adásszakasz" *	For example Adásszakasz word
+nofor correct "ADÁSSZAKASZ" *	For example ADÁSSZAKASZ word
+nofor correct "oksszü" "okszszü"	For example kokszszükséglet word
+nofor correct "OKSSZÜ" "OKSZSZÜ"	For example KOKSZSZÜKSÉGLET word
+nofor correct "árcisszí" "árciszszí"	For example nárciszszínű word
+nofor correct "ÁRCISSZÍ" "ÁRCISZSZÍ"	For example NÁRCISZSZÍNŰ word
+nofor correct "borásszo" "borászszo"	For example borászszobor word
+nofor correct "Borásszo" "Borászszo"	For example Borászszobor word
+nofor correct "BORÁSSZO" "BORÁSZSZO"	For example BORÁSZSZOBOR word
+nofor correct "ajansszo" "ajanszszo"	For example FAJANSZSZOBOR word
+nofor correct "AJANSSZO" "AJANSZSZO"	For example FAJANSZSZOBOR word
+nofor correct "ümölccsi" "ümölcscsi"	For example gyümölcscsipszet word
+nofor correct "ÜMÖLCCSI" "ÜMÖLCSCSI"	For example GYÜMÖLCSCSIPSZET word
+nofor correct "azochizmussz" *	For example mazochizmusszimulátor word
+nofor correct "AZOCHIZMUSSZ" *	For example mazochizmusszimulátor word
+nofor correct "oksszom" "okszszom"	For example bokszszomszédja word
+nofor correct "OKSSZOM" "OKSZSZOM"	For example BOKSZSZOMSZÉDJA word
+nofor correct "elentkezéssz" *	For example jelentkezésszerű, jelentkezésszóba word
+nofor correct "ELENTKEZÉSSZ" *	For example JELENTKEZÉSSZERŰ, JELENTKEZÉSSZÓBA word
+nofor correct "gerésszen" *	For example egerésszen word
+nofor correct "GERÉSSZEN" *	For example EGERÉSSZEN word
+nofor correct "etszéssz" *	For example metszésszegély word
+nofor correct "ETSZÉSSZ" *	For example METSZÉSSZEGÉLY word
+nofor correct "plusszi" "pluszszi"	For example pluszszivacsot word
+nofor correct "Plusszi" "Pluszszi"	For example Pluszszivacsot word
+nofor correct "PLUSSZI" "PLUSZSZI"	For example PLUSZSZIVACSOT word
+nofor correct "akasszű" "akaszszű"	For example szakaszszűrő word
+nofor correct "AKASSZŰ" "AKASZSZŰ"	For example SZAKASZSZŰRŐ word
+nofor correct "vággyű" "vágygyű"	For example vágygyűjtemény word
+nofor correct "Vággyű" "Vágygyű"	For example Vágygyűjtemény word
+nofor correct "VÁGGYŰ" "VÁGYGYŰ"	For example VÁGYGYŰJTEMÉNY word
+nofor always vészszünet 1236-16-156-156-12356-1345-15-2345	For example vészszünet word
+nofor correct "obbanássz" *	For example robbanásszűrő word
+nofor correct "OBBANÁSSZ" *	For example ROBBANÁSSZŰRŐ word
+nofor correct "lkusszám" "lkuszszám"	For example alkuszszámára word
+nofor correct "LKUSSZÁM" "LKUSZSZÁM"	For example ALKUSZSZÁMÁRA word
+nofor correct "adarásszako" "adarászszako"	For example madarászszakosztály word
+nofor correct "ADARÁSSZAKO" "ADARÁSZSZAKO"	For example MADARÁSZSZAKOSZTÁLY word
+nofor correct "anásszam" "anászszam"	For example ananászszamóca word
+nofor correct "ANÁSSZAM" "ANÁSZSZAM"	For example ANANÁSZSZAMÓCA word
+nofor correct "fodrásszám" "fodrászszám"	For example fodrászszámla word
+nofor correct "Fodrásszám" "Fodrászszám"	For example Fodrászszámla word
+nofor correct "FODRÁSSZÁM" "FODRÁSZSZÁM"	For example FODRÁSZSZÁMLA word
+nofor correct "ínésszek" "ínészszek"	For example színészszektor word
+nofor correct "ÍNÉSSZEK" "ÍNÉSZSZEK"	For example SZÍNÉSZSZEKTOR word
+nofor correct "gyásszav" "gyászszav"	For example gyászszavak word
+nofor correct "Gyásszav" "Gyászszav"	For example Gyászszavak word
+nofor correct "GYÁSSZAV" "GYÁSZSZAV"	For example GYÁSZSZAVAK word
+nofor correct "uhásszab" "uhászszab"	For example juhászszabó word
+nofor correct "UHÁSSZAB" "UHÁSZSZAB"	For example JUHÁSZSZABÓ word
+nofor correct "ónuszössz" *	For example bónuszösszeg word
+nofor correct "ÓNUSZÖSSZ" *	For example BÓNUSZÖSSZEG word
+nofor correct "plussze" "pluszsze"  For example pluszszerelvény word
+nofor correct "Plussze" "Pluszsze"  For example Pluszszerelvény word
+nofor correct "PLUSSZE" "PLUSZSZE"  For example PLUSZSZERELVÉNY word
+nofor correct "ényképésszol" "ényképészszol"    For example fényképészszolgáltatást word
+nofor correct "ÉNYKÉPÉSSZOL" "ÉNYKÉPÉSZSZOL"    For example FÉNYKÉPÉSZSZOLGÁLTATÁST word
+nofor correct "ransszaha" "ranszszaha"  For example transzszaharai word
+nofor correct "RANSSZAHA" "RANSZSZAHA"  For example TRANSZSZAHARAI word
+nofor correct "ukrássztá" "ukrászsztá"  For example cukrászsztár word
+nofor correct "UKRÁSSZTÁ" "UKRÁSZSZTÁ"  For example CUKRÁSZSZTÁR word
+nofor correct "ónusszö" "ónuszszö"  For example bónuszszöveg word
+nofor correct "ÓNUSSZÖ" "ÓNUSZSZÖ"  For example BÓNUSZSZÖVEG word
+nofor correct "ússzala" "úszszala"  For example túszszalag word
+nofor correct "ÚSSZALA" "ÚSZSZALA"  For example TÚSZSZALAG word
+nofor correct "aritásszem" "aritászszem"    For example karitászszemlélet word
+nofor correct "ARITÁSSZEM" "ARITÁSZSZEM"    For example KARITÁSZSZEMLÉLET word
+nofor correct "lusszök" "luszszök"  For example pluszszökőnap word
+nofor correct "LUSSZÖK" "LUSZSZÖK"  For example PLUSZSZÖKŐNAP word
+nofor correct "akogássz" *  For example makogásszerű word
+nofor correct "AKOGÁSSZ" *  For example MAKOGÁSSZERŰ word
+nofor correct "szösszer" "szöszszer"    For example szöszszerűség word
+nofor correct "Szösszer" "Szöszszer"    For example Szöszszerűség word
+nofor correct "SZÖSSZER" "SZÖSZSZER"    For example SZÖSZSZERŰSÉG word
+nofor correct "eposszav" "eposzszav"    For example eposzszavalat word
+nofor correct "Eposszav" "Eposzszav"    For example Eposzszavalat word
+nofor correct "EPOSSZAV" "EPOSZSZAV"    For example EPOSZSZAVALAT word
+nofor correct "ísszív" "íszszív"    For example díszszív word
+nofor correct "ÍSSZÍV" "ÍSZSZÍV"    For example DÍSZSZÍV word
+nofor correct "umisszü" "umiszszü"  For example kumiszszürcsölős word
+nofor correct "UMISSZÜ" "UMISZSZÜ"  For example KUMISZSZÜRCSÖLŐS word
+nofor correct "lőréssze" *  For example lőrésszemű word
+nofor correct "Lőréssze" *  For example Lőrésszemű word
+nofor correct "LŐRÉSSZE" *  For example LŐRÉSSZEMŰ word
+nofor word koszszem 13-135-156-156-15-134   For example koszszem word
+nofor begword csipeszszá 146-24-1234-15-156-156-4 For example csipeszszárat word
+nofor correct "imnusszó" "imnuszszó"	For example himnuszszólama word
+nofor correct "IMNUSSZÓ" "IMNUSZSZÓ"	For example HIMNUSZSZÓZATA word
+nofor correct "ilinccsa" "ilincscsa"	For example bilincscsattogás word
+nofor correct "ILINCCSA" "ILINCSCSA"	For example BILINCSCSATTOGÁS word
 
 #zszs backtranslated word corrections
 nofor correct "törzszsel" "törzzsel"
