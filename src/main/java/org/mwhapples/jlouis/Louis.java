@@ -420,10 +420,19 @@ public class Louis {
         }
         String libPath = System.getProperty("jlouis.library.path",
                 libConfig.getProperty("jlouis.library.path"));
-        File libFile;
-        if (libPath != null && (!libPath.isEmpty())) {
-            libFile = new File(libPath, libName);
-        } else {
+        File libFile = null;
+        if (libPath != null) {
+            for (String p : libPath.split(File.pathSeparator)) {
+                if (p.isEmpty()) {
+                    continue;
+                }
+                libFile = new File(p, libName);
+                if (!(libFile.exists() && libFile.isFile())) {
+                    libFile = null;
+                }
+            }
+        }
+        if (libFile == null) {
             try {
                 libFile = Native.extractFromResourcePath("/" + Platform.RESOURCE_PREFIX + "/" + libName);
                 logger.info("libFile extract:  " + libFile);
