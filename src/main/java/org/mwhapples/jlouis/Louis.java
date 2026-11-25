@@ -428,7 +428,10 @@ public class Louis {
                 }
                 libFile = new File(p, libName);
                 if (!(libFile.exists() && libFile.isFile())) {
+                    logger.warn("Unable to find LibLouis at {}", libFile.getAbsolutePath());
                     libFile = null;
+                } else {
+                    break;
                 }
             }
         }
